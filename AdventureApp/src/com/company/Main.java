@@ -1,5 +1,6 @@
 package com.company;
 
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -45,9 +46,12 @@ public class Main {
 
     private static ILevel loadLevel(ClassLoader loader, String name, IContext context) throws Exception {
         try {
-            ILevel level = (ILevel) Class.forName(name, true, loader).newInstance();
-            level.initialize(context);
+            ILevel level = (ILevel) Class.forName(name, true, loader)
+                    .getConstructor()
+                    .newInstance();
             
+            level.initialize(context);
+
             return level;
         }
         catch(ClassNotFoundException e) { System.out.println("error: level not found"); }
