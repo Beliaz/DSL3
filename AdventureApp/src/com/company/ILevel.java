@@ -4,8 +4,7 @@ public interface ILevel {
 
     void initialize(IContext context);
 
+    State run(IContext context);
 
-
-    void run(IContext context);
-
+    String getNextLevel(IContext context);
 }
