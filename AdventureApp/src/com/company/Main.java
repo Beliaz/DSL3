@@ -22,23 +22,31 @@ public class Main {
         ClassLoader loader = URLClassLoader.newInstance(new URL[]{url}, ClassLoader.getSystemClassLoader());
 
         IContext context = new Context();
+        IState state = context.getState();
 
         ILevel level = loadLevel(loader, startingLevel);
-        level.initialize(context);
+        executeLevel(level, context);
 
-        State gameState = State.Running;
-
-        while(gameState == State.Running)
+        while(state.getGameState() == GameState.Running)
         {
-            level = loadLevel(loader, level.getNextLevel(context));
-            level.initialize(context);
+            // load new level if needed
+            if(!level.getNextLevel(context).equals(level.getClass().getName()))
+            {
+                level = loadLevel(loader, level.getNextLevel(context));
+            }
 
-            gameState = level.run(context);
+            executeLevel(level, context);
         }
 
-        context.getOut().println(gameState == State.Finished
+        context.getOut().println(state.getGameState() == GameState.Finished
                 ? "Game Won!"
                 : "Game Over!");
+    }
+
+    private static void executeLevel(ILevel level, IContext context)
+    {
+        level.initialize(context);
+        level.run(context);
     }
 
     private static ILevel loadLevel(ClassLoader loader, String name) throws Exception {

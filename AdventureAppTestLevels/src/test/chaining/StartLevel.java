@@ -1,6 +1,7 @@
+package test.chaining;
+
 import com.company.IContext;
 import com.company.ILevel;
-import com.company.State;
 
 public class StartLevel implements ILevel {
     @Override
@@ -9,9 +10,8 @@ public class StartLevel implements ILevel {
     }
 
     @Override
-    public State run(IContext context) {
+    public void run(IContext context) {
         context.getOut().println("start level");
-        return State.Running;
     }
 
     @Override
