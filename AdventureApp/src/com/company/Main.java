@@ -24,18 +24,18 @@ public class Main {
         IContext context = new Context();
         IState state = context.getState();
 
-        ILevel level = loadLevel(loader, startingLevel);
-        executeLevel(level, context);
+        ILevel level = loadLevel(loader, startingLevel, context);
+        level.run(context);
 
         while(state.getGameState() == GameState.Running)
         {
             // load new level if needed
             if(!level.getNextLevel(context).equals(level.getClass().getName()))
             {
-                level = loadLevel(loader, level.getNextLevel(context));
+                level = loadLevel(loader, level.getNextLevel(context), context);
             }
 
-            executeLevel(level, context);
+            level.run(context);
         }
 
         context.getOut().println(state.getGameState() == GameState.Finished
@@ -43,15 +43,12 @@ public class Main {
                 : "Game Over!");
     }
 
-    private static void executeLevel(ILevel level, IContext context)
-    {
-        level.initialize(context);
-        level.run(context);
-    }
-
-    private static ILevel loadLevel(ClassLoader loader, String name) throws Exception {
+    private static ILevel loadLevel(ClassLoader loader, String name, IContext context) throws Exception {
         try {
-            return (ILevel) Class.forName(name, true, loader).newInstance();
+            ILevel level = (ILevel) Class.forName(name, true, loader).newInstance();
+            level.initialize(context);
+            
+            return level;
         }
         catch(ClassNotFoundException e) { System.out.println("error: level not found"); }
         catch(InstantiationException e) { System.out.println("error: could not create level"); }
