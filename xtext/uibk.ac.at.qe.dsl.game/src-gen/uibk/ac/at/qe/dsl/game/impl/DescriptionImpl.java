@@ -10,23 +10,23 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import uibk.ac.at.qe.dsl.game.Definition;
+import uibk.ac.at.qe.dsl.game.Description;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Definition</b></em>'.
+ * An implementation of the model object '<em><b>Description</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link uibk.ac.at.qe.dsl.game.impl.DefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.DescriptionImpl#getName <em>Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DefinitionImpl extends MinimalEObjectImpl.Container implements Definition
+public class DescriptionImpl extends MinimalEObjectImpl.Container implements Description
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -53,7 +53,7 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DefinitionImpl()
+  protected DescriptionImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   @Override
   protected EClass eStaticClass()
   {
-    return GamePackage.Literals.DEFINITION;
+    return GamePackage.Literals.DESCRIPTION;
   }
 
   /**
@@ -89,7 +89,7 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.DEFINITION__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.DESCRIPTION__NAME, oldName, name));
   }
 
   /**
@@ -102,7 +102,7 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case GamePackage.DEFINITION__NAME:
+      case GamePackage.DESCRIPTION__NAME:
         return getName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -118,7 +118,7 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case GamePackage.DEFINITION__NAME:
+      case GamePackage.DESCRIPTION__NAME:
         setName((String)newValue);
         return;
     }
@@ -135,7 +135,7 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case GamePackage.DEFINITION__NAME:
+      case GamePackage.DESCRIPTION__NAME:
         setName(NAME_EDEFAULT);
         return;
     }
@@ -152,7 +152,7 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
   {
     switch (featureID)
     {
-      case GamePackage.DEFINITION__NAME:
+      case GamePackage.DESCRIPTION__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
@@ -175,4 +175,4 @@ public class DefinitionImpl extends MinimalEObjectImpl.Container implements Defi
     return result.toString();
   }
 
-} //DefinitionImpl
+} //DescriptionImpl

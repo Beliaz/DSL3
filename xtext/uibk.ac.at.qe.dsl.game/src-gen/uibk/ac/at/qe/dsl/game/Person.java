@@ -55,7 +55,6 @@ public interface Person extends EObject
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' attribute.
-   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.PERSON_T}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -63,24 +62,22 @@ public interface Person extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Type</em>' attribute.
-   * @see uibk.ac.at.qe.dsl.game.PERSON_T
-   * @see #setType(PERSON_T)
+   * @see #setType(String)
    * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_Type()
    * @model
    * @generated
    */
-  PERSON_T getType();
+  String getType();
 
   /**
    * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getType <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Type</em>' attribute.
-   * @see uibk.ac.at.qe.dsl.game.PERSON_T
    * @see #getType()
    * @generated
    */
-  void setType(PERSON_T value);
+  void setType(String value);
 
   /**
    * Returns the value of the '<em><b>Response</b></em>' attribute.
@@ -110,7 +107,6 @@ public interface Person extends EObject
 
   /**
    * Returns the value of the '<em><b>Position</b></em>' attribute.
-   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.Position_E}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Position</em>' attribute isn't clear,
@@ -118,28 +114,26 @@ public interface Person extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Position</em>' attribute.
-   * @see uibk.ac.at.qe.dsl.game.Position_E
-   * @see #setPosition(Position_E)
+   * @see #setPosition(String)
    * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_Position()
    * @model
    * @generated
    */
-  Position_E getPosition();
+  String getPosition();
 
   /**
    * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Position</em>' attribute.
-   * @see uibk.ac.at.qe.dsl.game.Position_E
    * @see #getPosition()
    * @generated
    */
-  void setPosition(Position_E value);
+  void setPosition(String value);
 
   /**
    * Returns the value of the '<em><b>Action</b></em>' attribute.
-   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.Action}.
+   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.Action_P}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Action</em>' attribute isn't clear,
@@ -147,23 +141,23 @@ public interface Person extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Action</em>' attribute.
-   * @see uibk.ac.at.qe.dsl.game.Action
-   * @see #setAction(Action)
+   * @see uibk.ac.at.qe.dsl.game.Action_P
+   * @see #setAction(Action_P)
    * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_Action()
    * @model
    * @generated
    */
-  Action getAction();
+  Action_P getAction();
 
   /**
    * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getAction <em>Action</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Action</em>' attribute.
-   * @see uibk.ac.at.qe.dsl.game.Action
+   * @see uibk.ac.at.qe.dsl.game.Action_P
    * @see #getAction()
    * @generated
    */
-  void setAction(Action value);
+  void setAction(Action_P value);
 
 } // Person

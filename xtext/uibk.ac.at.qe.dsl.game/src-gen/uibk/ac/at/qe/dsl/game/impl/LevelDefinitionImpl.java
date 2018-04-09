@@ -16,9 +16,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import uibk.ac.at.qe.dsl.game.Action_GLOBAL;
+import uibk.ac.at.qe.dsl.game.Description;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
@@ -33,9 +36,12 @@ import uibk.ac.at.qe.dsl.game.Person;
  * </p>
  * <ul>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getPersons <em>Persons</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getObjects <em>Objects</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getGoalId <em>Goal Id</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getActions <em>Actions</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getGoal <em>Goal</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getNext <em>Next</em>}</li>
  * </ul>
  *
  * @generated
@@ -51,6 +57,16 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected LevelDeclaration name;
+
+  /**
+   * The cached value of the '{@link #getDescription() <em>Description</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDescription()
+   * @generated
+   * @ordered
+   */
+  protected Description description;
 
   /**
    * The cached value of the '{@link #getPersons() <em>Persons</em>}' containment reference list.
@@ -73,24 +89,44 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
   protected EList<uibk.ac.at.qe.dsl.game.Object> objects;
 
   /**
-   * The default value of the '{@link #getGoalId() <em>Goal Id</em>}' attribute.
+   * The cached value of the '{@link #getActions() <em>Actions</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGoalId()
+   * @see #getActions()
    * @generated
    * @ordered
    */
-  protected static final String GOAL_ID_EDEFAULT = null;
+  protected EList<Action_GLOBAL> actions;
 
   /**
-   * The cached value of the '{@link #getGoalId() <em>Goal Id</em>}' attribute.
+   * The default value of the '{@link #getGoal() <em>Goal</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGoalId()
+   * @see #getGoal()
    * @generated
    * @ordered
    */
-  protected String goalId = GOAL_ID_EDEFAULT;
+  protected static final String GOAL_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getGoal() <em>Goal</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getGoal()
+   * @generated
+   * @ordered
+   */
+  protected String goal = GOAL_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getNext() <em>Next</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getNext()
+   * @generated
+   * @ordered
+   */
+  protected LevelDeclaration next;
 
   /**
    * <!-- begin-user-doc -->
@@ -161,6 +197,54 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
+  public Description getDescription()
+  {
+    return description;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetDescription(Description newDescription, NotificationChain msgs)
+  {
+    Description oldDescription = description;
+    description = newDescription;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GamePackage.LEVEL_DEFINITION__DESCRIPTION, oldDescription, newDescription);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setDescription(Description newDescription)
+  {
+    if (newDescription != description)
+    {
+      NotificationChain msgs = null;
+      if (description != null)
+        msgs = ((InternalEObject)description).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GamePackage.LEVEL_DEFINITION__DESCRIPTION, null, msgs);
+      if (newDescription != null)
+        msgs = ((InternalEObject)newDescription).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GamePackage.LEVEL_DEFINITION__DESCRIPTION, null, msgs);
+      msgs = basicSetDescription(newDescription, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.LEVEL_DEFINITION__DESCRIPTION, newDescription, newDescription));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EList<Person> getPersons()
   {
     if (persons == null)
@@ -189,9 +273,13 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getGoalId()
+  public EList<Action_GLOBAL> getActions()
   {
-    return goalId;
+    if (actions == null)
+    {
+      actions = new EDataTypeEList<Action_GLOBAL>(Action_GLOBAL.class, this, GamePackage.LEVEL_DEFINITION__ACTIONS);
+    }
+    return actions;
   }
 
   /**
@@ -199,12 +287,65 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setGoalId(String newGoalId)
+  public String getGoal()
   {
-    String oldGoalId = goalId;
-    goalId = newGoalId;
+    return goal;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setGoal(String newGoal)
+  {
+    String oldGoal = goal;
+    goal = newGoal;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.LEVEL_DEFINITION__GOAL_ID, oldGoalId, goalId));
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.LEVEL_DEFINITION__GOAL, oldGoal, goal));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LevelDeclaration getNext()
+  {
+    if (next != null && next.eIsProxy())
+    {
+      InternalEObject oldNext = (InternalEObject)next;
+      next = (LevelDeclaration)eResolveProxy(oldNext);
+      if (next != oldNext)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GamePackage.LEVEL_DEFINITION__NEXT, oldNext, next));
+      }
+    }
+    return next;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LevelDeclaration basicGetNext()
+  {
+    return next;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setNext(LevelDeclaration newNext)
+  {
+    LevelDeclaration oldNext = next;
+    next = newNext;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.LEVEL_DEFINITION__NEXT, oldNext, next));
   }
 
   /**
@@ -217,6 +358,8 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
+      case GamePackage.LEVEL_DEFINITION__DESCRIPTION:
+        return basicSetDescription(null, msgs);
       case GamePackage.LEVEL_DEFINITION__PERSONS:
         return ((InternalEList<?>)getPersons()).basicRemove(otherEnd, msgs);
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
@@ -238,12 +381,19 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
       case GamePackage.LEVEL_DEFINITION__NAME:
         if (resolve) return getName();
         return basicGetName();
+      case GamePackage.LEVEL_DEFINITION__DESCRIPTION:
+        return getDescription();
       case GamePackage.LEVEL_DEFINITION__PERSONS:
         return getPersons();
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
         return getObjects();
-      case GamePackage.LEVEL_DEFINITION__GOAL_ID:
-        return getGoalId();
+      case GamePackage.LEVEL_DEFINITION__ACTIONS:
+        return getActions();
+      case GamePackage.LEVEL_DEFINITION__GOAL:
+        return getGoal();
+      case GamePackage.LEVEL_DEFINITION__NEXT:
+        if (resolve) return getNext();
+        return basicGetNext();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -262,6 +412,9 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
       case GamePackage.LEVEL_DEFINITION__NAME:
         setName((LevelDeclaration)newValue);
         return;
+      case GamePackage.LEVEL_DEFINITION__DESCRIPTION:
+        setDescription((Description)newValue);
+        return;
       case GamePackage.LEVEL_DEFINITION__PERSONS:
         getPersons().clear();
         getPersons().addAll((Collection<? extends Person>)newValue);
@@ -270,8 +423,15 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         getObjects().clear();
         getObjects().addAll((Collection<? extends uibk.ac.at.qe.dsl.game.Object>)newValue);
         return;
-      case GamePackage.LEVEL_DEFINITION__GOAL_ID:
-        setGoalId((String)newValue);
+      case GamePackage.LEVEL_DEFINITION__ACTIONS:
+        getActions().clear();
+        getActions().addAll((Collection<? extends Action_GLOBAL>)newValue);
+        return;
+      case GamePackage.LEVEL_DEFINITION__GOAL:
+        setGoal((String)newValue);
+        return;
+      case GamePackage.LEVEL_DEFINITION__NEXT:
+        setNext((LevelDeclaration)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -290,14 +450,23 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
       case GamePackage.LEVEL_DEFINITION__NAME:
         setName((LevelDeclaration)null);
         return;
+      case GamePackage.LEVEL_DEFINITION__DESCRIPTION:
+        setDescription((Description)null);
+        return;
       case GamePackage.LEVEL_DEFINITION__PERSONS:
         getPersons().clear();
         return;
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
         getObjects().clear();
         return;
-      case GamePackage.LEVEL_DEFINITION__GOAL_ID:
-        setGoalId(GOAL_ID_EDEFAULT);
+      case GamePackage.LEVEL_DEFINITION__ACTIONS:
+        getActions().clear();
+        return;
+      case GamePackage.LEVEL_DEFINITION__GOAL:
+        setGoal(GOAL_EDEFAULT);
+        return;
+      case GamePackage.LEVEL_DEFINITION__NEXT:
+        setNext((LevelDeclaration)null);
         return;
     }
     super.eUnset(featureID);
@@ -315,12 +484,18 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
     {
       case GamePackage.LEVEL_DEFINITION__NAME:
         return name != null;
+      case GamePackage.LEVEL_DEFINITION__DESCRIPTION:
+        return description != null;
       case GamePackage.LEVEL_DEFINITION__PERSONS:
         return persons != null && !persons.isEmpty();
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
         return objects != null && !objects.isEmpty();
-      case GamePackage.LEVEL_DEFINITION__GOAL_ID:
-        return GOAL_ID_EDEFAULT == null ? goalId != null : !GOAL_ID_EDEFAULT.equals(goalId);
+      case GamePackage.LEVEL_DEFINITION__ACTIONS:
+        return actions != null && !actions.isEmpty();
+      case GamePackage.LEVEL_DEFINITION__GOAL:
+        return GOAL_EDEFAULT == null ? goal != null : !GOAL_EDEFAULT.equals(goal);
+      case GamePackage.LEVEL_DEFINITION__NEXT:
+        return next != null;
     }
     return super.eIsSet(featureID);
   }
@@ -336,8 +511,10 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
     if (eIsProxy()) return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (goalId: ");
-    result.append(goalId);
+    result.append(" (actions: ");
+    result.append(actions);
+    result.append(", goal: ");
+    result.append(goal);
     result.append(')');
     return result.toString();
   }

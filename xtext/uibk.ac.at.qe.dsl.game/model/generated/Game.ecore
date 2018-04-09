@@ -2,65 +2,58 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="game" nsURI="http://www.ac.uibk/at/qe/dsl/Game" nsPrefix="game">
   <eClassifiers xsi:type="ecore:EClass" name="Game">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="definition" eType="#//Definition"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="scenes" upperBound="-1"
         eType="#//Scene" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Definition">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Scene">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="declartions" upperBound="-1"
         eType="#//LevelDeclaration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="definitions" upperBound="-1"
         eType="#//LevelDefinition" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="startLevel" eType="#//LevelDeclaration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="finalLevel" eType="#//LevelDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="transitions" upperBound="-1"
-        eType="#//LevelTransition" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LevelDeclaration">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LevelDefinition">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//LevelDeclaration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="description" eType="#//Description"
+        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="persons" upperBound="-1"
         eType="#//Person" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
         eType="#//Object" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="goalId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" unique="false"
+        upperBound="-1" eType="#//Action_GLOBAL"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="goal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//LevelDeclaration"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LevelTransition">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="levelFrom" eType="#//LevelDeclaration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="levelTo" eType="#//LevelDeclaration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Description">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Person">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PERSON_T"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position_E"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action_P"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Object">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//OBJECT_T"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position_E"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action_O"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="PERSON_T">
-    <eLiterals name="MALE" literal="male"/>
-    <eLiterals name="FEMALE" value="1" literal="female"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Action_GLOBAL">
+    <eLiterals name="LEAVE" literal="Leave"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="OBJECT_T">
-    <eLiterals name="A" literal="type_A"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="Action_O">
+    <eLiterals name="PICK" literal="Pick"/>
+    <eLiterals name="USE" value="1" literal="Use"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Position_E">
-    <eLiterals name="TABLE" literal="On table"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Action">
+  <eClassifiers xsi:type="ecore:EEnum" name="Action_P">
     <eLiterals name="TALK" literal="Talk"/>
-    <eLiterals name="PICK" value="1" literal="Pick"/>
-    <eLiterals name="USE" value="2" literal="use"/>
   </eClassifiers>
 </ecore:EPackage>

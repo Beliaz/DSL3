@@ -6,47 +6,40 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.13">
   <genPackages prefix="Game" basePackage="uibk.ac.at.qe.dsl" disposableProviderFactory="true"
       fileExtensions="game" ecorePackage="Game.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//PERSON_T">
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//PERSON_T/MALE"/>
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//PERSON_T/FEMALE"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action_GLOBAL">
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_GLOBAL/LEAVE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//OBJECT_T">
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//OBJECT_T/A"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action_O">
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_O/PICK"/>
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_O/USE"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Position_E">
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Position_E/TABLE"/>
-    </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action">
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action/TALK"/>
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action/PICK"/>
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action/USE"/>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action_P">
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_P/TALK"/>
     </genEnums>
     <genClasses ecoreClass="Game.ecore#//Game">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Game/definition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Game/scenes"/>
     </genClasses>
-    <genClasses ecoreClass="Game.ecore#//Definition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Definition/name"/>
-    </genClasses>
     <genClasses ecoreClass="Game.ecore#//Scene">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Scene/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Scene/declartions"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Scene/definitions"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//Scene/startLevel"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//Scene/finalLevel"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Scene/transitions"/>
     </genClasses>
     <genClasses ecoreClass="Game.ecore#//LevelDeclaration">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//LevelDeclaration/name"/>
     </genClasses>
     <genClasses ecoreClass="Game.ecore#//LevelDefinition">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/persons"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/objects"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//LevelDefinition/goalId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//LevelDefinition/actions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//LevelDefinition/goal"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/next"/>
     </genClasses>
-    <genClasses ecoreClass="Game.ecore#//LevelTransition">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//LevelTransition/levelFrom"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//LevelTransition/levelTo"/>
+    <genClasses ecoreClass="Game.ecore#//Description">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Description/name"/>
     </genClasses>
     <genClasses ecoreClass="Game.ecore#//Person">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/name"/>

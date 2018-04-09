@@ -2,40 +2,42 @@ new gameA {
 	level level_1;
 	level level_2;
 	level_1 = {
+		description = "Some description";
 		person_A = {
 			type = male;
 			response = "Search for object xyz";
-			position = On table;
+			position = "On the table";
 			action = Talk;
 		}
 		object_A = {
 			type = type_A;
-			position = On table;
+			position = "At the left corner";
 			action = Pick;
 		}
 		goal = level_1;
+		next = level_2;
 	}
 	level_2 = {
+		description = "Some description";
 		person_A = {
 			type = female;
 			response = "Hi";
-			position = On table;
+			position = "Sitting on a chair";
 			action = Talk;
 		}
 		person_B = {
 			type = female;
 			response = "Go to position abc";
-			position = On table;
+			position = "At the door";
 			action = Talk;
 		}
 		object_A = {
 			type = type_A;
-			position = On table;
+			position = "In the bookshelf";
 			action = Pick;
 		}
 		goal = object_A;
 	}
 	start = level_1;
 	final = level_2;
-	from level_1 to level_2;
 }

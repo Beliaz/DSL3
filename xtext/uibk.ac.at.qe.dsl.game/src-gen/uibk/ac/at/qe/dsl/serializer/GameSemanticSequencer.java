@@ -14,12 +14,11 @@ import org.eclipse.xtext.serializer.ISerializationContext;
 import org.eclipse.xtext.serializer.acceptor.SequenceFeeder;
 import org.eclipse.xtext.serializer.sequencer.AbstractDelegatingSemanticSequencer;
 import org.eclipse.xtext.serializer.sequencer.ITransientValueService.ValueTransient;
-import uibk.ac.at.qe.dsl.game.Definition;
+import uibk.ac.at.qe.dsl.game.Description;
 import uibk.ac.at.qe.dsl.game.Game;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
-import uibk.ac.at.qe.dsl.game.LevelTransition;
 import uibk.ac.at.qe.dsl.game.Person;
 import uibk.ac.at.qe.dsl.game.Scene;
 import uibk.ac.at.qe.dsl.services.GameGrammarAccess;
@@ -38,8 +37,8 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == GamePackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case GamePackage.DEFINITION:
-				sequence_Definition(context, (Definition) semanticObject); 
+			case GamePackage.DESCRIPTION:
+				sequence_Description(context, (Description) semanticObject); 
 				return; 
 			case GamePackage.GAME:
 				sequence_Game(context, (Game) semanticObject); 
@@ -49,9 +48,6 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case GamePackage.LEVEL_DEFINITION:
 				sequence_LevelDefinition(context, (LevelDefinition) semanticObject); 
-				return; 
-			case GamePackage.LEVEL_TRANSITION:
-				sequence_LevelTransition(context, (LevelTransition) semanticObject); 
 				return; 
 			case GamePackage.OBJECT:
 				sequence_Object(context, (uibk.ac.at.qe.dsl.game.Object) semanticObject); 
@@ -69,18 +65,18 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Definition returns Definition
+	 *     Description returns Description
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     name=STRING
 	 */
-	protected void sequence_Definition(ISerializationContext context, Definition semanticObject) {
+	protected void sequence_Description(ISerializationContext context, Description semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.DEFINITION__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.DEFINITION__NAME));
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.DESCRIPTION__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.DESCRIPTION__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDefinitionAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getDescriptionAccess().getNameSTRINGTerminalRuleCall_2_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	
@@ -90,7 +86,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Game returns Game
 	 *
 	 * Constraint:
-	 *     (definition=Definition scenes+=Scene*)
+	 *     scenes+=Scene+
 	 */
 	protected void sequence_Game(ISerializationContext context, Game semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -120,7 +116,15 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     LevelDefinition returns LevelDefinition
 	 *
 	 * Constraint:
-	 *     (name=[LevelDeclaration|ID] persons+=Person* objects+=Object* goalId=ID)
+	 *     (
+	 *         name=[LevelDeclaration|ID] 
+	 *         description=Description 
+	 *         persons+=Person* 
+	 *         objects+=Object* 
+	 *         actions+=Action_GLOBAL* 
+	 *         goal=ID 
+	 *         next=[LevelDeclaration|ID]?
+	 *     )
 	 */
 	protected void sequence_LevelDefinition(ISerializationContext context, LevelDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -129,31 +133,10 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     LevelTransition returns LevelTransition
-	 *
-	 * Constraint:
-	 *     (levelFrom=[LevelDeclaration|ID] levelTo=[LevelDeclaration|ID])
-	 */
-	protected void sequence_LevelTransition(ISerializationContext context, LevelTransition semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.LEVEL_TRANSITION__LEVEL_FROM) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.LEVEL_TRANSITION__LEVEL_FROM));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.LEVEL_TRANSITION__LEVEL_TO) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.LEVEL_TRANSITION__LEVEL_TO));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLevelTransitionAccess().getLevelFromLevelDeclarationIDTerminalRuleCall_1_0_1(), semanticObject.eGet(GamePackage.Literals.LEVEL_TRANSITION__LEVEL_FROM, false));
-		feeder.accept(grammarAccess.getLevelTransitionAccess().getLevelToLevelDeclarationIDTerminalRuleCall_3_0_1(), semanticObject.eGet(GamePackage.Literals.LEVEL_TRANSITION__LEVEL_TO, false));
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * Contexts:
 	 *     Object returns Object
 	 *
 	 * Constraint:
-	 *     (name=ID type=OBJECT_T position=Position_E action=Action)
+	 *     (name=ID type=ID position=STRING action=Action_O)
 	 */
 	protected void sequence_Object(ISerializationContext context, uibk.ac.at.qe.dsl.game.Object semanticObject) {
 		if (errorAcceptor != null) {
@@ -168,9 +151,9 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getObjectAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getObjectAccess().getTypeOBJECT_TEnumRuleCall_5_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getObjectAccess().getPositionPosition_EEnumRuleCall_9_0(), semanticObject.getPosition());
-		feeder.accept(grammarAccess.getObjectAccess().getActionActionEnumRuleCall_13_0(), semanticObject.getAction());
+		feeder.accept(grammarAccess.getObjectAccess().getTypeIDTerminalRuleCall_5_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getObjectAccess().getPositionSTRINGTerminalRuleCall_9_0(), semanticObject.getPosition());
+		feeder.accept(grammarAccess.getObjectAccess().getActionAction_OEnumRuleCall_13_0(), semanticObject.getAction());
 		feeder.finish();
 	}
 	
@@ -180,7 +163,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Person returns Person
 	 *
 	 * Constraint:
-	 *     (name=ID type=PERSON_T response=STRING position=Position_E action=Action)
+	 *     (name=ID type=ID response=STRING position=STRING action=Action_P)
 	 */
 	protected void sequence_Person(ISerializationContext context, Person semanticObject) {
 		if (errorAcceptor != null) {
@@ -197,10 +180,10 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPersonAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPersonAccess().getTypePERSON_TEnumRuleCall_5_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getPersonAccess().getTypeIDTerminalRuleCall_5_0(), semanticObject.getType());
 		feeder.accept(grammarAccess.getPersonAccess().getResponseSTRINGTerminalRuleCall_9_0(), semanticObject.getResponse());
-		feeder.accept(grammarAccess.getPersonAccess().getPositionPosition_EEnumRuleCall_13_0(), semanticObject.getPosition());
-		feeder.accept(grammarAccess.getPersonAccess().getActionActionEnumRuleCall_17_0(), semanticObject.getAction());
+		feeder.accept(grammarAccess.getPersonAccess().getPositionSTRINGTerminalRuleCall_13_0(), semanticObject.getPosition());
+		feeder.accept(grammarAccess.getPersonAccess().getActionAction_PEnumRuleCall_17_0(), semanticObject.getAction());
 		feeder.finish();
 	}
 	
@@ -210,13 +193,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Scene returns Scene
 	 *
 	 * Constraint:
-	 *     (
-	 *         declartions+=LevelDeclaration* 
-	 *         definitions+=LevelDefinition* 
-	 *         startLevel=[LevelDeclaration|ID] 
-	 *         finalLevel=[LevelDeclaration|ID] 
-	 *         transitions+=LevelTransition*
-	 *     )
+	 *     (name=ID declartions+=LevelDeclaration* definitions+=LevelDefinition* startLevel=[LevelDeclaration|ID] finalLevel=[LevelDeclaration|ID])
 	 */
 	protected void sequence_Scene(ISerializationContext context, Scene semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

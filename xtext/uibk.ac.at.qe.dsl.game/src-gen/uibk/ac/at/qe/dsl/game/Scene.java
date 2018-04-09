@@ -16,11 +16,11 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.Scene#getName <em>Name</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Scene#getDeclartions <em>Declartions</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Scene#getDefinitions <em>Definitions</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Scene#getStartLevel <em>Start Level</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Scene#getFinalLevel <em>Final Level</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.Scene#getTransitions <em>Transitions</em>}</li>
  * </ul>
  *
  * @see uibk.ac.at.qe.dsl.game.GamePackage#getScene()
@@ -29,6 +29,32 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface Scene extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Name</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Name</em>' attribute.
+   * @see #setName(String)
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getScene_Name()
+   * @model
+   * @generated
+   */
+  String getName();
+
+  /**
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Scene#getName <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Name</em>' attribute.
+   * @see #getName()
+   * @generated
+   */
+  void setName(String value);
+
   /**
    * Returns the value of the '<em><b>Declartions</b></em>' containment reference list.
    * The list contents are of type {@link uibk.ac.at.qe.dsl.game.LevelDeclaration}.
@@ -112,21 +138,5 @@ public interface Scene extends EObject
    * @generated
    */
   void setFinalLevel(LevelDeclaration value);
-
-  /**
-   * Returns the value of the '<em><b>Transitions</b></em>' containment reference list.
-   * The list contents are of type {@link uibk.ac.at.qe.dsl.game.LevelTransition}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Transitions</em>' containment reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Transitions</em>' containment reference list.
-   * @see uibk.ac.at.qe.dsl.game.GamePackage#getScene_Transitions()
-   * @model containment="true"
-   * @generated
-   */
-  EList<LevelTransition> getTransitions();
 
 } // Scene

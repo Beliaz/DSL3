@@ -17,9 +17,12 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getName <em>Name</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getDescription <em>Description</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getPersons <em>Persons</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getObjects <em>Objects</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getGoalId <em>Goal Id</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getActions <em>Actions</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getGoal <em>Goal</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getNext <em>Next</em>}</li>
  * </ul>
  *
  * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition()
@@ -55,6 +58,32 @@ public interface LevelDefinition extends EObject
   void setName(LevelDeclaration value);
 
   /**
+   * Returns the value of the '<em><b>Description</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Description</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Description</em>' containment reference.
+   * @see #setDescription(Description)
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition_Description()
+   * @model containment="true"
+   * @generated
+   */
+  Description getDescription();
+
+  /**
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getDescription <em>Description</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Description</em>' containment reference.
+   * @see #getDescription()
+   * @generated
+   */
+  void setDescription(Description value);
+
+  /**
    * Returns the value of the '<em><b>Persons</b></em>' containment reference list.
    * The list contents are of type {@link uibk.ac.at.qe.dsl.game.Person}.
    * <!-- begin-user-doc -->
@@ -87,29 +116,73 @@ public interface LevelDefinition extends EObject
   EList<uibk.ac.at.qe.dsl.game.Object> getObjects();
 
   /**
-   * Returns the value of the '<em><b>Goal Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Actions</b></em>' attribute list.
+   * The list contents are of type {@link uibk.ac.at.qe.dsl.game.Action_GLOBAL}.
+   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.Action_GLOBAL}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Goal Id</em>' attribute isn't clear,
+   * If the meaning of the '<em>Actions</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Goal Id</em>' attribute.
-   * @see #setGoalId(String)
-   * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition_GoalId()
+   * @return the value of the '<em>Actions</em>' attribute list.
+   * @see uibk.ac.at.qe.dsl.game.Action_GLOBAL
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition_Actions()
+   * @model unique="false"
+   * @generated
+   */
+  EList<Action_GLOBAL> getActions();
+
+  /**
+   * Returns the value of the '<em><b>Goal</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Goal</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Goal</em>' attribute.
+   * @see #setGoal(String)
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition_Goal()
    * @model
    * @generated
    */
-  String getGoalId();
+  String getGoal();
 
   /**
-   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getGoalId <em>Goal Id</em>}' attribute.
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getGoal <em>Goal</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Goal Id</em>' attribute.
-   * @see #getGoalId()
+   * @param value the new value of the '<em>Goal</em>' attribute.
+   * @see #getGoal()
    * @generated
    */
-  void setGoalId(String value);
+  void setGoal(String value);
+
+  /**
+   * Returns the value of the '<em><b>Next</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Next</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Next</em>' reference.
+   * @see #setNext(LevelDeclaration)
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition_Next()
+   * @model
+   * @generated
+   */
+  LevelDeclaration getNext();
+
+  /**
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getNext <em>Next</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Next</em>' reference.
+   * @see #getNext()
+   * @generated
+   */
+  void setNext(LevelDeclaration value);
 
 } // LevelDefinition

@@ -33,15 +33,6 @@ public interface GameFactory extends EFactory
   Game createGame();
 
   /**
-   * Returns a new object of class '<em>Definition</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Definition</em>'.
-   * @generated
-   */
-  Definition createDefinition();
-
-  /**
    * Returns a new object of class '<em>Scene</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -69,13 +60,13 @@ public interface GameFactory extends EFactory
   LevelDefinition createLevelDefinition();
 
   /**
-   * Returns a new object of class '<em>Level Transition</em>'.
+   * Returns a new object of class '<em>Description</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Level Transition</em>'.
+   * @return a new object of class '<em>Description</em>'.
    * @generated
    */
-  LevelTransition createLevelTransition();
+  Description createDescription();
 
   /**
    * Returns a new object of class '<em>Person</em>'.

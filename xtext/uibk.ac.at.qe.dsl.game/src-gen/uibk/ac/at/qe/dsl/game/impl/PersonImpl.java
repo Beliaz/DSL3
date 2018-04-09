@@ -10,11 +10,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import uibk.ac.at.qe.dsl.game.Action;
+import uibk.ac.at.qe.dsl.game.Action_P;
 import uibk.ac.at.qe.dsl.game.GamePackage;
-import uibk.ac.at.qe.dsl.game.PERSON_T;
 import uibk.ac.at.qe.dsl.game.Person;
-import uibk.ac.at.qe.dsl.game.Position_E;
 
 /**
  * <!-- begin-user-doc -->
@@ -63,7 +61,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @generated
    * @ordered
    */
-  protected static final PERSON_T TYPE_EDEFAULT = PERSON_T.MALE;
+  protected static final String TYPE_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -73,7 +71,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @generated
    * @ordered
    */
-  protected PERSON_T type = TYPE_EDEFAULT;
+  protected String type = TYPE_EDEFAULT;
 
   /**
    * The default value of the '{@link #getResponse() <em>Response</em>}' attribute.
@@ -103,7 +101,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @generated
    * @ordered
    */
-  protected static final Position_E POSITION_EDEFAULT = Position_E.TABLE;
+  protected static final String POSITION_EDEFAULT = null;
 
   /**
    * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
@@ -113,7 +111,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @generated
    * @ordered
    */
-  protected Position_E position = POSITION_EDEFAULT;
+  protected String position = POSITION_EDEFAULT;
 
   /**
    * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
@@ -123,7 +121,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @generated
    * @ordered
    */
-  protected static final Action ACTION_EDEFAULT = Action.TALK;
+  protected static final Action_P ACTION_EDEFAULT = Action_P.TALK;
 
   /**
    * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
@@ -133,7 +131,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @generated
    * @ordered
    */
-  protected Action action = ACTION_EDEFAULT;
+  protected Action_P action = ACTION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -184,7 +182,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public PERSON_T getType()
+  public String getType()
   {
     return type;
   }
@@ -194,10 +192,10 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(PERSON_T newType)
+  public void setType(String newType)
   {
-    PERSON_T oldType = type;
-    type = newType == null ? TYPE_EDEFAULT : newType;
+    String oldType = type;
+    type = newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.PERSON__TYPE, oldType, type));
   }
@@ -230,7 +228,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public Position_E getPosition()
+  public String getPosition()
   {
     return position;
   }
@@ -240,10 +238,10 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPosition(Position_E newPosition)
+  public void setPosition(String newPosition)
   {
-    Position_E oldPosition = position;
-    position = newPosition == null ? POSITION_EDEFAULT : newPosition;
+    String oldPosition = position;
+    position = newPosition;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.PERSON__POSITION, oldPosition, position));
   }
@@ -253,7 +251,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public Action getAction()
+  public Action_P getAction()
   {
     return action;
   }
@@ -263,9 +261,9 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setAction(Action newAction)
+  public void setAction(Action_P newAction)
   {
-    Action oldAction = action;
+    Action_P oldAction = action;
     action = newAction == null ? ACTION_EDEFAULT : newAction;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.PERSON__ACTION, oldAction, action));
@@ -309,16 +307,16 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
         setName((String)newValue);
         return;
       case GamePackage.PERSON__TYPE:
-        setType((PERSON_T)newValue);
+        setType((String)newValue);
         return;
       case GamePackage.PERSON__RESPONSE:
         setResponse((String)newValue);
         return;
       case GamePackage.PERSON__POSITION:
-        setPosition((Position_E)newValue);
+        setPosition((String)newValue);
         return;
       case GamePackage.PERSON__ACTION:
-        setAction((Action)newValue);
+        setAction((Action_P)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -366,11 +364,11 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
       case GamePackage.PERSON__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GamePackage.PERSON__TYPE:
-        return type != TYPE_EDEFAULT;
+        return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case GamePackage.PERSON__RESPONSE:
         return RESPONSE_EDEFAULT == null ? response != null : !RESPONSE_EDEFAULT.equals(response);
       case GamePackage.PERSON__POSITION:
-        return position != POSITION_EDEFAULT;
+        return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
       case GamePackage.PERSON__ACTION:
         return action != ACTION_EDEFAULT;
     }

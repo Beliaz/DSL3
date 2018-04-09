@@ -8,12 +8,11 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
-import uibk.ac.at.qe.dsl.game.Definition;
+import uibk.ac.at.qe.dsl.game.Description;
 import uibk.ac.at.qe.dsl.game.Game;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
-import uibk.ac.at.qe.dsl.game.LevelTransition;
 import uibk.ac.at.qe.dsl.game.Person;
 import uibk.ac.at.qe.dsl.game.Scene;
 
@@ -87,13 +86,6 @@ public class GameSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GamePackage.DEFINITION:
-      {
-        Definition definition = (Definition)theEObject;
-        T result = caseDefinition(definition);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
       case GamePackage.SCENE:
       {
         Scene scene = (Scene)theEObject;
@@ -115,10 +107,10 @@ public class GameSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case GamePackage.LEVEL_TRANSITION:
+      case GamePackage.DESCRIPTION:
       {
-        LevelTransition levelTransition = (LevelTransition)theEObject;
-        T result = caseLevelTransition(levelTransition);
+        Description description = (Description)theEObject;
+        T result = caseDescription(description);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -152,22 +144,6 @@ public class GameSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseGame(Game object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Definition</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Definition</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseDefinition(Definition object)
   {
     return null;
   }
@@ -221,17 +197,17 @@ public class GameSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Level Transition</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Description</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Level Transition</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Description</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLevelTransition(LevelTransition object)
+  public T caseDescription(Description object)
   {
     return null;
   }

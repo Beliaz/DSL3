@@ -11,73 +11,73 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Position E</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Action P</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see uibk.ac.at.qe.dsl.game.GamePackage#getPosition_E()
+ * @see uibk.ac.at.qe.dsl.game.GamePackage#getAction_P()
  * @model
  * @generated
  */
-public enum Position_E implements Enumerator
+public enum Action_P implements Enumerator
 {
   /**
-   * The '<em><b>TABLE</b></em>' literal object.
+   * The '<em><b>TALK</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #TABLE_VALUE
+   * @see #TALK_VALUE
    * @generated
    * @ordered
    */
-  TABLE(0, "TABLE", "On table");
+  TALK(0, "TALK", "Talk");
 
   /**
-   * The '<em><b>TABLE</b></em>' literal value.
+   * The '<em><b>TALK</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of '<em><b>TABLE</b></em>' literal object isn't clear,
+   * If the meaning of '<em><b>TALK</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #TABLE
-   * @model literal="On table"
+   * @see #TALK
+   * @model literal="Talk"
    * @generated
    * @ordered
    */
-  public static final int TABLE_VALUE = 0;
+  public static final int TALK_VALUE = 0;
 
   /**
-   * An array of all the '<em><b>Position E</b></em>' enumerators.
+   * An array of all the '<em><b>Action P</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final Position_E[] VALUES_ARRAY =
-    new Position_E[]
+  private static final Action_P[] VALUES_ARRAY =
+    new Action_P[]
     {
-      TABLE,
+      TALK,
     };
 
   /**
-   * A public read-only list of all the '<em><b>Position E</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>Action P</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<Position_E> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<Action_P> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Position E</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>Action P</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param literal the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static Position_E get(String literal)
+  public static Action_P get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      Position_E result = VALUES_ARRAY[i];
+      Action_P result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -87,18 +87,18 @@ public enum Position_E implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Position E</b></em>' literal with the specified name.
+   * Returns the '<em><b>Action P</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param name the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static Position_E getByName(String name)
+  public static Action_P getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      Position_E result = VALUES_ARRAY[i];
+      Action_P result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -108,18 +108,18 @@ public enum Position_E implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Position E</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>Action P</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static Position_E get(int value)
+  public static Action_P get(int value)
   {
     switch (value)
     {
-      case TABLE_VALUE: return TABLE;
+      case TALK_VALUE: return TALK;
     }
     return null;
   }
@@ -151,7 +151,7 @@ public enum Position_E implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private Position_E(int value, String name, String literal)
+  private Action_P(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -200,4 +200,4 @@ public enum Position_E implements Enumerator
     return literal;
   }
   
-} //Position_E
+} //Action_P

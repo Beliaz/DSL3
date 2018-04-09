@@ -10,12 +10,11 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import uibk.ac.at.qe.dsl.game.Definition;
+import uibk.ac.at.qe.dsl.game.Description;
 import uibk.ac.at.qe.dsl.game.Game;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
-import uibk.ac.at.qe.dsl.game.LevelTransition;
 import uibk.ac.at.qe.dsl.game.Person;
 import uibk.ac.at.qe.dsl.game.Scene;
 
@@ -88,11 +87,6 @@ public class GameAdapterFactory extends AdapterFactoryImpl
         return createGameAdapter();
       }
       @Override
-      public Adapter caseDefinition(Definition object)
-      {
-        return createDefinitionAdapter();
-      }
-      @Override
       public Adapter caseScene(Scene object)
       {
         return createSceneAdapter();
@@ -108,9 +102,9 @@ public class GameAdapterFactory extends AdapterFactoryImpl
         return createLevelDefinitionAdapter();
       }
       @Override
-      public Adapter caseLevelTransition(LevelTransition object)
+      public Adapter caseDescription(Description object)
       {
-        return createLevelTransitionAdapter();
+        return createDescriptionAdapter();
       }
       @Override
       public Adapter casePerson(Person object)
@@ -155,21 +149,6 @@ public class GameAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createGameAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.Definition <em>Definition</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uibk.ac.at.qe.dsl.game.Definition
-   * @generated
-   */
-  public Adapter createDefinitionAdapter()
   {
     return null;
   }
@@ -220,16 +199,16 @@ public class GameAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.LevelTransition <em>Level Transition</em>}'.
+   * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.Description <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uibk.ac.at.qe.dsl.game.LevelTransition
+   * @see uibk.ac.at.qe.dsl.game.Description
    * @generated
    */
-  public Adapter createLevelTransitionAdapter()
+  public Adapter createDescriptionAdapter()
   {
     return null;
   }

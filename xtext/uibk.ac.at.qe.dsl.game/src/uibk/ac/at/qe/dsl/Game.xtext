@@ -3,22 +3,17 @@ grammar uibk.ac.at.qe.dsl.Game with org.eclipse.xtext.common.Terminals
 generate game "http://www.ac.uibk/at/qe/dsl/Game"
 
 Game:
-	definition=Definition
-	'{'
 	scenes+=Scene*
-	'}'
-;
-
-Definition:
-	'new' name=ID
 ;
 
 Scene:
-	declartions+=LevelDeclaration*
-	definitions+=LevelDefinition*
-	'start' '=' startLevel=[LevelDeclaration] ';'
-	'final' '=' finalLevel=[LevelDeclaration] ';'
-	transitions+=LevelTransition*
+	'new' name=ID
+	'{'
+		declartions+=LevelDeclaration*
+		definitions+=LevelDefinition*
+		'start' '=' startLevel=[LevelDeclaration] ';'
+		'final' '=' finalLevel=[LevelDeclaration] ';'
+	'}'
 ;
 
 LevelDeclaration:
@@ -28,49 +23,46 @@ LevelDeclaration:
 LevelDefinition:
 	name=[LevelDeclaration] '='
 	'{'
-	persons+=Person*
-	objects+=Object*
-	'goal' '=' goalId=ID ';'
+		description=Description
+		persons+=Person*
+		objects+=Object*
+		actions+=Action_GLOBAL*
+		'goal' '=' goal=ID ';'
+		('next' '=' next=[LevelDeclaration] ';')?
 	'}'
 ;
 
-LevelTransition:
-	'from' levelFrom=[LevelDeclaration]
-	'to' levelTo=[LevelDeclaration]
-	';'
+Description:
+	'description' '=' name=STRING ';'
 ;
 
 Person:
 	name=ID '='
 	'{'
-	'type' '=' type=PERSON_T ';'
-	'response' '=' response=STRING ';'
-	'position' '=' position=Position_E ';'
-	'action' '=' action=Action ';'
+		'type' '=' type=ID ';'
+		'response' '=' response=STRING ';'
+		'position' '=' position=STRING ';'
+		'action' '=' action=Action_P ';'
 	'}'
 ;
 
 Object:
 	name=ID '='
 	'{'
-	'type' '=' type=OBJECT_T ';'
-	'position' '=' position=Position_E ';'
-	'action' '=' action=Action ';'
+		'type' '=' type=ID ';'
+		'position' '=' position=STRING ';'
+		'action' '=' action=Action_O ';'
 	'}'
 ;
 
-enum PERSON_T:
-	MALE='male' | FEMALE='female'
+enum Action_GLOBAL:
+	LEAVE='Leave'
 ;
 
-enum OBJECT_T:
-	A='type_A'
+enum Action_O:
+	PICK='Pick' | USE = 'Use'
 ;
 
-enum Position_E:
-	TABLE='On table'
-;
-
-enum Action:
-	TALK='Talk' | PICK='Pick' | USE = 'Use'
+enum Action_P:
+	TALK='Talk'
 ;

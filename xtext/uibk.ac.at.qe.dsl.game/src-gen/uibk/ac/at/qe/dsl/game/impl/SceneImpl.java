@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
-import uibk.ac.at.qe.dsl.game.LevelTransition;
 import uibk.ac.at.qe.dsl.game.Scene;
 
 /**
@@ -33,17 +32,37 @@ import uibk.ac.at.qe.dsl.game.Scene;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.SceneImpl#getName <em>Name</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.SceneImpl#getDeclartions <em>Declartions</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.SceneImpl#getDefinitions <em>Definitions</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.SceneImpl#getStartLevel <em>Start Level</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.SceneImpl#getFinalLevel <em>Final Level</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.impl.SceneImpl#getTransitions <em>Transitions</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
 {
+  /**
+   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected static final String NAME_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getName()
+   * @generated
+   * @ordered
+   */
+  protected String name = NAME_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getDeclartions() <em>Declartions</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -85,16 +104,6 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
   protected LevelDeclaration finalLevel;
 
   /**
-   * The cached value of the '{@link #getTransitions() <em>Transitions</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getTransitions()
-   * @generated
-   * @ordered
-   */
-  protected EList<LevelTransition> transitions;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -113,6 +122,29 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
   protected EClass eStaticClass()
   {
     return GamePackage.Literals.SCENE;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getName()
+  {
+    return name;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setName(String newName)
+  {
+    String oldName = name;
+    name = newName;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.SCENE__NAME, oldName, name));
   }
 
   /**
@@ -234,20 +266,6 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<LevelTransition> getTransitions()
-  {
-    if (transitions == null)
-    {
-      transitions = new EObjectContainmentEList<LevelTransition>(LevelTransition.class, this, GamePackage.SCENE__TRANSITIONS);
-    }
-    return transitions;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
@@ -257,8 +275,6 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
         return ((InternalEList<?>)getDeclartions()).basicRemove(otherEnd, msgs);
       case GamePackage.SCENE__DEFINITIONS:
         return ((InternalEList<?>)getDefinitions()).basicRemove(otherEnd, msgs);
-      case GamePackage.SCENE__TRANSITIONS:
-        return ((InternalEList<?>)getTransitions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -273,6 +289,8 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
   {
     switch (featureID)
     {
+      case GamePackage.SCENE__NAME:
+        return getName();
       case GamePackage.SCENE__DECLARTIONS:
         return getDeclartions();
       case GamePackage.SCENE__DEFINITIONS:
@@ -283,8 +301,6 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
       case GamePackage.SCENE__FINAL_LEVEL:
         if (resolve) return getFinalLevel();
         return basicGetFinalLevel();
-      case GamePackage.SCENE__TRANSITIONS:
-        return getTransitions();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -300,6 +316,9 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
   {
     switch (featureID)
     {
+      case GamePackage.SCENE__NAME:
+        setName((String)newValue);
+        return;
       case GamePackage.SCENE__DECLARTIONS:
         getDeclartions().clear();
         getDeclartions().addAll((Collection<? extends LevelDeclaration>)newValue);
@@ -313,10 +332,6 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
         return;
       case GamePackage.SCENE__FINAL_LEVEL:
         setFinalLevel((LevelDeclaration)newValue);
-        return;
-      case GamePackage.SCENE__TRANSITIONS:
-        getTransitions().clear();
-        getTransitions().addAll((Collection<? extends LevelTransition>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -332,6 +347,9 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
   {
     switch (featureID)
     {
+      case GamePackage.SCENE__NAME:
+        setName(NAME_EDEFAULT);
+        return;
       case GamePackage.SCENE__DECLARTIONS:
         getDeclartions().clear();
         return;
@@ -343,9 +361,6 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
         return;
       case GamePackage.SCENE__FINAL_LEVEL:
         setFinalLevel((LevelDeclaration)null);
-        return;
-      case GamePackage.SCENE__TRANSITIONS:
-        getTransitions().clear();
         return;
     }
     super.eUnset(featureID);
@@ -361,6 +376,8 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
   {
     switch (featureID)
     {
+      case GamePackage.SCENE__NAME:
+        return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GamePackage.SCENE__DECLARTIONS:
         return declartions != null && !declartions.isEmpty();
       case GamePackage.SCENE__DEFINITIONS:
@@ -369,10 +386,25 @@ public class SceneImpl extends MinimalEObjectImpl.Container implements Scene
         return startLevel != null;
       case GamePackage.SCENE__FINAL_LEVEL:
         return finalLevel != null;
-      case GamePackage.SCENE__TRANSITIONS:
-        return transitions != null && !transitions.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (name: ");
+    result.append(name);
+    result.append(')');
+    return result.toString();
   }
 
 } //SceneImpl

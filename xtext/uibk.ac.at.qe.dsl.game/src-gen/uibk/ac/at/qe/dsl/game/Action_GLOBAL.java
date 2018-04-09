@@ -11,125 +11,73 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>Action</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Action GLOBAL</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see uibk.ac.at.qe.dsl.game.GamePackage#getAction()
+ * @see uibk.ac.at.qe.dsl.game.GamePackage#getAction_GLOBAL()
  * @model
  * @generated
  */
-public enum Action implements Enumerator
+public enum Action_GLOBAL implements Enumerator
 {
   /**
-   * The '<em><b>TALK</b></em>' literal object.
+   * The '<em><b>LEAVE</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #TALK_VALUE
+   * @see #LEAVE_VALUE
    * @generated
    * @ordered
    */
-  TALK(0, "TALK", "Talk"),
+  LEAVE(0, "LEAVE", "Leave");
 
   /**
-   * The '<em><b>PICK</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #PICK_VALUE
-   * @generated
-   * @ordered
-   */
-  PICK(1, "PICK", "Pick"),
-
-  /**
-   * The '<em><b>USE</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #USE_VALUE
-   * @generated
-   * @ordered
-   */
-  USE(2, "USE", "use");
-
-  /**
-   * The '<em><b>TALK</b></em>' literal value.
+   * The '<em><b>LEAVE</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of '<em><b>TALK</b></em>' literal object isn't clear,
+   * If the meaning of '<em><b>LEAVE</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #TALK
-   * @model literal="Talk"
+   * @see #LEAVE
+   * @model literal="Leave"
    * @generated
    * @ordered
    */
-  public static final int TALK_VALUE = 0;
+  public static final int LEAVE_VALUE = 0;
 
   /**
-   * The '<em><b>PICK</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>PICK</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @see #PICK
-   * @model literal="Pick"
-   * @generated
-   * @ordered
-   */
-  public static final int PICK_VALUE = 1;
-
-  /**
-   * The '<em><b>USE</b></em>' literal value.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>USE</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @see #USE
-   * @model literal="use"
-   * @generated
-   * @ordered
-   */
-  public static final int USE_VALUE = 2;
-
-  /**
-   * An array of all the '<em><b>Action</b></em>' enumerators.
+   * An array of all the '<em><b>Action GLOBAL</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final Action[] VALUES_ARRAY =
-    new Action[]
+  private static final Action_GLOBAL[] VALUES_ARRAY =
+    new Action_GLOBAL[]
     {
-      TALK,
-      PICK,
-      USE,
+      LEAVE,
     };
 
   /**
-   * A public read-only list of all the '<em><b>Action</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>Action GLOBAL</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<Action> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<Action_GLOBAL> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Action</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>Action GLOBAL</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param literal the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static Action get(String literal)
+  public static Action_GLOBAL get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      Action result = VALUES_ARRAY[i];
+      Action_GLOBAL result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -139,18 +87,18 @@ public enum Action implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Action</b></em>' literal with the specified name.
+   * Returns the '<em><b>Action GLOBAL</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param name the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static Action getByName(String name)
+  public static Action_GLOBAL getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      Action result = VALUES_ARRAY[i];
+      Action_GLOBAL result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -160,20 +108,18 @@ public enum Action implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>Action</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>Action GLOBAL</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static Action get(int value)
+  public static Action_GLOBAL get(int value)
   {
     switch (value)
     {
-      case TALK_VALUE: return TALK;
-      case PICK_VALUE: return PICK;
-      case USE_VALUE: return USE;
+      case LEAVE_VALUE: return LEAVE;
     }
     return null;
   }
@@ -205,7 +151,7 @@ public enum Action implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private Action(int value, String name, String literal)
+  private Action_GLOBAL(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -254,4 +200,4 @@ public enum Action implements Enumerator
     return literal;
   }
   
-} //Action
+} //Action_GLOBAL

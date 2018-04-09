@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Definition</b></em>'.
+ * A representation of the model object '<em><b>Description</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link uibk.ac.at.qe.dsl.game.Definition#getName <em>Name</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.Description#getName <em>Name</em>}</li>
  * </ul>
  *
- * @see uibk.ac.at.qe.dsl.game.GamePackage#getDefinition()
+ * @see uibk.ac.at.qe.dsl.game.GamePackage#getDescription()
  * @model
  * @generated
  */
-public interface Definition extends EObject
+public interface Description extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -33,14 +33,14 @@ public interface Definition extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
-   * @see uibk.ac.at.qe.dsl.game.GamePackage#getDefinition_Name()
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getDescription_Name()
    * @model
    * @generated
    */
   String getName();
 
   /**
-   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Definition#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Description#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
@@ -49,4 +49,4 @@ public interface Definition extends EObject
    */
   void setName(String value);
 
-} // Definition
+} // Description

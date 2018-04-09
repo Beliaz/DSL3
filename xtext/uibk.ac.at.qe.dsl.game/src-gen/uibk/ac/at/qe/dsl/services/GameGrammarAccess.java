@@ -28,54 +28,56 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class GameElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Game");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cDefinitionAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cDefinitionDefinitionParserRuleCall_0_0 = (RuleCall)cDefinitionAssignment_0.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cScenesAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cScenesSceneParserRuleCall_2_0 = (RuleCall)cScenesAssignment_2.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cScenesAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cScenesSceneParserRuleCall_0 = (RuleCall)cScenesAssignment.eContents().get(0);
 		
 		//Game:
-		//	definition=Definition
-		//	'{'
-		//	scenes+=Scene*
-		//	'}';
+		//	scenes+=Scene*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//definition=Definition '{' scenes+=Scene* '}'
-		public Group getGroup() { return cGroup; }
-		
-		//definition=Definition
-		public Assignment getDefinitionAssignment_0() { return cDefinitionAssignment_0; }
-		
-		//Definition
-		public RuleCall getDefinitionDefinitionParserRuleCall_0_0() { return cDefinitionDefinitionParserRuleCall_0_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_1() { return cLeftCurlyBracketKeyword_1; }
-		
 		//scenes+=Scene*
-		public Assignment getScenesAssignment_2() { return cScenesAssignment_2; }
+		public Assignment getScenesAssignment() { return cScenesAssignment; }
 		
 		//Scene
-		public RuleCall getScenesSceneParserRuleCall_2_0() { return cScenesSceneParserRuleCall_2_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_3() { return cRightCurlyBracketKeyword_3; }
+		public RuleCall getScenesSceneParserRuleCall_0() { return cScenesSceneParserRuleCall_0; }
 	}
-	public class DefinitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Definition");
+	public class SceneElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Scene");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cNewKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cDeclartionsAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cDeclartionsLevelDeclarationParserRuleCall_3_0 = (RuleCall)cDeclartionsAssignment_3.eContents().get(0);
+		private final Assignment cDefinitionsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cDefinitionsLevelDefinitionParserRuleCall_4_0 = (RuleCall)cDefinitionsAssignment_4.eContents().get(0);
+		private final Keyword cStartKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Keyword cEqualsSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Assignment cStartLevelAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final CrossReference cStartLevelLevelDeclarationCrossReference_7_0 = (CrossReference)cStartLevelAssignment_7.eContents().get(0);
+		private final RuleCall cStartLevelLevelDeclarationIDTerminalRuleCall_7_0_1 = (RuleCall)cStartLevelLevelDeclarationCrossReference_7_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cFinalKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Keyword cEqualsSignKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Assignment cFinalLevelAssignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final CrossReference cFinalLevelLevelDeclarationCrossReference_11_0 = (CrossReference)cFinalLevelAssignment_11.eContents().get(0);
+		private final RuleCall cFinalLevelLevelDeclarationIDTerminalRuleCall_11_0_1 = (RuleCall)cFinalLevelLevelDeclarationCrossReference_11_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_12 = (Keyword)cGroup.eContents().get(12);
+		private final Keyword cRightCurlyBracketKeyword_13 = (Keyword)cGroup.eContents().get(13);
 		
-		//Definition:
-		//	'new' name=ID;
+		//Scene:
+		//	'new' name=ID
+		//	'{'
+		//	declartions+=LevelDeclaration*
+		//	definitions+=LevelDefinition*
+		//	'start' '=' startLevel=[LevelDeclaration] ';'
+		//	'final' '=' finalLevel=[LevelDeclaration] ';'
+		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'new' name=ID
+		//'new' name=ID '{' declartions+=LevelDeclaration* definitions+=LevelDefinition* 'start' '=' startLevel=[LevelDeclaration]
+		//';' 'final' '=' finalLevel=[LevelDeclaration] ';' '}'
 		public Group getGroup() { return cGroup; }
 		
 		//'new'
@@ -86,94 +88,60 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		
 		//ID
 		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
-	}
-	public class SceneElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Scene");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cDeclartionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cDeclartionsLevelDeclarationParserRuleCall_0_0 = (RuleCall)cDeclartionsAssignment_0.eContents().get(0);
-		private final Assignment cDefinitionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cDefinitionsLevelDefinitionParserRuleCall_1_0 = (RuleCall)cDefinitionsAssignment_1.eContents().get(0);
-		private final Keyword cStartKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Keyword cEqualsSignKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cStartLevelAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cStartLevelLevelDeclarationCrossReference_4_0 = (CrossReference)cStartLevelAssignment_4.eContents().get(0);
-		private final RuleCall cStartLevelLevelDeclarationIDTerminalRuleCall_4_0_1 = (RuleCall)cStartLevelLevelDeclarationCrossReference_4_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cFinalKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Keyword cEqualsSignKeyword_7 = (Keyword)cGroup.eContents().get(7);
-		private final Assignment cFinalLevelAssignment_8 = (Assignment)cGroup.eContents().get(8);
-		private final CrossReference cFinalLevelLevelDeclarationCrossReference_8_0 = (CrossReference)cFinalLevelAssignment_8.eContents().get(0);
-		private final RuleCall cFinalLevelLevelDeclarationIDTerminalRuleCall_8_0_1 = (RuleCall)cFinalLevelLevelDeclarationCrossReference_8_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_9 = (Keyword)cGroup.eContents().get(9);
-		private final Assignment cTransitionsAssignment_10 = (Assignment)cGroup.eContents().get(10);
-		private final RuleCall cTransitionsLevelTransitionParserRuleCall_10_0 = (RuleCall)cTransitionsAssignment_10.eContents().get(0);
 		
-		//Scene:
-		//	declartions+=LevelDeclaration*
-		//	definitions+=LevelDefinition*
-		//	'start' '=' startLevel=[LevelDeclaration] ';'
-		//	'final' '=' finalLevel=[LevelDeclaration] ';'
-		//	transitions+=LevelTransition*;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//declartions+=LevelDeclaration* definitions+=LevelDefinition* 'start' '=' startLevel=[LevelDeclaration] ';' 'final' '='
-		//finalLevel=[LevelDeclaration] ';' transitions+=LevelTransition*
-		public Group getGroup() { return cGroup; }
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
 		//declartions+=LevelDeclaration*
-		public Assignment getDeclartionsAssignment_0() { return cDeclartionsAssignment_0; }
+		public Assignment getDeclartionsAssignment_3() { return cDeclartionsAssignment_3; }
 		
 		//LevelDeclaration
-		public RuleCall getDeclartionsLevelDeclarationParserRuleCall_0_0() { return cDeclartionsLevelDeclarationParserRuleCall_0_0; }
+		public RuleCall getDeclartionsLevelDeclarationParserRuleCall_3_0() { return cDeclartionsLevelDeclarationParserRuleCall_3_0; }
 		
 		//definitions+=LevelDefinition*
-		public Assignment getDefinitionsAssignment_1() { return cDefinitionsAssignment_1; }
+		public Assignment getDefinitionsAssignment_4() { return cDefinitionsAssignment_4; }
 		
 		//LevelDefinition
-		public RuleCall getDefinitionsLevelDefinitionParserRuleCall_1_0() { return cDefinitionsLevelDefinitionParserRuleCall_1_0; }
+		public RuleCall getDefinitionsLevelDefinitionParserRuleCall_4_0() { return cDefinitionsLevelDefinitionParserRuleCall_4_0; }
 		
 		//'start'
-		public Keyword getStartKeyword_2() { return cStartKeyword_2; }
+		public Keyword getStartKeyword_5() { return cStartKeyword_5; }
 		
 		//'='
-		public Keyword getEqualsSignKeyword_3() { return cEqualsSignKeyword_3; }
+		public Keyword getEqualsSignKeyword_6() { return cEqualsSignKeyword_6; }
 		
 		//startLevel=[LevelDeclaration]
-		public Assignment getStartLevelAssignment_4() { return cStartLevelAssignment_4; }
+		public Assignment getStartLevelAssignment_7() { return cStartLevelAssignment_7; }
 		
 		//[LevelDeclaration]
-		public CrossReference getStartLevelLevelDeclarationCrossReference_4_0() { return cStartLevelLevelDeclarationCrossReference_4_0; }
+		public CrossReference getStartLevelLevelDeclarationCrossReference_7_0() { return cStartLevelLevelDeclarationCrossReference_7_0; }
 		
 		//ID
-		public RuleCall getStartLevelLevelDeclarationIDTerminalRuleCall_4_0_1() { return cStartLevelLevelDeclarationIDTerminalRuleCall_4_0_1; }
+		public RuleCall getStartLevelLevelDeclarationIDTerminalRuleCall_7_0_1() { return cStartLevelLevelDeclarationIDTerminalRuleCall_7_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_5() { return cSemicolonKeyword_5; }
+		public Keyword getSemicolonKeyword_8() { return cSemicolonKeyword_8; }
 		
 		//'final'
-		public Keyword getFinalKeyword_6() { return cFinalKeyword_6; }
+		public Keyword getFinalKeyword_9() { return cFinalKeyword_9; }
 		
 		//'='
-		public Keyword getEqualsSignKeyword_7() { return cEqualsSignKeyword_7; }
+		public Keyword getEqualsSignKeyword_10() { return cEqualsSignKeyword_10; }
 		
 		//finalLevel=[LevelDeclaration]
-		public Assignment getFinalLevelAssignment_8() { return cFinalLevelAssignment_8; }
+		public Assignment getFinalLevelAssignment_11() { return cFinalLevelAssignment_11; }
 		
 		//[LevelDeclaration]
-		public CrossReference getFinalLevelLevelDeclarationCrossReference_8_0() { return cFinalLevelLevelDeclarationCrossReference_8_0; }
+		public CrossReference getFinalLevelLevelDeclarationCrossReference_11_0() { return cFinalLevelLevelDeclarationCrossReference_11_0; }
 		
 		//ID
-		public RuleCall getFinalLevelLevelDeclarationIDTerminalRuleCall_8_0_1() { return cFinalLevelLevelDeclarationIDTerminalRuleCall_8_0_1; }
+		public RuleCall getFinalLevelLevelDeclarationIDTerminalRuleCall_11_0_1() { return cFinalLevelLevelDeclarationIDTerminalRuleCall_11_0_1; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_9() { return cSemicolonKeyword_9; }
+		public Keyword getSemicolonKeyword_12() { return cSemicolonKeyword_12; }
 		
-		//transitions+=LevelTransition*
-		public Assignment getTransitionsAssignment_10() { return cTransitionsAssignment_10; }
-		
-		//LevelTransition
-		public RuleCall getTransitionsLevelTransitionParserRuleCall_10_0() { return cTransitionsLevelTransitionParserRuleCall_10_0; }
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_13() { return cRightCurlyBracketKeyword_13; }
 	}
 	public class LevelDeclarationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.LevelDeclaration");
@@ -210,27 +178,41 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cNameLevelDeclarationIDTerminalRuleCall_0_0_1 = (RuleCall)cNameLevelDeclarationCrossReference_0_0.eContents().get(1);
 		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cPersonsAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cPersonsPersonParserRuleCall_3_0 = (RuleCall)cPersonsAssignment_3.eContents().get(0);
-		private final Assignment cObjectsAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cObjectsObjectParserRuleCall_4_0 = (RuleCall)cObjectsAssignment_4.eContents().get(0);
-		private final Keyword cGoalKeyword_5 = (Keyword)cGroup.eContents().get(5);
-		private final Keyword cEqualsSignKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cGoalIdAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cGoalIdIDTerminalRuleCall_7_0 = (RuleCall)cGoalIdAssignment_7.eContents().get(0);
-		private final Keyword cSemicolonKeyword_8 = (Keyword)cGroup.eContents().get(8);
-		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Assignment cDescriptionAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cDescriptionDescriptionParserRuleCall_3_0 = (RuleCall)cDescriptionAssignment_3.eContents().get(0);
+		private final Assignment cPersonsAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cPersonsPersonParserRuleCall_4_0 = (RuleCall)cPersonsAssignment_4.eContents().get(0);
+		private final Assignment cObjectsAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cObjectsObjectParserRuleCall_5_0 = (RuleCall)cObjectsAssignment_5.eContents().get(0);
+		private final Assignment cActionsAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cActionsAction_GLOBALEnumRuleCall_6_0 = (RuleCall)cActionsAssignment_6.eContents().get(0);
+		private final Keyword cGoalKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Keyword cEqualsSignKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Assignment cGoalAssignment_9 = (Assignment)cGroup.eContents().get(9);
+		private final RuleCall cGoalIDTerminalRuleCall_9_0 = (RuleCall)cGoalAssignment_9.eContents().get(0);
+		private final Keyword cSemicolonKeyword_10 = (Keyword)cGroup.eContents().get(10);
+		private final Group cGroup_11 = (Group)cGroup.eContents().get(11);
+		private final Keyword cNextKeyword_11_0 = (Keyword)cGroup_11.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_11_1 = (Keyword)cGroup_11.eContents().get(1);
+		private final Assignment cNextAssignment_11_2 = (Assignment)cGroup_11.eContents().get(2);
+		private final CrossReference cNextLevelDeclarationCrossReference_11_2_0 = (CrossReference)cNextAssignment_11_2.eContents().get(0);
+		private final RuleCall cNextLevelDeclarationIDTerminalRuleCall_11_2_0_1 = (RuleCall)cNextLevelDeclarationCrossReference_11_2_0.eContents().get(1);
+		private final Keyword cSemicolonKeyword_11_3 = (Keyword)cGroup_11.eContents().get(3);
+		private final Keyword cRightCurlyBracketKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		
 		//LevelDefinition:
 		//	name=[LevelDeclaration] '='
 		//	'{'
+		//	description=Description
 		//	persons+=Person*
 		//	objects+=Object*
-		//	'goal' '=' goalId=ID ';'
+		//	actions+=Action_GLOBAL*
+		//	'goal' '=' goal=ID ';' ('next' '=' next=[LevelDeclaration] ';')?
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=[LevelDeclaration] '=' '{' persons+=Person* objects+=Object* 'goal' '=' goalId=ID ';' '}'
+		//name=[LevelDeclaration] '=' '{' description=Description persons+=Person* objects+=Object* actions+=Action_GLOBAL* 'goal'
+		//'=' goal=ID ';' ('next' '=' next=[LevelDeclaration] ';')? '}'
 		public Group getGroup() { return cGroup; }
 		
 		//name=[LevelDeclaration]
@@ -248,84 +230,99 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_2() { return cLeftCurlyBracketKeyword_2; }
 		
+		//description=Description
+		public Assignment getDescriptionAssignment_3() { return cDescriptionAssignment_3; }
+		
+		//Description
+		public RuleCall getDescriptionDescriptionParserRuleCall_3_0() { return cDescriptionDescriptionParserRuleCall_3_0; }
+		
 		//persons+=Person*
-		public Assignment getPersonsAssignment_3() { return cPersonsAssignment_3; }
+		public Assignment getPersonsAssignment_4() { return cPersonsAssignment_4; }
 		
 		//Person
-		public RuleCall getPersonsPersonParserRuleCall_3_0() { return cPersonsPersonParserRuleCall_3_0; }
+		public RuleCall getPersonsPersonParserRuleCall_4_0() { return cPersonsPersonParserRuleCall_4_0; }
 		
 		//objects+=Object*
-		public Assignment getObjectsAssignment_4() { return cObjectsAssignment_4; }
+		public Assignment getObjectsAssignment_5() { return cObjectsAssignment_5; }
 		
 		//Object
-		public RuleCall getObjectsObjectParserRuleCall_4_0() { return cObjectsObjectParserRuleCall_4_0; }
+		public RuleCall getObjectsObjectParserRuleCall_5_0() { return cObjectsObjectParserRuleCall_5_0; }
+		
+		//actions+=Action_GLOBAL*
+		public Assignment getActionsAssignment_6() { return cActionsAssignment_6; }
+		
+		//Action_GLOBAL
+		public RuleCall getActionsAction_GLOBALEnumRuleCall_6_0() { return cActionsAction_GLOBALEnumRuleCall_6_0; }
 		
 		//'goal'
-		public Keyword getGoalKeyword_5() { return cGoalKeyword_5; }
+		public Keyword getGoalKeyword_7() { return cGoalKeyword_7; }
 		
 		//'='
-		public Keyword getEqualsSignKeyword_6() { return cEqualsSignKeyword_6; }
+		public Keyword getEqualsSignKeyword_8() { return cEqualsSignKeyword_8; }
 		
-		//goalId=ID
-		public Assignment getGoalIdAssignment_7() { return cGoalIdAssignment_7; }
+		//goal=ID
+		public Assignment getGoalAssignment_9() { return cGoalAssignment_9; }
 		
 		//ID
-		public RuleCall getGoalIdIDTerminalRuleCall_7_0() { return cGoalIdIDTerminalRuleCall_7_0; }
+		public RuleCall getGoalIDTerminalRuleCall_9_0() { return cGoalIDTerminalRuleCall_9_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_8() { return cSemicolonKeyword_8; }
+		public Keyword getSemicolonKeyword_10() { return cSemicolonKeyword_10; }
+		
+		//('next' '=' next=[LevelDeclaration] ';')?
+		public Group getGroup_11() { return cGroup_11; }
+		
+		//'next'
+		public Keyword getNextKeyword_11_0() { return cNextKeyword_11_0; }
+		
+		//'='
+		public Keyword getEqualsSignKeyword_11_1() { return cEqualsSignKeyword_11_1; }
+		
+		//next=[LevelDeclaration]
+		public Assignment getNextAssignment_11_2() { return cNextAssignment_11_2; }
+		
+		//[LevelDeclaration]
+		public CrossReference getNextLevelDeclarationCrossReference_11_2_0() { return cNextLevelDeclarationCrossReference_11_2_0; }
+		
+		//ID
+		public RuleCall getNextLevelDeclarationIDTerminalRuleCall_11_2_0_1() { return cNextLevelDeclarationIDTerminalRuleCall_11_2_0_1; }
+		
+		//';'
+		public Keyword getSemicolonKeyword_11_3() { return cSemicolonKeyword_11_3; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
+		public Keyword getRightCurlyBracketKeyword_12() { return cRightCurlyBracketKeyword_12; }
 	}
-	public class LevelTransitionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.LevelTransition");
+	public class DescriptionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Description");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cFromKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cLevelFromAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final CrossReference cLevelFromLevelDeclarationCrossReference_1_0 = (CrossReference)cLevelFromAssignment_1.eContents().get(0);
-		private final RuleCall cLevelFromLevelDeclarationIDTerminalRuleCall_1_0_1 = (RuleCall)cLevelFromLevelDeclarationCrossReference_1_0.eContents().get(1);
-		private final Keyword cToKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cLevelToAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final CrossReference cLevelToLevelDeclarationCrossReference_3_0 = (CrossReference)cLevelToAssignment_3.eContents().get(0);
-		private final RuleCall cLevelToLevelDeclarationIDTerminalRuleCall_3_0_1 = (RuleCall)cLevelToLevelDeclarationCrossReference_3_0.eContents().get(1);
-		private final Keyword cSemicolonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cDescriptionKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cEqualsSignKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameSTRINGTerminalRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//LevelTransition:
-		//	'from' levelFrom=[LevelDeclaration]
-		//	'to' levelTo=[LevelDeclaration]
-		//	';';
+		//Description:
+		//	'description' '=' name=STRING ';';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'from' levelFrom=[LevelDeclaration] 'to' levelTo=[LevelDeclaration] ';'
+		//'description' '=' name=STRING ';'
 		public Group getGroup() { return cGroup; }
 		
-		//'from'
-		public Keyword getFromKeyword_0() { return cFromKeyword_0; }
+		//'description'
+		public Keyword getDescriptionKeyword_0() { return cDescriptionKeyword_0; }
 		
-		//levelFrom=[LevelDeclaration]
-		public Assignment getLevelFromAssignment_1() { return cLevelFromAssignment_1; }
+		//'='
+		public Keyword getEqualsSignKeyword_1() { return cEqualsSignKeyword_1; }
 		
-		//[LevelDeclaration]
-		public CrossReference getLevelFromLevelDeclarationCrossReference_1_0() { return cLevelFromLevelDeclarationCrossReference_1_0; }
+		//name=STRING
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
-		//ID
-		public RuleCall getLevelFromLevelDeclarationIDTerminalRuleCall_1_0_1() { return cLevelFromLevelDeclarationIDTerminalRuleCall_1_0_1; }
-		
-		//'to'
-		public Keyword getToKeyword_2() { return cToKeyword_2; }
-		
-		//levelTo=[LevelDeclaration]
-		public Assignment getLevelToAssignment_3() { return cLevelToAssignment_3; }
-		
-		//[LevelDeclaration]
-		public CrossReference getLevelToLevelDeclarationCrossReference_3_0() { return cLevelToLevelDeclarationCrossReference_3_0; }
-		
-		//ID
-		public RuleCall getLevelToLevelDeclarationIDTerminalRuleCall_3_0_1() { return cLevelToLevelDeclarationIDTerminalRuleCall_3_0_1; }
+		//STRING
+		public RuleCall getNameSTRINGTerminalRuleCall_2_0() { return cNameSTRINGTerminalRuleCall_2_0; }
 		
 		//';'
-		public Keyword getSemicolonKeyword_4() { return cSemicolonKeyword_4; }
+		public Keyword getSemicolonKeyword_3() { return cSemicolonKeyword_3; }
 	}
 	public class PersonElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Person");
@@ -337,7 +334,7 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTypeKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cTypePERSON_TEnumRuleCall_5_0 = (RuleCall)cTypeAssignment_5.eContents().get(0);
+		private final RuleCall cTypeIDTerminalRuleCall_5_0 = (RuleCall)cTypeAssignment_5.eContents().get(0);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cResponseKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Keyword cEqualsSignKeyword_8 = (Keyword)cGroup.eContents().get(8);
@@ -347,27 +344,27 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cPositionKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		private final Keyword cEqualsSignKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		private final Assignment cPositionAssignment_13 = (Assignment)cGroup.eContents().get(13);
-		private final RuleCall cPositionPosition_EEnumRuleCall_13_0 = (RuleCall)cPositionAssignment_13.eContents().get(0);
+		private final RuleCall cPositionSTRINGTerminalRuleCall_13_0 = (RuleCall)cPositionAssignment_13.eContents().get(0);
 		private final Keyword cSemicolonKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		private final Keyword cActionKeyword_15 = (Keyword)cGroup.eContents().get(15);
 		private final Keyword cEqualsSignKeyword_16 = (Keyword)cGroup.eContents().get(16);
 		private final Assignment cActionAssignment_17 = (Assignment)cGroup.eContents().get(17);
-		private final RuleCall cActionActionEnumRuleCall_17_0 = (RuleCall)cActionAssignment_17.eContents().get(0);
+		private final RuleCall cActionAction_PEnumRuleCall_17_0 = (RuleCall)cActionAssignment_17.eContents().get(0);
 		private final Keyword cSemicolonKeyword_18 = (Keyword)cGroup.eContents().get(18);
 		private final Keyword cRightCurlyBracketKeyword_19 = (Keyword)cGroup.eContents().get(19);
 		
 		//Person:
 		//	name=ID '='
 		//	'{'
-		//	'type' '=' type=PERSON_T ';'
+		//	'type' '=' type=ID ';'
 		//	'response' '=' response=STRING ';'
-		//	'position' '=' position=Position_E ';'
-		//	'action' '=' action=Action ';'
+		//	'position' '=' position=STRING ';'
+		//	'action' '=' action=Action_P ';'
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID '=' '{' 'type' '=' type=PERSON_T ';' 'response' '=' response=STRING ';' 'position' '=' position=Position_E ';'
-		//'action' '=' action=Action ';' '}'
+		//name=ID '=' '{' 'type' '=' type=ID ';' 'response' '=' response=STRING ';' 'position' '=' position=STRING ';' 'action'
+		//'=' action=Action_P ';' '}'
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -388,11 +385,11 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		//'='
 		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 		
-		//type=PERSON_T
+		//type=ID
 		public Assignment getTypeAssignment_5() { return cTypeAssignment_5; }
 		
-		//PERSON_T
-		public RuleCall getTypePERSON_TEnumRuleCall_5_0() { return cTypePERSON_TEnumRuleCall_5_0; }
+		//ID
+		public RuleCall getTypeIDTerminalRuleCall_5_0() { return cTypeIDTerminalRuleCall_5_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
@@ -418,11 +415,11 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		//'='
 		public Keyword getEqualsSignKeyword_12() { return cEqualsSignKeyword_12; }
 		
-		//position=Position_E
+		//position=STRING
 		public Assignment getPositionAssignment_13() { return cPositionAssignment_13; }
 		
-		//Position_E
-		public RuleCall getPositionPosition_EEnumRuleCall_13_0() { return cPositionPosition_EEnumRuleCall_13_0; }
+		//STRING
+		public RuleCall getPositionSTRINGTerminalRuleCall_13_0() { return cPositionSTRINGTerminalRuleCall_13_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_14() { return cSemicolonKeyword_14; }
@@ -433,11 +430,11 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		//'='
 		public Keyword getEqualsSignKeyword_16() { return cEqualsSignKeyword_16; }
 		
-		//action=Action
+		//action=Action_P
 		public Assignment getActionAssignment_17() { return cActionAssignment_17; }
 		
-		//Action
-		public RuleCall getActionActionEnumRuleCall_17_0() { return cActionActionEnumRuleCall_17_0; }
+		//Action_P
+		public RuleCall getActionAction_PEnumRuleCall_17_0() { return cActionAction_PEnumRuleCall_17_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_18() { return cSemicolonKeyword_18; }
@@ -455,30 +452,30 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		private final Keyword cTypeKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cEqualsSignKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cTypeAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cTypeOBJECT_TEnumRuleCall_5_0 = (RuleCall)cTypeAssignment_5.eContents().get(0);
+		private final RuleCall cTypeIDTerminalRuleCall_5_0 = (RuleCall)cTypeAssignment_5.eContents().get(0);
 		private final Keyword cSemicolonKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Keyword cPositionKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Keyword cEqualsSignKeyword_8 = (Keyword)cGroup.eContents().get(8);
 		private final Assignment cPositionAssignment_9 = (Assignment)cGroup.eContents().get(9);
-		private final RuleCall cPositionPosition_EEnumRuleCall_9_0 = (RuleCall)cPositionAssignment_9.eContents().get(0);
+		private final RuleCall cPositionSTRINGTerminalRuleCall_9_0 = (RuleCall)cPositionAssignment_9.eContents().get(0);
 		private final Keyword cSemicolonKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		private final Keyword cActionKeyword_11 = (Keyword)cGroup.eContents().get(11);
 		private final Keyword cEqualsSignKeyword_12 = (Keyword)cGroup.eContents().get(12);
 		private final Assignment cActionAssignment_13 = (Assignment)cGroup.eContents().get(13);
-		private final RuleCall cActionActionEnumRuleCall_13_0 = (RuleCall)cActionAssignment_13.eContents().get(0);
+		private final RuleCall cActionAction_OEnumRuleCall_13_0 = (RuleCall)cActionAssignment_13.eContents().get(0);
 		private final Keyword cSemicolonKeyword_14 = (Keyword)cGroup.eContents().get(14);
 		private final Keyword cRightCurlyBracketKeyword_15 = (Keyword)cGroup.eContents().get(15);
 		
 		//Object:
 		//	name=ID '='
 		//	'{'
-		//	'type' '=' type=OBJECT_T ';'
-		//	'position' '=' position=Position_E ';'
-		//	'action' '=' action=Action ';'
+		//	'type' '=' type=ID ';'
+		//	'position' '=' position=STRING ';'
+		//	'action' '=' action=Action_O ';'
 		//	'}';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//name=ID '=' '{' 'type' '=' type=OBJECT_T ';' 'position' '=' position=Position_E ';' 'action' '=' action=Action ';' '}'
+		//name=ID '=' '{' 'type' '=' type=ID ';' 'position' '=' position=STRING ';' 'action' '=' action=Action_O ';' '}'
 		public Group getGroup() { return cGroup; }
 		
 		//name=ID
@@ -499,11 +496,11 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		//'='
 		public Keyword getEqualsSignKeyword_4() { return cEqualsSignKeyword_4; }
 		
-		//type=OBJECT_T
+		//type=ID
 		public Assignment getTypeAssignment_5() { return cTypeAssignment_5; }
 		
-		//OBJECT_T
-		public RuleCall getTypeOBJECT_TEnumRuleCall_5_0() { return cTypeOBJECT_TEnumRuleCall_5_0; }
+		//ID
+		public RuleCall getTypeIDTerminalRuleCall_5_0() { return cTypeIDTerminalRuleCall_5_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_6() { return cSemicolonKeyword_6; }
@@ -514,11 +511,11 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		//'='
 		public Keyword getEqualsSignKeyword_8() { return cEqualsSignKeyword_8; }
 		
-		//position=Position_E
+		//position=STRING
 		public Assignment getPositionAssignment_9() { return cPositionAssignment_9; }
 		
-		//Position_E
-		public RuleCall getPositionPosition_EEnumRuleCall_9_0() { return cPositionPosition_EEnumRuleCall_9_0; }
+		//STRING
+		public RuleCall getPositionSTRINGTerminalRuleCall_9_0() { return cPositionSTRINGTerminalRuleCall_9_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_10() { return cSemicolonKeyword_10; }
@@ -529,11 +526,11 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		//'='
 		public Keyword getEqualsSignKeyword_12() { return cEqualsSignKeyword_12; }
 		
-		//action=Action
+		//action=Action_O
 		public Assignment getActionAssignment_13() { return cActionAssignment_13; }
 		
-		//Action
-		public RuleCall getActionActionEnumRuleCall_13_0() { return cActionActionEnumRuleCall_13_0; }
+		//Action_O
+		public RuleCall getActionAction_OEnumRuleCall_13_0() { return cActionAction_OEnumRuleCall_13_0; }
 		
 		//';'
 		public Keyword getSemicolonKeyword_14() { return cSemicolonKeyword_14; }
@@ -542,111 +539,74 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		public Keyword getRightCurlyBracketKeyword_15() { return cRightCurlyBracketKeyword_15; }
 	}
 	
-	public class PERSON_TElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.PERSON_T");
+	public class Action_GLOBALElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Action_GLOBAL");
+		private final EnumLiteralDeclaration cLEAVEEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
+		private final Keyword cLEAVELeaveKeyword_0 = (Keyword)cLEAVEEnumLiteralDeclaration.eContents().get(0);
+		
+		//enum Action_GLOBAL:
+		//	LEAVE='Leave';
+		public EnumRule getRule() { return rule; }
+		
+		//LEAVE='Leave'
+		public EnumLiteralDeclaration getLEAVEEnumLiteralDeclaration() { return cLEAVEEnumLiteralDeclaration; }
+		
+		//'Leave'
+		public Keyword getLEAVELeaveKeyword_0() { return cLEAVELeaveKeyword_0; }
+	}
+	public class Action_OElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Action_O");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cMALEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cMALEMaleKeyword_0_0 = (Keyword)cMALEEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cFEMALEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cFEMALEFemaleKeyword_1_0 = (Keyword)cFEMALEEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cPICKEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPICKPickKeyword_0_0 = (Keyword)cPICKEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cUSEEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cUSEUseKeyword_1_0 = (Keyword)cUSEEnumLiteralDeclaration_1.eContents().get(0);
 		
-		//enum PERSON_T:
-		//	MALE='male' | FEMALE='female';
+		//enum Action_O:
+		//	PICK='Pick' | USE='Use';
 		public EnumRule getRule() { return rule; }
 		
-		//MALE='male' | FEMALE='female'
+		//PICK='Pick' | USE='Use'
 		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//MALE='male'
-		public EnumLiteralDeclaration getMALEEnumLiteralDeclaration_0() { return cMALEEnumLiteralDeclaration_0; }
-		
-		//'male'
-		public Keyword getMALEMaleKeyword_0_0() { return cMALEMaleKeyword_0_0; }
-		
-		//FEMALE='female'
-		public EnumLiteralDeclaration getFEMALEEnumLiteralDeclaration_1() { return cFEMALEEnumLiteralDeclaration_1; }
-		
-		//'female'
-		public Keyword getFEMALEFemaleKeyword_1_0() { return cFEMALEFemaleKeyword_1_0; }
-	}
-	public class OBJECT_TElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.OBJECT_T");
-		private final EnumLiteralDeclaration cAEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
-		private final Keyword cAType_AKeyword_0 = (Keyword)cAEnumLiteralDeclaration.eContents().get(0);
-		
-		//enum OBJECT_T:
-		//	A='type_A';
-		public EnumRule getRule() { return rule; }
-		
-		//A='type_A'
-		public EnumLiteralDeclaration getAEnumLiteralDeclaration() { return cAEnumLiteralDeclaration; }
-		
-		//'type_A'
-		public Keyword getAType_AKeyword_0() { return cAType_AKeyword_0; }
-	}
-	public class Position_EElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Position_E");
-		private final EnumLiteralDeclaration cTABLEEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
-		private final Keyword cTABLEOnTableKeyword_0 = (Keyword)cTABLEEnumLiteralDeclaration.eContents().get(0);
-		
-		//enum Position_E:
-		//	TABLE='On table';
-		public EnumRule getRule() { return rule; }
-		
-		//TABLE='On table'
-		public EnumLiteralDeclaration getTABLEEnumLiteralDeclaration() { return cTABLEEnumLiteralDeclaration; }
-		
-		//'On table'
-		public Keyword getTABLEOnTableKeyword_0() { return cTABLEOnTableKeyword_0; }
-	}
-	public class ActionElements extends AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Action");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cTALKEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cTALKTalkKeyword_0_0 = (Keyword)cTALKEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cPICKEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cPICKPickKeyword_1_0 = (Keyword)cPICKEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cUSEEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cUSEUseKeyword_2_0 = (Keyword)cUSEEnumLiteralDeclaration_2.eContents().get(0);
-		
-		//enum Action:
-		//	TALK='Talk' | PICK='Pick' | USE='use';
-		public EnumRule getRule() { return rule; }
-		
-		//TALK='Talk' | PICK='Pick' | USE='use'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//TALK='Talk'
-		public EnumLiteralDeclaration getTALKEnumLiteralDeclaration_0() { return cTALKEnumLiteralDeclaration_0; }
-		
-		//'Talk'
-		public Keyword getTALKTalkKeyword_0_0() { return cTALKTalkKeyword_0_0; }
 		
 		//PICK='Pick'
-		public EnumLiteralDeclaration getPICKEnumLiteralDeclaration_1() { return cPICKEnumLiteralDeclaration_1; }
+		public EnumLiteralDeclaration getPICKEnumLiteralDeclaration_0() { return cPICKEnumLiteralDeclaration_0; }
 		
 		//'Pick'
-		public Keyword getPICKPickKeyword_1_0() { return cPICKPickKeyword_1_0; }
+		public Keyword getPICKPickKeyword_0_0() { return cPICKPickKeyword_0_0; }
 		
-		//USE='use'
-		public EnumLiteralDeclaration getUSEEnumLiteralDeclaration_2() { return cUSEEnumLiteralDeclaration_2; }
+		//USE='Use'
+		public EnumLiteralDeclaration getUSEEnumLiteralDeclaration_1() { return cUSEEnumLiteralDeclaration_1; }
 		
-		//'use'
-		public Keyword getUSEUseKeyword_2_0() { return cUSEUseKeyword_2_0; }
+		//'Use'
+		public Keyword getUSEUseKeyword_1_0() { return cUSEUseKeyword_1_0; }
+	}
+	public class Action_PElements extends AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "uibk.ac.at.qe.dsl.Game.Action_P");
+		private final EnumLiteralDeclaration cTALKEnumLiteralDeclaration = (EnumLiteralDeclaration)rule.eContents().get(1);
+		private final Keyword cTALKTalkKeyword_0 = (Keyword)cTALKEnumLiteralDeclaration.eContents().get(0);
+		
+		//enum Action_P:
+		//	TALK='Talk';
+		public EnumRule getRule() { return rule; }
+		
+		//TALK='Talk'
+		public EnumLiteralDeclaration getTALKEnumLiteralDeclaration() { return cTALKEnumLiteralDeclaration; }
+		
+		//'Talk'
+		public Keyword getTALKTalkKeyword_0() { return cTALKTalkKeyword_0; }
 	}
 	
 	private final GameElements pGame;
-	private final DefinitionElements pDefinition;
 	private final SceneElements pScene;
 	private final LevelDeclarationElements pLevelDeclaration;
 	private final LevelDefinitionElements pLevelDefinition;
-	private final LevelTransitionElements pLevelTransition;
+	private final DescriptionElements pDescription;
 	private final PersonElements pPerson;
 	private final ObjectElements pObject;
-	private final PERSON_TElements ePERSON_T;
-	private final OBJECT_TElements eOBJECT_T;
-	private final Position_EElements ePosition_E;
-	private final ActionElements eAction;
+	private final Action_GLOBALElements eAction_GLOBAL;
+	private final Action_OElements eAction_O;
+	private final Action_PElements eAction_P;
 	
 	private final Grammar grammar;
 	
@@ -658,17 +618,15 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pGame = new GameElements();
-		this.pDefinition = new DefinitionElements();
 		this.pScene = new SceneElements();
 		this.pLevelDeclaration = new LevelDeclarationElements();
 		this.pLevelDefinition = new LevelDefinitionElements();
-		this.pLevelTransition = new LevelTransitionElements();
+		this.pDescription = new DescriptionElements();
 		this.pPerson = new PersonElements();
 		this.pObject = new ObjectElements();
-		this.ePERSON_T = new PERSON_TElements();
-		this.eOBJECT_T = new OBJECT_TElements();
-		this.ePosition_E = new Position_EElements();
-		this.eAction = new ActionElements();
+		this.eAction_GLOBAL = new Action_GLOBALElements();
+		this.eAction_O = new Action_OElements();
+		this.eAction_P = new Action_PElements();
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -699,10 +657,7 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Game:
-	//	definition=Definition
-	//	'{'
-	//	scenes+=Scene*
-	//	'}';
+	//	scenes+=Scene*;
 	public GameElements getGameAccess() {
 		return pGame;
 	}
@@ -711,22 +666,14 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		return getGameAccess().getRule();
 	}
 	
-	//Definition:
-	//	'new' name=ID;
-	public DefinitionElements getDefinitionAccess() {
-		return pDefinition;
-	}
-	
-	public ParserRule getDefinitionRule() {
-		return getDefinitionAccess().getRule();
-	}
-	
 	//Scene:
+	//	'new' name=ID
+	//	'{'
 	//	declartions+=LevelDeclaration*
 	//	definitions+=LevelDefinition*
 	//	'start' '=' startLevel=[LevelDeclaration] ';'
 	//	'final' '=' finalLevel=[LevelDeclaration] ';'
-	//	transitions+=LevelTransition*;
+	//	'}';
 	public SceneElements getSceneAccess() {
 		return pScene;
 	}
@@ -748,9 +695,11 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 	//LevelDefinition:
 	//	name=[LevelDeclaration] '='
 	//	'{'
+	//	description=Description
 	//	persons+=Person*
 	//	objects+=Object*
-	//	'goal' '=' goalId=ID ';'
+	//	actions+=Action_GLOBAL*
+	//	'goal' '=' goal=ID ';' ('next' '=' next=[LevelDeclaration] ';')?
 	//	'}';
 	public LevelDefinitionElements getLevelDefinitionAccess() {
 		return pLevelDefinition;
@@ -760,25 +709,23 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		return getLevelDefinitionAccess().getRule();
 	}
 	
-	//LevelTransition:
-	//	'from' levelFrom=[LevelDeclaration]
-	//	'to' levelTo=[LevelDeclaration]
-	//	';';
-	public LevelTransitionElements getLevelTransitionAccess() {
-		return pLevelTransition;
+	//Description:
+	//	'description' '=' name=STRING ';';
+	public DescriptionElements getDescriptionAccess() {
+		return pDescription;
 	}
 	
-	public ParserRule getLevelTransitionRule() {
-		return getLevelTransitionAccess().getRule();
+	public ParserRule getDescriptionRule() {
+		return getDescriptionAccess().getRule();
 	}
 	
 	//Person:
 	//	name=ID '='
 	//	'{'
-	//	'type' '=' type=PERSON_T ';'
+	//	'type' '=' type=ID ';'
 	//	'response' '=' response=STRING ';'
-	//	'position' '=' position=Position_E ';'
-	//	'action' '=' action=Action ';'
+	//	'position' '=' position=STRING ';'
+	//	'action' '=' action=Action_P ';'
 	//	'}';
 	public PersonElements getPersonAccess() {
 		return pPerson;
@@ -791,9 +738,9 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 	//Object:
 	//	name=ID '='
 	//	'{'
-	//	'type' '=' type=OBJECT_T ';'
-	//	'position' '=' position=Position_E ';'
-	//	'action' '=' action=Action ';'
+	//	'type' '=' type=ID ';'
+	//	'position' '=' position=STRING ';'
+	//	'action' '=' action=Action_O ';'
 	//	'}';
 	public ObjectElements getObjectAccess() {
 		return pObject;
@@ -803,44 +750,34 @@ public class GameGrammarAccess extends AbstractGrammarElementFinder {
 		return getObjectAccess().getRule();
 	}
 	
-	//enum PERSON_T:
-	//	MALE='male' | FEMALE='female';
-	public PERSON_TElements getPERSON_TAccess() {
-		return ePERSON_T;
+	//enum Action_GLOBAL:
+	//	LEAVE='Leave';
+	public Action_GLOBALElements getAction_GLOBALAccess() {
+		return eAction_GLOBAL;
 	}
 	
-	public EnumRule getPERSON_TRule() {
-		return getPERSON_TAccess().getRule();
+	public EnumRule getAction_GLOBALRule() {
+		return getAction_GLOBALAccess().getRule();
 	}
 	
-	//enum OBJECT_T:
-	//	A='type_A';
-	public OBJECT_TElements getOBJECT_TAccess() {
-		return eOBJECT_T;
+	//enum Action_O:
+	//	PICK='Pick' | USE='Use';
+	public Action_OElements getAction_OAccess() {
+		return eAction_O;
 	}
 	
-	public EnumRule getOBJECT_TRule() {
-		return getOBJECT_TAccess().getRule();
+	public EnumRule getAction_ORule() {
+		return getAction_OAccess().getRule();
 	}
 	
-	//enum Position_E:
-	//	TABLE='On table';
-	public Position_EElements getPosition_EAccess() {
-		return ePosition_E;
+	//enum Action_P:
+	//	TALK='Talk';
+	public Action_PElements getAction_PAccess() {
+		return eAction_P;
 	}
 	
-	public EnumRule getPosition_ERule() {
-		return getPosition_EAccess().getRule();
-	}
-	
-	//enum Action:
-	//	TALK='Talk' | PICK='Pick' | USE='use';
-	public ActionElements getActionAccess() {
-		return eAction;
-	}
-	
-	public EnumRule getActionRule() {
-		return getActionAccess().getRule();
+	public EnumRule getAction_PRule() {
+		return getAction_PAccess().getRule();
 	}
 	
 	//terminal ID:

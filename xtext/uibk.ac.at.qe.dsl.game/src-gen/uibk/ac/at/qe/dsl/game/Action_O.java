@@ -11,73 +11,99 @@ import org.eclipse.emf.common.util.Enumerator;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the literals of the enumeration '<em><b>OBJECT T</b></em>',
+ * A representation of the literals of the enumeration '<em><b>Action O</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * @see uibk.ac.at.qe.dsl.game.GamePackage#getOBJECT_T()
+ * @see uibk.ac.at.qe.dsl.game.GamePackage#getAction_O()
  * @model
  * @generated
  */
-public enum OBJECT_T implements Enumerator
+public enum Action_O implements Enumerator
 {
   /**
-   * The '<em><b>A</b></em>' literal object.
+   * The '<em><b>PICK</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #A_VALUE
+   * @see #PICK_VALUE
    * @generated
    * @ordered
    */
-  A(0, "A", "type_A");
+  PICK(0, "PICK", "Pick"),
 
   /**
-   * The '<em><b>A</b></em>' literal value.
+   * The '<em><b>USE</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #USE_VALUE
+   * @generated
+   * @ordered
+   */
+  USE(1, "USE", "Use");
+
+  /**
+   * The '<em><b>PICK</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of '<em><b>A</b></em>' literal object isn't clear,
+   * If the meaning of '<em><b>PICK</b></em>' literal object isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @see #A
-   * @model literal="type_A"
+   * @see #PICK
+   * @model literal="Pick"
    * @generated
    * @ordered
    */
-  public static final int A_VALUE = 0;
+  public static final int PICK_VALUE = 0;
 
   /**
-   * An array of all the '<em><b>OBJECT T</b></em>' enumerators.
+   * The '<em><b>USE</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>USE</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #USE
+   * @model literal="Use"
+   * @generated
+   * @ordered
+   */
+  public static final int USE_VALUE = 1;
+
+  /**
+   * An array of all the '<em><b>Action O</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final OBJECT_T[] VALUES_ARRAY =
-    new OBJECT_T[]
+  private static final Action_O[] VALUES_ARRAY =
+    new Action_O[]
     {
-      A,
+      PICK,
+      USE,
     };
 
   /**
-   * A public read-only list of all the '<em><b>OBJECT T</b></em>' enumerators.
+   * A public read-only list of all the '<em><b>Action O</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final List<OBJECT_T> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+  public static final List<Action_O> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>OBJECT T</b></em>' literal with the specified literal value.
+   * Returns the '<em><b>Action O</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param literal the literal.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static OBJECT_T get(String literal)
+  public static Action_O get(String literal)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      OBJECT_T result = VALUES_ARRAY[i];
+      Action_O result = VALUES_ARRAY[i];
       if (result.toString().equals(literal))
       {
         return result;
@@ -87,18 +113,18 @@ public enum OBJECT_T implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>OBJECT T</b></em>' literal with the specified name.
+   * Returns the '<em><b>Action O</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param name the name.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static OBJECT_T getByName(String name)
+  public static Action_O getByName(String name)
   {
     for (int i = 0; i < VALUES_ARRAY.length; ++i)
     {
-      OBJECT_T result = VALUES_ARRAY[i];
+      Action_O result = VALUES_ARRAY[i];
       if (result.getName().equals(name))
       {
         return result;
@@ -108,18 +134,19 @@ public enum OBJECT_T implements Enumerator
   }
 
   /**
-   * Returns the '<em><b>OBJECT T</b></em>' literal with the specified integer value.
+   * Returns the '<em><b>Action O</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the integer value.
    * @return the matching enumerator or <code>null</code>.
    * @generated
    */
-  public static OBJECT_T get(int value)
+  public static Action_O get(int value)
   {
     switch (value)
     {
-      case A_VALUE: return A;
+      case PICK_VALUE: return PICK;
+      case USE_VALUE: return USE;
     }
     return null;
   }
@@ -151,7 +178,7 @@ public enum OBJECT_T implements Enumerator
    * <!-- end-user-doc -->
    * @generated
    */
-  private OBJECT_T(int value, String name, String literal)
+  private Action_O(int value, String name, String literal)
   {
     this.value = value;
     this.name = name;
@@ -200,4 +227,4 @@ public enum OBJECT_T implements Enumerator
     return literal;
   }
   
-} //OBJECT_T
+} //Action_O
