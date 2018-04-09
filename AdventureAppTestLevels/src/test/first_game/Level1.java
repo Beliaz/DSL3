@@ -8,6 +8,7 @@ import com.company.IContext;
 import com.company.IObject;
 import com.company.IPerson;
 import com.company.IState;
+import com.company.Person;
 import com.company.Player;
 import com.company.TextAdventureLevel;
 
@@ -26,24 +27,11 @@ class MyObject implements IObject {
 	}
 
 	@Override
-	public String getPosition() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void onDiscovered(IContext context) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public boolean equals(IObject other) {
-		return other.getName().equals(getName());
+		return this.name==other.getName();
 	}
 
 }
-
 class TalkToIvanAction implements IAction {
 	private IPerson ivan;
 	private IObject key;
@@ -63,9 +51,9 @@ class TalkToIvanAction implements IAction {
 
 	@Override
 	public void perform(IContext context) {
-		if (context.player().hasObject(key)) {
+		if (context.player().hasObject("Key")) {
 			ivan.say(context.getOut(), String.format("Thank you, now i'll open the door!"));
-			context.levelComplete();
+			context.changeLevel();
 		} else {
 			switch (counter++) {
 			case 0:
@@ -84,14 +72,13 @@ class TalkToIvanAction implements IAction {
 			}
 		}
 	}
-
-	@Override
-	public boolean isAvailable(IState state) {
-		return true;
-	}
-
 	public boolean isExplicitAction() {
 		return false;
+	}
+
+	@Override
+	public boolean isAvailable(IContext state) {
+		return true;
 	}
 }
 
@@ -116,20 +103,20 @@ class InspectObjectAction implements IAction {
 	public void perform(IContext context) {
 		if (obj.equals(box)) {
 			context.getOut().println(context.player().getName() + ": Oh... in the box is a key!");
-			context.player().inventory().add(key);
+			context.player().take(key);
 		} else {
 			context.getOut().println(
 					context.player().getName() + ": This is a nice " + obj.getName() + ", but i can't use it!");
 		}
 	}
 
-	@Override
-	public boolean isAvailable(IState state) {
-		return true;
-	}
-
 	public boolean isExplicitAction() {
 		return false;
+	}
+
+	@Override
+	public boolean isAvailable(IContext state) {
+		return true;
 	}
 }
 
@@ -163,14 +150,13 @@ public class Level1 extends TextAdventureLevel {
 	protected List<IPerson> getPersons(IContext context) {
 		return persons;
 	}
-
-	@Override
-	protected List<IAction> getAvailableActions(IContext context) {
-		return actions;
-	}
-
 	@Override
 	public String getNextLevel(IContext context) {
 		return Level2.class.getName();
+	}
+
+	@Override
+	protected List<IAction> getActions(IContext context) {
+		return actions;
 	}
 }
