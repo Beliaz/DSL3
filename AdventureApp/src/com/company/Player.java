@@ -2,7 +2,7 @@ package com.company;
 
 import java.io.PrintStream;
 
-public class Player implements IPerson {
+public class Player extends Person {
 
     private IContext context;
 
@@ -10,23 +10,9 @@ public class Player implements IPerson {
         this.context = context;
     }
 
-    public void setName(String name) {
-        context.getState().setData(Player.class.getName(), "name", name);
-    }
-
-    @Override
-    public String getName() {
-        return (String)context.getState().getData(Player.class.getName(), "name");
-    }
-
-    @Override
-    public String getPosition() {
-        return (String)context.getState().getData(Player.class.getName(), "position");
-    }
-
-    public void move(String position) {
-        context.getState().setData(Player.class.getName(), "position", position);
-        context.getOut().println(String.format("You are now %s", position));
+    public void move(String newLocation) {
+        super.move(newLocation);
+        context.getOut().println(String.format("You are now %s", newLocation));
     }
 
     @Override
@@ -35,7 +21,15 @@ public class Player implements IPerson {
     }
 
     @Override
-    public void onDiscovered(IContext context) {
+    public void take(IObject object) {
+        super.take(object);
+        context.getOut().println(String.format("%s added to inventory", object.getName()));
+    }
 
+    @Override
+    public IObject use(String name) {
+        IObject object = super.use(name);
+        context.getOut().println(String.format("Used %s", name));
+        return object;
     }
 }
