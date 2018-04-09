@@ -45,7 +45,8 @@ Person:
 	'{'
 	'type' '=' type=PERSON_T ';'
 	'response' '=' response=STRING ';'
-	'position' '=' '{' position=Position '}'
+	'position' '=' position=Position_E ';'
+	'action' '=' action=Action ';'
 	'}'
 ;
 
@@ -53,13 +54,9 @@ Object:
 	name=ID '='
 	'{'
 	'type' '=' type=OBJECT_T ';'
-	'position' '=' '{' position=Position '}'
+	'position' '=' position=Position_E ';'
+	'action' '=' action=Action ';'
 	'}'
-;
-
-Position:
-	'pos_x' '=' posX=INT ';' 
-	'pos_y' '=' posY=INT ';' 
 ;
 
 enum PERSON_T:
@@ -68,4 +65,12 @@ enum PERSON_T:
 
 enum OBJECT_T:
 	A='type_A'
+;
+
+enum Position_E:
+	TABLE='On table'
+;
+
+enum Action:
+	TALK='Talk' | PICK='Pick' | USE = 'Use'
 ;

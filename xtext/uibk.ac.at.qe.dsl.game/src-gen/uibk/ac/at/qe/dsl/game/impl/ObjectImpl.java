@@ -4,17 +4,16 @@
 package uibk.ac.at.qe.dsl.game.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import uibk.ac.at.qe.dsl.game.Action;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.OBJECT_T;
-import uibk.ac.at.qe.dsl.game.Position;
+import uibk.ac.at.qe.dsl.game.Position_E;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +26,7 @@ import uibk.ac.at.qe.dsl.game.Position;
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getType <em>Type</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getPosition <em>Position</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getAction <em>Action</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,14 +74,44 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
   protected OBJECT_T type = TYPE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getPosition() <em>Position</em>}' containment reference.
+   * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getPosition()
    * @generated
    * @ordered
    */
-  protected Position position;
+  protected static final Position_E POSITION_EDEFAULT = Position_E.TABLE;
+
+  /**
+   * The cached value of the '{@link #getPosition() <em>Position</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getPosition()
+   * @generated
+   * @ordered
+   */
+  protected Position_E position = POSITION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getAction() <em>Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAction()
+   * @generated
+   * @ordered
+   */
+  protected static final Action ACTION_EDEFAULT = Action.TALK;
+
+  /**
+   * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getAction()
+   * @generated
+   * @ordered
+   */
+  protected Action action = ACTION_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -155,7 +185,7 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
    * <!-- end-user-doc -->
    * @generated
    */
-  public Position getPosition()
+  public Position_E getPosition()
   {
     return position;
   }
@@ -165,16 +195,12 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetPosition(Position newPosition, NotificationChain msgs)
+  public void setPosition(Position_E newPosition)
   {
-    Position oldPosition = position;
-    position = newPosition;
+    Position_E oldPosition = position;
+    position = newPosition == null ? POSITION_EDEFAULT : newPosition;
     if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, GamePackage.OBJECT__POSITION, oldPosition, newPosition);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.OBJECT__POSITION, oldPosition, position));
   }
 
   /**
@@ -182,20 +208,9 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setPosition(Position newPosition)
+  public Action getAction()
   {
-    if (newPosition != position)
-    {
-      NotificationChain msgs = null;
-      if (position != null)
-        msgs = ((InternalEObject)position).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - GamePackage.OBJECT__POSITION, null, msgs);
-      if (newPosition != null)
-        msgs = ((InternalEObject)newPosition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - GamePackage.OBJECT__POSITION, null, msgs);
-      msgs = basicSetPosition(newPosition, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.OBJECT__POSITION, newPosition, newPosition));
+    return action;
   }
 
   /**
@@ -203,15 +218,12 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  public void setAction(Action newAction)
   {
-    switch (featureID)
-    {
-      case GamePackage.OBJECT__POSITION:
-        return basicSetPosition(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+    Action oldAction = action;
+    action = newAction == null ? ACTION_EDEFAULT : newAction;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.OBJECT__ACTION, oldAction, action));
   }
 
   /**
@@ -230,6 +242,8 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
         return getType();
       case GamePackage.OBJECT__POSITION:
         return getPosition();
+      case GamePackage.OBJECT__ACTION:
+        return getAction();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -251,7 +265,10 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
         setType((OBJECT_T)newValue);
         return;
       case GamePackage.OBJECT__POSITION:
-        setPosition((Position)newValue);
+        setPosition((Position_E)newValue);
+        return;
+      case GamePackage.OBJECT__ACTION:
+        setAction((Action)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -274,7 +291,10 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
         setType(TYPE_EDEFAULT);
         return;
       case GamePackage.OBJECT__POSITION:
-        setPosition((Position)null);
+        setPosition(POSITION_EDEFAULT);
+        return;
+      case GamePackage.OBJECT__ACTION:
+        setAction(ACTION_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -295,7 +315,9 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
       case GamePackage.OBJECT__TYPE:
         return type != TYPE_EDEFAULT;
       case GamePackage.OBJECT__POSITION:
-        return position != null;
+        return position != POSITION_EDEFAULT;
+      case GamePackage.OBJECT__ACTION:
+        return action != ACTION_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -315,6 +337,10 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
     result.append(name);
     result.append(", type: ");
     result.append(type);
+    result.append(", position: ");
+    result.append(position);
+    result.append(", action: ");
+    result.append(action);
     result.append(')');
     return result.toString();
   }

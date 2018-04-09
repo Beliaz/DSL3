@@ -39,18 +39,14 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PERSON_T"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="position" eType="#//Position"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position_E"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Object">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//OBJECT_T"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="position" eType="#//Position"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Position">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="posX" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="posY" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="#//Position_E"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="PERSON_T">
     <eLiterals name="MALE" literal="male"/>
@@ -58,5 +54,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="OBJECT_T">
     <eLiterals name="A" literal="type_A"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Position_E">
+    <eLiterals name="TABLE" literal="On table"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Action">
+    <eLiterals name="TALK" literal="Talk"/>
+    <eLiterals name="PICK" value="1" literal="Pick"/>
+    <eLiterals name="USE" value="2" literal="use"/>
   </eClassifiers>
 </ecore:EPackage>

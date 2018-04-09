@@ -345,7 +345,7 @@ public interface GamePackage extends EPackage
   int PERSON__RESPONSE = 2;
 
   /**
-   * The feature id for the '<em><b>Position</b></em>' containment reference.
+   * The feature id for the '<em><b>Position</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -354,13 +354,22 @@ public interface GamePackage extends EPackage
   int PERSON__POSITION = 3;
 
   /**
+   * The feature id for the '<em><b>Action</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PERSON__ACTION = 4;
+
+  /**
    * The number of structural features of the '<em>Person</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PERSON_FEATURE_COUNT = 4;
+  int PERSON_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl <em>Object</em>}' class.
@@ -391,7 +400,7 @@ public interface GamePackage extends EPackage
   int OBJECT__TYPE = 1;
 
   /**
-   * The feature id for the '<em><b>Position</b></em>' containment reference.
+   * The feature id for the '<em><b>Position</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -400,50 +409,22 @@ public interface GamePackage extends EPackage
   int OBJECT__POSITION = 2;
 
   /**
+   * The feature id for the '<em><b>Action</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT__ACTION = 3;
+
+  /**
    * The number of structural features of the '<em>Object</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OBJECT_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.PositionImpl <em>Position</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uibk.ac.at.qe.dsl.game.impl.PositionImpl
-   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPosition()
-   * @generated
-   */
-  int POSITION = 8;
-
-  /**
-   * The feature id for the '<em><b>Pos X</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSITION__POS_X = 0;
-
-  /**
-   * The feature id for the '<em><b>Pos Y</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSITION__POS_Y = 1;
-
-  /**
-   * The number of structural features of the '<em>Position</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int POSITION_FEATURE_COUNT = 2;
+  int OBJECT_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.PERSON_T <em>PERSON T</em>}' enum.
@@ -453,7 +434,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPERSON_T()
    * @generated
    */
-  int PERSON_T = 9;
+  int PERSON_T = 8;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.OBJECT_T <em>OBJECT T</em>}' enum.
@@ -463,7 +444,27 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getOBJECT_T()
    * @generated
    */
-  int OBJECT_T = 10;
+  int OBJECT_T = 9;
+
+  /**
+   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Position_E <em>Position E</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uibk.ac.at.qe.dsl.game.Position_E
+   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPosition_E()
+   * @generated
+   */
+  int POSITION_E = 10;
+
+  /**
+   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action <em>Action</em>}' enum.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uibk.ac.at.qe.dsl.game.Action
+   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction()
+   * @generated
+   */
+  int ACTION = 11;
 
 
   /**
@@ -735,15 +736,26 @@ public interface GamePackage extends EPackage
   EAttribute getPerson_Response();
 
   /**
-   * Returns the meta object for the containment reference '{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Position</em>'.
+   * @return the meta object for the attribute '<em>Position</em>'.
    * @see uibk.ac.at.qe.dsl.game.Person#getPosition()
    * @see #getPerson()
    * @generated
    */
-  EReference getPerson_Position();
+  EAttribute getPerson_Position();
+
+  /**
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Person#getAction <em>Action</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Action</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Person#getAction()
+   * @see #getPerson()
+   * @generated
+   */
+  EAttribute getPerson_Action();
 
   /**
    * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.Object <em>Object</em>}'.
@@ -778,47 +790,26 @@ public interface GamePackage extends EPackage
   EAttribute getObject_Type();
 
   /**
-   * Returns the meta object for the containment reference '{@link uibk.ac.at.qe.dsl.game.Object#getPosition <em>Position</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getPosition <em>Position</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Position</em>'.
+   * @return the meta object for the attribute '<em>Position</em>'.
    * @see uibk.ac.at.qe.dsl.game.Object#getPosition()
    * @see #getObject()
    * @generated
    */
-  EReference getObject_Position();
+  EAttribute getObject_Position();
 
   /**
-   * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.Position <em>Position</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getAction <em>Action</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Position</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Position
+   * @return the meta object for the attribute '<em>Action</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Object#getAction()
+   * @see #getObject()
    * @generated
    */
-  EClass getPosition();
-
-  /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Position#getPosX <em>Pos X</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Pos X</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Position#getPosX()
-   * @see #getPosition()
-   * @generated
-   */
-  EAttribute getPosition_PosX();
-
-  /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Position#getPosY <em>Pos Y</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Pos Y</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Position#getPosY()
-   * @see #getPosition()
-   * @generated
-   */
-  EAttribute getPosition_PosY();
+  EAttribute getObject_Action();
 
   /**
    * Returns the meta object for enum '{@link uibk.ac.at.qe.dsl.game.PERSON_T <em>PERSON T</em>}'.
@@ -839,6 +830,26 @@ public interface GamePackage extends EPackage
    * @generated
    */
   EEnum getOBJECT_T();
+
+  /**
+   * Returns the meta object for enum '{@link uibk.ac.at.qe.dsl.game.Position_E <em>Position E</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Position E</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Position_E
+   * @generated
+   */
+  EEnum getPosition_E();
+
+  /**
+   * Returns the meta object for enum '{@link uibk.ac.at.qe.dsl.game.Action <em>Action</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for enum '<em>Action</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Action
+   * @generated
+   */
+  EEnum getAction();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1078,12 +1089,20 @@ public interface GamePackage extends EPackage
     EAttribute PERSON__RESPONSE = eINSTANCE.getPerson_Response();
 
     /**
-     * The meta object literal for the '<em><b>Position</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference PERSON__POSITION = eINSTANCE.getPerson_Position();
+    EAttribute PERSON__POSITION = eINSTANCE.getPerson_Position();
+
+    /**
+     * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PERSON__ACTION = eINSTANCE.getPerson_Action();
 
     /**
      * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl <em>Object</em>}' class.
@@ -1112,38 +1131,20 @@ public interface GamePackage extends EPackage
     EAttribute OBJECT__TYPE = eINSTANCE.getObject_Type();
 
     /**
-     * The meta object literal for the '<em><b>Position</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference OBJECT__POSITION = eINSTANCE.getObject_Position();
+    EAttribute OBJECT__POSITION = eINSTANCE.getObject_Position();
 
     /**
-     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.PositionImpl <em>Position</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uibk.ac.at.qe.dsl.game.impl.PositionImpl
-     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPosition()
-     * @generated
-     */
-    EClass POSITION = eINSTANCE.getPosition();
-
-    /**
-     * The meta object literal for the '<em><b>Pos X</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute POSITION__POS_X = eINSTANCE.getPosition_PosX();
-
-    /**
-     * The meta object literal for the '<em><b>Pos Y</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute POSITION__POS_Y = eINSTANCE.getPosition_PosY();
+    EAttribute OBJECT__ACTION = eINSTANCE.getObject_Action();
 
     /**
      * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.PERSON_T <em>PERSON T</em>}' enum.
@@ -1164,6 +1165,26 @@ public interface GamePackage extends EPackage
      * @generated
      */
     EEnum OBJECT_T = eINSTANCE.getOBJECT_T();
+
+    /**
+     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.Position_E <em>Position E</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uibk.ac.at.qe.dsl.game.Position_E
+     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPosition_E()
+     * @generated
+     */
+    EEnum POSITION_E = eINSTANCE.getPosition_E();
+
+    /**
+     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.Action <em>Action</em>}' enum.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uibk.ac.at.qe.dsl.game.Action
+     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction()
+     * @generated
+     */
+    EEnum ACTION = eINSTANCE.getAction();
 
   }
 

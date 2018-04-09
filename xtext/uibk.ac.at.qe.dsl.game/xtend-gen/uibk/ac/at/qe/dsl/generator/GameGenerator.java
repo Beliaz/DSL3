@@ -3,10 +3,14 @@
  */
 package uibk.ac.at.qe.dsl.generator;
 
+import com.google.common.collect.Iterables;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import uibk.ac.at.qe.dsl.game.Game;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +21,13 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class GameGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    Iterable<Game> _filter = Iterables.<Game>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Game.class);
+    for (final Game game : _filter) {
+      this.generateFiles(resource, fsa, context, game);
+    }
+  }
+  
+  public Object generateFiles(final Resource resource, final IFileSystemAccess2 access2, final IGeneratorContext context, final Game game) {
+    return null;
   }
 }

@@ -5,17 +5,13 @@ new gameA {
 		person_A = {
 			type = male;
 			response = "Search for object xyz";
-			position = {
-				pos_x = 10; 
-				pos_y = 10;
-			}
+			position = On table;
+			action = Talk;
 		}
 		object_A = {
 			type = type_A;
-			position = {
-				pos_x = 12; 
-				pos_y = 14;
-			}
+			position = On table;
+			action = Pick;
 		}
 		goal = level_1;
 	}
@@ -23,25 +19,19 @@ new gameA {
 		person_A = {
 			type = female;
 			response = "Hi";
-			position = {
-				pos_x = 10; 
-				pos_y = 10;
-			}
+			position = On table;
+			action = Talk;
 		}
 		person_B = {
 			type = female;
 			response = "Go to position abc";
-			position = {
-				pos_x = 20; 
-				pos_y = 10;
-			}
+			position = On table;
+			action = Talk;
 		}
 		object_A = {
 			type = type_A;
-			position = {
-				pos_x = 10; 
-				pos_y = 20;
-			}
+			position = On table;
+			action = Pick;
 		}
 		goal = object_A;
 	}

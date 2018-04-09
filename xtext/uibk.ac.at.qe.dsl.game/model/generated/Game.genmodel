@@ -13,6 +13,14 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//OBJECT_T">
       <genEnumLiterals ecoreEnumLiteral="Game.ecore#//OBJECT_T/A"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Position_E">
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Position_E/TABLE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action">
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action/TALK"/>
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action/PICK"/>
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action/USE"/>
+    </genEnums>
     <genClasses ecoreClass="Game.ecore#//Game">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Game/definition"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Game/scenes"/>
@@ -44,16 +52,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/response"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Person/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/action"/>
     </genClasses>
     <genClasses ecoreClass="Game.ecore#//Object">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Object/position"/>
-    </genClasses>
-    <genClasses ecoreClass="Game.ecore#//Position">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Position/posX"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Position/posY"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/action"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

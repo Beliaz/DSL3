@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getType <em>Type</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getResponse <em>Response</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getAction <em>Action</em>}</li>
  * </ul>
  *
  * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson()
@@ -108,29 +109,61 @@ public interface Person extends EObject
   void setResponse(String value);
 
   /**
-   * Returns the value of the '<em><b>Position</b></em>' containment reference.
+   * Returns the value of the '<em><b>Position</b></em>' attribute.
+   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.Position_E}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Position</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Position</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Position</em>' containment reference.
-   * @see #setPosition(Position)
+   * @return the value of the '<em>Position</em>' attribute.
+   * @see uibk.ac.at.qe.dsl.game.Position_E
+   * @see #setPosition(Position_E)
    * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_Position()
-   * @model containment="true"
+   * @model
    * @generated
    */
-  Position getPosition();
+  Position_E getPosition();
 
   /**
-   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}' containment reference.
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Position</em>' containment reference.
+   * @param value the new value of the '<em>Position</em>' attribute.
+   * @see uibk.ac.at.qe.dsl.game.Position_E
    * @see #getPosition()
    * @generated
    */
-  void setPosition(Position value);
+  void setPosition(Position_E value);
+
+  /**
+   * Returns the value of the '<em><b>Action</b></em>' attribute.
+   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.Action}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Action</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Action</em>' attribute.
+   * @see uibk.ac.at.qe.dsl.game.Action
+   * @see #setAction(Action)
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_Action()
+   * @model
+   * @generated
+   */
+  Action getAction();
+
+  /**
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getAction <em>Action</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Action</em>' attribute.
+   * @see uibk.ac.at.qe.dsl.game.Action
+   * @see #getAction()
+   * @generated
+   */
+  void setAction(Action value);
 
 } // Person

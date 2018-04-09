@@ -17,7 +17,6 @@ import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
 import uibk.ac.at.qe.dsl.game.LevelTransition;
 import uibk.ac.at.qe.dsl.game.Person;
-import uibk.ac.at.qe.dsl.game.Position;
 import uibk.ac.at.qe.dsl.game.Scene;
 
 /**
@@ -122,11 +121,6 @@ public class GameAdapterFactory extends AdapterFactoryImpl
       public Adapter caseObject(uibk.ac.at.qe.dsl.game.Object object)
       {
         return createObjectAdapter();
-      }
-      @Override
-      public Adapter casePosition(Position object)
-      {
-        return createPositionAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -266,21 +260,6 @@ public class GameAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createObjectAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.Position <em>Position</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see uibk.ac.at.qe.dsl.game.Position
-   * @generated
-   */
-  public Adapter createPositionAdapter()
   {
     return null;
   }

@@ -618,16 +618,12 @@ rulePerson returns [EObject current=null]
 		{
 			newLeafNode(otherlv_12, grammarAccess.getPersonAccess().getEqualsSignKeyword_12());
 		}
-		otherlv_13='{'
-		{
-			newLeafNode(otherlv_13, grammarAccess.getPersonAccess().getLeftCurlyBracketKeyword_13());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPersonAccess().getPositionPositionParserRuleCall_14_0());
+					newCompositeNode(grammarAccess.getPersonAccess().getPositionPosition_EEnumRuleCall_13_0());
 				}
-				lv_position_14_0=rulePosition
+				lv_position_13_0=rulePosition_E
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPersonRule());
@@ -635,19 +631,50 @@ rulePerson returns [EObject current=null]
 					set(
 						$current,
 						"position",
-						lv_position_14_0,
-						"uibk.ac.at.qe.dsl.Game.Position");
+						lv_position_13_0,
+						"uibk.ac.at.qe.dsl.Game.Position_E");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_15='}'
+		otherlv_14=';'
 		{
-			newLeafNode(otherlv_15, grammarAccess.getPersonAccess().getRightCurlyBracketKeyword_15());
+			newLeafNode(otherlv_14, grammarAccess.getPersonAccess().getSemicolonKeyword_14());
 		}
-		otherlv_16='}'
+		otherlv_15='action'
 		{
-			newLeafNode(otherlv_16, grammarAccess.getPersonAccess().getRightCurlyBracketKeyword_16());
+			newLeafNode(otherlv_15, grammarAccess.getPersonAccess().getActionKeyword_15());
+		}
+		otherlv_16='='
+		{
+			newLeafNode(otherlv_16, grammarAccess.getPersonAccess().getEqualsSignKeyword_16());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getPersonAccess().getActionActionEnumRuleCall_17_0());
+				}
+				lv_action_17_0=ruleAction
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getPersonRule());
+					}
+					set(
+						$current,
+						"action",
+						lv_action_17_0,
+						"uibk.ac.at.qe.dsl.Game.Action");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_18=';'
+		{
+			newLeafNode(otherlv_18, grammarAccess.getPersonAccess().getSemicolonKeyword_18());
+		}
+		otherlv_19='}'
+		{
+			newLeafNode(otherlv_19, grammarAccess.getPersonAccess().getRightCurlyBracketKeyword_19());
 		}
 	)
 ;
@@ -733,16 +760,12 @@ ruleObject returns [EObject current=null]
 		{
 			newLeafNode(otherlv_8, grammarAccess.getObjectAccess().getEqualsSignKeyword_8());
 		}
-		otherlv_9='{'
-		{
-			newLeafNode(otherlv_9, grammarAccess.getObjectAccess().getLeftCurlyBracketKeyword_9());
-		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getObjectAccess().getPositionPositionParserRuleCall_10_0());
+					newCompositeNode(grammarAccess.getObjectAccess().getPositionPosition_EEnumRuleCall_9_0());
 				}
-				lv_position_10_0=rulePosition
+				lv_position_9_0=rulePosition_E
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getObjectRule());
@@ -750,98 +773,50 @@ ruleObject returns [EObject current=null]
 					set(
 						$current,
 						"position",
-						lv_position_10_0,
-						"uibk.ac.at.qe.dsl.Game.Position");
+						lv_position_9_0,
+						"uibk.ac.at.qe.dsl.Game.Position_E");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_11='}'
+		otherlv_10=';'
 		{
-			newLeafNode(otherlv_11, grammarAccess.getObjectAccess().getRightCurlyBracketKeyword_11());
+			newLeafNode(otherlv_10, grammarAccess.getObjectAccess().getSemicolonKeyword_10());
 		}
-		otherlv_12='}'
+		otherlv_11='action'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getObjectAccess().getRightCurlyBracketKeyword_12());
+			newLeafNode(otherlv_11, grammarAccess.getObjectAccess().getActionKeyword_11());
 		}
-	)
-;
-
-// Entry rule entryRulePosition
-entryRulePosition returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getPositionRule()); }
-	iv_rulePosition=rulePosition
-	{ $current=$iv_rulePosition.current; }
-	EOF;
-
-// Rule Position
-rulePosition returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='pos_x'
+		otherlv_12='='
 		{
-			newLeafNode(otherlv_0, grammarAccess.getPositionAccess().getPos_xKeyword_0());
-		}
-		otherlv_1='='
-		{
-			newLeafNode(otherlv_1, grammarAccess.getPositionAccess().getEqualsSignKeyword_1());
+			newLeafNode(otherlv_12, grammarAccess.getObjectAccess().getEqualsSignKeyword_12());
 		}
 		(
 			(
-				lv_posX_2_0=RULE_INT
 				{
-					newLeafNode(lv_posX_2_0, grammarAccess.getPositionAccess().getPosXINTTerminalRuleCall_2_0());
+					newCompositeNode(grammarAccess.getObjectAccess().getActionActionEnumRuleCall_13_0());
 				}
+				lv_action_13_0=ruleAction
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPositionRule());
+						$current = createModelElementForParent(grammarAccess.getObjectRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
-						"posX",
-						lv_posX_2_0,
-						"org.eclipse.xtext.common.Terminals.INT");
+						"action",
+						lv_action_13_0,
+						"uibk.ac.at.qe.dsl.Game.Action");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_3=';'
+		otherlv_14=';'
 		{
-			newLeafNode(otherlv_3, grammarAccess.getPositionAccess().getSemicolonKeyword_3());
+			newLeafNode(otherlv_14, grammarAccess.getObjectAccess().getSemicolonKeyword_14());
 		}
-		otherlv_4='pos_y'
+		otherlv_15='}'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getPositionAccess().getPos_yKeyword_4());
-		}
-		otherlv_5='='
-		{
-			newLeafNode(otherlv_5, grammarAccess.getPositionAccess().getEqualsSignKeyword_5());
-		}
-		(
-			(
-				lv_posY_6_0=RULE_INT
-				{
-					newLeafNode(lv_posY_6_0, grammarAccess.getPositionAccess().getPosYINTTerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getPositionRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"posY",
-						lv_posY_6_0,
-						"org.eclipse.xtext.common.Terminals.INT");
-				}
-			)
-		)
-		otherlv_7=';'
-		{
-			newLeafNode(otherlv_7, grammarAccess.getPositionAccess().getSemicolonKeyword_7());
+			newLeafNode(otherlv_15, grammarAccess.getObjectAccess().getRightCurlyBracketKeyword_15());
 		}
 	)
 ;
@@ -887,6 +862,58 @@ ruleOBJECT_T returns [Enumerator current=null]
 			$current = grammarAccess.getOBJECT_TAccess().getAEnumLiteralDeclaration().getEnumLiteral().getInstance();
 			newLeafNode(enumLiteral_0, grammarAccess.getOBJECT_TAccess().getAEnumLiteralDeclaration());
 		}
+	)
+;
+
+// Rule Position_E
+rulePosition_E returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		enumLiteral_0='On table'
+		{
+			$current = grammarAccess.getPosition_EAccess().getTABLEEnumLiteralDeclaration().getEnumLiteral().getInstance();
+			newLeafNode(enumLiteral_0, grammarAccess.getPosition_EAccess().getTABLEEnumLiteralDeclaration());
+		}
+	)
+;
+
+// Rule Action
+ruleAction returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='Talk'
+			{
+				$current = grammarAccess.getActionAccess().getTALKEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getActionAccess().getTALKEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='Pick'
+			{
+				$current = grammarAccess.getActionAccess().getPICKEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getActionAccess().getPICKEnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='use'
+			{
+				$current = grammarAccess.getActionAccess().getUSEEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getActionAccess().getUSEEnumLiteralDeclaration_2());
+			}
+		)
 	)
 ;
 

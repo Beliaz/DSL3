@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
+import uibk.ac.at.qe.dsl.game.Action;
 import uibk.ac.at.qe.dsl.game.Definition;
 import uibk.ac.at.qe.dsl.game.Game;
 import uibk.ac.at.qe.dsl.game.GameFactory;
@@ -19,7 +20,7 @@ import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
 import uibk.ac.at.qe.dsl.game.LevelTransition;
 import uibk.ac.at.qe.dsl.game.Person;
-import uibk.ac.at.qe.dsl.game.Position;
+import uibk.ac.at.qe.dsl.game.Position_E;
 import uibk.ac.at.qe.dsl.game.Scene;
 
 /**
@@ -91,13 +92,6 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass positionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EEnum persoN_TEEnum = null;
 
   /**
@@ -106,6 +100,20 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * @generated
    */
   private EEnum objecT_TEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum position_EEEnum = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum actionEEnum = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -425,9 +433,19 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPerson_Position()
+  public EAttribute getPerson_Position()
   {
-    return (EReference)personEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)personEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPerson_Action()
+  {
+    return (EAttribute)personEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -465,9 +483,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getObject_Position()
+  public EAttribute getObject_Position()
   {
-    return (EReference)objectEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)objectEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -475,29 +493,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getPosition()
+  public EAttribute getObject_Action()
   {
-    return positionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPosition_PosX()
-  {
-    return (EAttribute)positionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getPosition_PosY()
-  {
-    return (EAttribute)positionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)objectEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -518,6 +516,26 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
   public EEnum getOBJECT_T()
   {
     return objecT_TEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getPosition_E()
+  {
+    return position_EEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EEnum getAction()
+  {
+    return actionEEnum;
   }
 
   /**
@@ -581,20 +599,20 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     createEAttribute(personEClass, PERSON__NAME);
     createEAttribute(personEClass, PERSON__TYPE);
     createEAttribute(personEClass, PERSON__RESPONSE);
-    createEReference(personEClass, PERSON__POSITION);
+    createEAttribute(personEClass, PERSON__POSITION);
+    createEAttribute(personEClass, PERSON__ACTION);
 
     objectEClass = createEClass(OBJECT);
     createEAttribute(objectEClass, OBJECT__NAME);
     createEAttribute(objectEClass, OBJECT__TYPE);
-    createEReference(objectEClass, OBJECT__POSITION);
-
-    positionEClass = createEClass(POSITION);
-    createEAttribute(positionEClass, POSITION__POS_X);
-    createEAttribute(positionEClass, POSITION__POS_Y);
+    createEAttribute(objectEClass, OBJECT__POSITION);
+    createEAttribute(objectEClass, OBJECT__ACTION);
 
     // Create enums
     persoN_TEEnum = createEEnum(PERSON_T);
     objecT_TEEnum = createEEnum(OBJECT_T);
+    position_EEEnum = createEEnum(POSITION_E);
+    actionEEnum = createEEnum(ACTION);
   }
 
   /**
@@ -659,16 +677,14 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     initEAttribute(getPerson_Name(), ecorePackage.getEString(), "name", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPerson_Type(), this.getPERSON_T(), "type", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPerson_Response(), ecorePackage.getEString(), "response", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPerson_Position(), this.getPosition(), null, "position", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPerson_Position(), this.getPosition_E(), "position", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPerson_Action(), this.getAction(), "action", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(objectEClass, uibk.ac.at.qe.dsl.game.Object.class, "Object", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getObject_Type(), this.getOBJECT_T(), "type", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getObject_Position(), this.getPosition(), null, "position", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(positionEClass, Position.class, "Position", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getPosition_PosX(), ecorePackage.getEInt(), "posX", null, 0, 1, Position.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPosition_PosY(), ecorePackage.getEInt(), "posY", null, 0, 1, Position.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getObject_Position(), this.getPosition_E(), "position", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getObject_Action(), this.getAction(), "action", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(persoN_TEEnum, uibk.ac.at.qe.dsl.game.PERSON_T.class, "PERSON_T");
@@ -677,6 +693,14 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
 
     initEEnum(objecT_TEEnum, uibk.ac.at.qe.dsl.game.OBJECT_T.class, "OBJECT_T");
     addEEnumLiteral(objecT_TEEnum, uibk.ac.at.qe.dsl.game.OBJECT_T.A);
+
+    initEEnum(position_EEEnum, Position_E.class, "Position_E");
+    addEEnumLiteral(position_EEEnum, Position_E.TABLE);
+
+    initEEnum(actionEEnum, Action.class, "Action");
+    addEEnumLiteral(actionEEnum, Action.TALK);
+    addEEnumLiteral(actionEEnum, Action.PICK);
+    addEEnumLiteral(actionEEnum, Action.USE);
 
     // Create resource
     createResource(eNS_URI);

@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import uibk.ac.at.qe.dsl.game.Action;
 import uibk.ac.at.qe.dsl.game.Definition;
 import uibk.ac.at.qe.dsl.game.Game;
 import uibk.ac.at.qe.dsl.game.GameFactory;
@@ -22,7 +23,7 @@ import uibk.ac.at.qe.dsl.game.LevelTransition;
 import uibk.ac.at.qe.dsl.game.OBJECT_T;
 import uibk.ac.at.qe.dsl.game.PERSON_T;
 import uibk.ac.at.qe.dsl.game.Person;
-import uibk.ac.at.qe.dsl.game.Position;
+import uibk.ac.at.qe.dsl.game.Position_E;
 import uibk.ac.at.qe.dsl.game.Scene;
 
 /**
@@ -85,7 +86,6 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
       case GamePackage.LEVEL_TRANSITION: return createLevelTransition();
       case GamePackage.PERSON: return createPerson();
       case GamePackage.OBJECT: return createObject();
-      case GamePackage.POSITION: return createPosition();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -105,6 +105,10 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
         return createPERSON_TFromString(eDataType, initialValue);
       case GamePackage.OBJECT_T:
         return createOBJECT_TFromString(eDataType, initialValue);
+      case GamePackage.POSITION_E:
+        return createPosition_EFromString(eDataType, initialValue);
+      case GamePackage.ACTION:
+        return createActionFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -124,6 +128,10 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
         return convertPERSON_TToString(eDataType, instanceValue);
       case GamePackage.OBJECT_T:
         return convertOBJECT_TToString(eDataType, instanceValue);
+      case GamePackage.POSITION_E:
+        return convertPosition_EToString(eDataType, instanceValue);
+      case GamePackage.ACTION:
+        return convertActionToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -222,17 +230,6 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Position createPosition()
-  {
-    PositionImpl position = new PositionImpl();
-    return position;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public PERSON_T createPERSON_TFromString(EDataType eDataType, String initialValue)
   {
     PERSON_T result = PERSON_T.get(initialValue);
@@ -268,6 +265,50 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
    * @generated
    */
   public String convertOBJECT_TToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Position_E createPosition_EFromString(EDataType eDataType, String initialValue)
+  {
+    Position_E result = Position_E.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertPosition_EToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Action createActionFromString(EDataType eDataType, String initialValue)
+  {
+    Action result = Action.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertActionToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

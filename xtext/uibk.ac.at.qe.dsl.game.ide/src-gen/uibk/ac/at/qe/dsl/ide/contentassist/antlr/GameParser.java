@@ -32,6 +32,7 @@ public class GameParser extends AbstractContentAssistParser {
 				private static final long serialVersionUID = 1L;
 				{
 					put(grammarAccess.getPERSON_TAccess().getAlternatives(), "rule__PERSON_T__Alternatives");
+					put(grammarAccess.getActionAccess().getAlternatives(), "rule__Action__Alternatives");
 					put(grammarAccess.getGameAccess().getGroup(), "rule__Game__Group__0");
 					put(grammarAccess.getDefinitionAccess().getGroup(), "rule__Definition__Group__0");
 					put(grammarAccess.getSceneAccess().getGroup(), "rule__Scene__Group__0");
@@ -40,7 +41,6 @@ public class GameParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLevelTransitionAccess().getGroup(), "rule__LevelTransition__Group__0");
 					put(grammarAccess.getPersonAccess().getGroup(), "rule__Person__Group__0");
 					put(grammarAccess.getObjectAccess().getGroup(), "rule__Object__Group__0");
-					put(grammarAccess.getPositionAccess().getGroup(), "rule__Position__Group__0");
 					put(grammarAccess.getGameAccess().getDefinitionAssignment_0(), "rule__Game__DefinitionAssignment_0");
 					put(grammarAccess.getGameAccess().getScenesAssignment_2(), "rule__Game__ScenesAssignment_2");
 					put(grammarAccess.getDefinitionAccess().getNameAssignment_1(), "rule__Definition__NameAssignment_1");
@@ -59,12 +59,12 @@ public class GameParser extends AbstractContentAssistParser {
 					put(grammarAccess.getPersonAccess().getNameAssignment_0(), "rule__Person__NameAssignment_0");
 					put(grammarAccess.getPersonAccess().getTypeAssignment_5(), "rule__Person__TypeAssignment_5");
 					put(grammarAccess.getPersonAccess().getResponseAssignment_9(), "rule__Person__ResponseAssignment_9");
-					put(grammarAccess.getPersonAccess().getPositionAssignment_14(), "rule__Person__PositionAssignment_14");
+					put(grammarAccess.getPersonAccess().getPositionAssignment_13(), "rule__Person__PositionAssignment_13");
+					put(grammarAccess.getPersonAccess().getActionAssignment_17(), "rule__Person__ActionAssignment_17");
 					put(grammarAccess.getObjectAccess().getNameAssignment_0(), "rule__Object__NameAssignment_0");
 					put(grammarAccess.getObjectAccess().getTypeAssignment_5(), "rule__Object__TypeAssignment_5");
-					put(grammarAccess.getObjectAccess().getPositionAssignment_10(), "rule__Object__PositionAssignment_10");
-					put(grammarAccess.getPositionAccess().getPosXAssignment_2(), "rule__Position__PosXAssignment_2");
-					put(grammarAccess.getPositionAccess().getPosYAssignment_6(), "rule__Position__PosYAssignment_6");
+					put(grammarAccess.getObjectAccess().getPositionAssignment_9(), "rule__Object__PositionAssignment_9");
+					put(grammarAccess.getObjectAccess().getActionAssignment_13(), "rule__Object__ActionAssignment_13");
 				}
 			};
 		}

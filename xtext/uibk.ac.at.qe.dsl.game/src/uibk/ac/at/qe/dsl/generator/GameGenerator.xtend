@@ -7,6 +7,7 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import uibk.ac.at.qe.dsl.game.Game
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +17,15 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class GameGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		
+		for (game : resource.allContents.toIterable.filter(Game)) {
+			generateFiles(resource, fsa, context, game)
+		}
+
 	}
+	
+	def generateFiles(Resource resource, IFileSystemAccess2 access2, IGeneratorContext context, Game game) {
+		// TODO
+	}
+	
 }
