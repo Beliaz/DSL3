@@ -1,6 +1,5 @@
 package com.company;
 
-import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -49,7 +48,7 @@ public class Main {
             ILevel level = (ILevel) Class.forName(name, true, loader)
                     .getConstructor()
                     .newInstance();
-            
+
             level.initialize(context);
 
             return level;
