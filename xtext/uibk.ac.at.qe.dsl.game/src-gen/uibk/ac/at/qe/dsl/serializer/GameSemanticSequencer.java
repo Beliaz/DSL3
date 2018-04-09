@@ -20,6 +20,7 @@ import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
 import uibk.ac.at.qe.dsl.game.Person;
+import uibk.ac.at.qe.dsl.game.Person_O;
 import uibk.ac.at.qe.dsl.game.Scene;
 import uibk.ac.at.qe.dsl.services.GameGrammarAccess;
 
@@ -54,6 +55,9 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				return; 
 			case GamePackage.PERSON:
 				sequence_Person(context, (Person) semanticObject); 
+				return; 
+			case GamePackage.PERSON_O:
+				sequence_Person_O(context, (Person_O) semanticObject); 
 				return; 
 			case GamePackage.SCENE:
 				sequence_Scene(context, (Scene) semanticObject); 
@@ -121,8 +125,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         description=Description 
 	 *         persons+=Person* 
 	 *         objects+=Object* 
-	 *         actions+=Action_GLOBAL* 
-	 *         goal=ID 
+	 *         actions+=Action_GLOBAL 
 	 *         next=[LevelDeclaration|ID]?
 	 *     )
 	 */
@@ -136,7 +139,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Object returns Object
 	 *
 	 * Constraint:
-	 *     (name=ID type=ID position=STRING action=Action_O)
+	 *     (name=ID type=ID response=STRING position=STRING action=Action_O)
 	 */
 	protected void sequence_Object(ISerializationContext context, uibk.ac.at.qe.dsl.game.Object semanticObject) {
 		if (errorAcceptor != null) {
@@ -144,6 +147,8 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__NAME));
 			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__TYPE) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__TYPE));
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__RESPONSE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__RESPONSE));
 			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__POSITION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__POSITION));
 			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__ACTION) == ValueTransient.YES)
@@ -152,8 +157,27 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getObjectAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
 		feeder.accept(grammarAccess.getObjectAccess().getTypeIDTerminalRuleCall_5_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getObjectAccess().getPositionSTRINGTerminalRuleCall_9_0(), semanticObject.getPosition());
-		feeder.accept(grammarAccess.getObjectAccess().getActionAction_OEnumRuleCall_13_0(), semanticObject.getAction());
+		feeder.accept(grammarAccess.getObjectAccess().getResponseSTRINGTerminalRuleCall_9_0(), semanticObject.getResponse());
+		feeder.accept(grammarAccess.getObjectAccess().getPositionSTRINGTerminalRuleCall_13_0(), semanticObject.getPosition());
+		feeder.accept(grammarAccess.getObjectAccess().getActionAction_OEnumRuleCall_17_0(), semanticObject.getAction());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Person_O returns Person_O
+	 *
+	 * Constraint:
+	 *     items=[Object|ID]
+	 */
+	protected void sequence_Person_O(ISerializationContext context, Person_O semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.PERSON_O__ITEMS) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON_O__ITEMS));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPerson_OAccess().getItemsObjectIDTerminalRuleCall_0_0_1(), semanticObject.eGet(GamePackage.Literals.PERSON_O__ITEMS, false));
 		feeder.finish();
 	}
 	
@@ -163,28 +187,18 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Person returns Person
 	 *
 	 * Constraint:
-	 *     (name=ID type=ID response=STRING position=STRING action=Action_P)
+	 *     (
+	 *         name=ID 
+	 *         type=ID 
+	 *         response+=Person_R* 
+	 *         position=STRING 
+	 *         action=Action_P 
+	 *         objects+=Person_O 
+	 *         finalObject=[Object|ID]
+	 *     )
 	 */
 	protected void sequence_Person(ISerializationContext context, Person semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.PERSON__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON__NAME));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.PERSON__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON__TYPE));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.PERSON__RESPONSE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON__RESPONSE));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.PERSON__POSITION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON__POSITION));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.PERSON__ACTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON__ACTION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPersonAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getPersonAccess().getTypeIDTerminalRuleCall_5_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getPersonAccess().getResponseSTRINGTerminalRuleCall_9_0(), semanticObject.getResponse());
-		feeder.accept(grammarAccess.getPersonAccess().getPositionSTRINGTerminalRuleCall_13_0(), semanticObject.getPosition());
-		feeder.accept(grammarAccess.getPersonAccess().getActionAction_PEnumRuleCall_17_0(), semanticObject.getAction());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

@@ -234,22 +234,13 @@ public interface GamePackage extends EPackage
   int LEVEL_DEFINITION__ACTIONS = 4;
 
   /**
-   * The feature id for the '<em><b>Goal</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LEVEL_DEFINITION__GOAL = 5;
-
-  /**
    * The feature id for the '<em><b>Next</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LEVEL_DEFINITION__NEXT = 6;
+  int LEVEL_DEFINITION__NEXT = 5;
 
   /**
    * The number of structural features of the '<em>Level Definition</em>' class.
@@ -258,7 +249,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int LEVEL_DEFINITION_FEATURE_COUNT = 7;
+  int LEVEL_DEFINITION_FEATURE_COUNT = 6;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.DescriptionImpl <em>Description</em>}' class.
@@ -317,7 +308,7 @@ public interface GamePackage extends EPackage
   int PERSON__TYPE = 1;
 
   /**
-   * The feature id for the '<em><b>Response</b></em>' attribute.
+   * The feature id for the '<em><b>Response</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -344,13 +335,59 @@ public interface GamePackage extends EPackage
   int PERSON__ACTION = 4;
 
   /**
+   * The feature id for the '<em><b>Objects</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PERSON__OBJECTS = 5;
+
+  /**
+   * The feature id for the '<em><b>Final Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PERSON__FINAL_OBJECT = 6;
+
+  /**
    * The number of structural features of the '<em>Person</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PERSON_FEATURE_COUNT = 5;
+  int PERSON_FEATURE_COUNT = 7;
+
+  /**
+   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.Person_OImpl <em>Person O</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uibk.ac.at.qe.dsl.game.impl.Person_OImpl
+   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPerson_O()
+   * @generated
+   */
+  int PERSON_O = 6;
+
+  /**
+   * The feature id for the '<em><b>Items</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PERSON_O__ITEMS = 0;
+
+  /**
+   * The number of structural features of the '<em>Person O</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PERSON_O_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl <em>Object</em>}' class.
@@ -360,7 +397,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getObject()
    * @generated
    */
-  int OBJECT = 6;
+  int OBJECT = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -381,13 +418,22 @@ public interface GamePackage extends EPackage
   int OBJECT__TYPE = 1;
 
   /**
+   * The feature id for the '<em><b>Response</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OBJECT__RESPONSE = 2;
+
+  /**
    * The feature id for the '<em><b>Position</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OBJECT__POSITION = 2;
+  int OBJECT__POSITION = 3;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' attribute.
@@ -396,7 +442,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int OBJECT__ACTION = 3;
+  int OBJECT__ACTION = 4;
 
   /**
    * The number of structural features of the '<em>Object</em>' class.
@@ -405,7 +451,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int OBJECT_FEATURE_COUNT = 4;
+  int OBJECT_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_GLOBAL <em>Action GLOBAL</em>}' enum.
@@ -415,7 +461,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_GLOBAL()
    * @generated
    */
-  int ACTION_GLOBAL = 7;
+  int ACTION_GLOBAL = 8;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_O <em>Action O</em>}' enum.
@@ -425,7 +471,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_O()
    * @generated
    */
-  int ACTION_O = 8;
+  int ACTION_O = 9;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_P <em>Action P</em>}' enum.
@@ -435,7 +481,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_P()
    * @generated
    */
-  int ACTION_P = 9;
+  int ACTION_P = 10;
 
 
   /**
@@ -611,17 +657,6 @@ public interface GamePackage extends EPackage
   EAttribute getLevelDefinition_Actions();
 
   /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getGoal <em>Goal</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Goal</em>'.
-   * @see uibk.ac.at.qe.dsl.game.LevelDefinition#getGoal()
-   * @see #getLevelDefinition()
-   * @generated
-   */
-  EAttribute getLevelDefinition_Goal();
-
-  /**
    * Returns the meta object for the reference '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getNext <em>Next</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -686,10 +721,10 @@ public interface GamePackage extends EPackage
   EAttribute getPerson_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Person#getResponse <em>Response</em>}'.
+   * Returns the meta object for the attribute list '{@link uibk.ac.at.qe.dsl.game.Person#getResponse <em>Response</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Response</em>'.
+   * @return the meta object for the attribute list '<em>Response</em>'.
    * @see uibk.ac.at.qe.dsl.game.Person#getResponse()
    * @see #getPerson()
    * @generated
@@ -717,6 +752,49 @@ public interface GamePackage extends EPackage
    * @generated
    */
   EAttribute getPerson_Action();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link uibk.ac.at.qe.dsl.game.Person#getObjects <em>Objects</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Objects</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Person#getObjects()
+   * @see #getPerson()
+   * @generated
+   */
+  EReference getPerson_Objects();
+
+  /**
+   * Returns the meta object for the reference '{@link uibk.ac.at.qe.dsl.game.Person#getFinalObject <em>Final Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Final Object</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Person#getFinalObject()
+   * @see #getPerson()
+   * @generated
+   */
+  EReference getPerson_FinalObject();
+
+  /**
+   * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.Person_O <em>Person O</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Person O</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Person_O
+   * @generated
+   */
+  EClass getPerson_O();
+
+  /**
+   * Returns the meta object for the reference '{@link uibk.ac.at.qe.dsl.game.Person_O#getItems <em>Items</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference '<em>Items</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Person_O#getItems()
+   * @see #getPerson_O()
+   * @generated
+   */
+  EReference getPerson_O_Items();
 
   /**
    * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.Object <em>Object</em>}'.
@@ -749,6 +827,17 @@ public interface GamePackage extends EPackage
    * @generated
    */
   EAttribute getObject_Type();
+
+  /**
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getResponse <em>Response</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Response</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Object#getResponse()
+   * @see #getObject()
+   * @generated
+   */
+  EAttribute getObject_Response();
 
   /**
    * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getPosition <em>Position</em>}'.
@@ -962,14 +1051,6 @@ public interface GamePackage extends EPackage
     EAttribute LEVEL_DEFINITION__ACTIONS = eINSTANCE.getLevelDefinition_Actions();
 
     /**
-     * The meta object literal for the '<em><b>Goal</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LEVEL_DEFINITION__GOAL = eINSTANCE.getLevelDefinition_Goal();
-
-    /**
      * The meta object literal for the '<em><b>Next</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1022,7 +1103,7 @@ public interface GamePackage extends EPackage
     EAttribute PERSON__TYPE = eINSTANCE.getPerson_Type();
 
     /**
-     * The meta object literal for the '<em><b>Response</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Response</b></em>' attribute list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -1044,6 +1125,40 @@ public interface GamePackage extends EPackage
      * @generated
      */
     EAttribute PERSON__ACTION = eINSTANCE.getPerson_Action();
+
+    /**
+     * The meta object literal for the '<em><b>Objects</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PERSON__OBJECTS = eINSTANCE.getPerson_Objects();
+
+    /**
+     * The meta object literal for the '<em><b>Final Object</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PERSON__FINAL_OBJECT = eINSTANCE.getPerson_FinalObject();
+
+    /**
+     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.Person_OImpl <em>Person O</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uibk.ac.at.qe.dsl.game.impl.Person_OImpl
+     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPerson_O()
+     * @generated
+     */
+    EClass PERSON_O = eINSTANCE.getPerson_O();
+
+    /**
+     * The meta object literal for the '<em><b>Items</b></em>' reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference PERSON_O__ITEMS = eINSTANCE.getPerson_O_Items();
 
     /**
      * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl <em>Object</em>}' class.
@@ -1070,6 +1185,14 @@ public interface GamePackage extends EPackage
      * @generated
      */
     EAttribute OBJECT__TYPE = eINSTANCE.getObject_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Response</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OBJECT__RESPONSE = eINSTANCE.getObject_Response();
 
     /**
      * The meta object literal for the '<em><b>Position</b></em>' attribute feature.

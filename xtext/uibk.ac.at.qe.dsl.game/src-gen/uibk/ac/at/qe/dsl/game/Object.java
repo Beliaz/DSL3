@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Object#getName <em>Name</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Object#getType <em>Type</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.Object#getResponse <em>Response</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Object#getPosition <em>Position</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Object#getAction <em>Action</em>}</li>
  * </ul>
@@ -77,6 +78,32 @@ public interface Object extends EObject
    * @generated
    */
   void setType(String value);
+
+  /**
+   * Returns the value of the '<em><b>Response</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Response</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Response</em>' attribute.
+   * @see #setResponse(String)
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getObject_Response()
+   * @model
+   * @generated
+   */
+  String getResponse();
+
+  /**
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Object#getResponse <em>Response</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Response</em>' attribute.
+   * @see #getResponse()
+   * @generated
+   */
+  void setResponse(String value);
 
   /**
    * Returns the value of the '<em><b>Position</b></em>' attribute.

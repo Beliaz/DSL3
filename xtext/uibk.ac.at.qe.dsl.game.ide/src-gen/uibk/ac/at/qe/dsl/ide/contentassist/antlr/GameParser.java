@@ -35,9 +35,11 @@ public class GameParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSceneAccess().getGroup(), "rule__Scene__Group__0");
 					put(grammarAccess.getLevelDeclarationAccess().getGroup(), "rule__LevelDeclaration__Group__0");
 					put(grammarAccess.getLevelDefinitionAccess().getGroup(), "rule__LevelDefinition__Group__0");
-					put(grammarAccess.getLevelDefinitionAccess().getGroup_11(), "rule__LevelDefinition__Group_11__0");
+					put(grammarAccess.getLevelDefinitionAccess().getGroup_7(), "rule__LevelDefinition__Group_7__0");
 					put(grammarAccess.getDescriptionAccess().getGroup(), "rule__Description__Group__0");
 					put(grammarAccess.getPersonAccess().getGroup(), "rule__Person__Group__0");
+					put(grammarAccess.getPerson_RAccess().getGroup(), "rule__Person_R__Group__0");
+					put(grammarAccess.getPerson_OAccess().getGroup(), "rule__Person_O__Group__0");
 					put(grammarAccess.getObjectAccess().getGroup(), "rule__Object__Group__0");
 					put(grammarAccess.getGameAccess().getScenesAssignment(), "rule__Game__ScenesAssignment");
 					put(grammarAccess.getSceneAccess().getNameAssignment_1(), "rule__Scene__NameAssignment_1");
@@ -51,18 +53,21 @@ public class GameParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLevelDefinitionAccess().getPersonsAssignment_4(), "rule__LevelDefinition__PersonsAssignment_4");
 					put(grammarAccess.getLevelDefinitionAccess().getObjectsAssignment_5(), "rule__LevelDefinition__ObjectsAssignment_5");
 					put(grammarAccess.getLevelDefinitionAccess().getActionsAssignment_6(), "rule__LevelDefinition__ActionsAssignment_6");
-					put(grammarAccess.getLevelDefinitionAccess().getGoalAssignment_9(), "rule__LevelDefinition__GoalAssignment_9");
-					put(grammarAccess.getLevelDefinitionAccess().getNextAssignment_11_2(), "rule__LevelDefinition__NextAssignment_11_2");
+					put(grammarAccess.getLevelDefinitionAccess().getNextAssignment_7_2(), "rule__LevelDefinition__NextAssignment_7_2");
 					put(grammarAccess.getDescriptionAccess().getNameAssignment_2(), "rule__Description__NameAssignment_2");
 					put(grammarAccess.getPersonAccess().getNameAssignment_0(), "rule__Person__NameAssignment_0");
 					put(grammarAccess.getPersonAccess().getTypeAssignment_5(), "rule__Person__TypeAssignment_5");
 					put(grammarAccess.getPersonAccess().getResponseAssignment_9(), "rule__Person__ResponseAssignment_9");
 					put(grammarAccess.getPersonAccess().getPositionAssignment_13(), "rule__Person__PositionAssignment_13");
 					put(grammarAccess.getPersonAccess().getActionAssignment_17(), "rule__Person__ActionAssignment_17");
+					put(grammarAccess.getPersonAccess().getObjectsAssignment_21(), "rule__Person__ObjectsAssignment_21");
+					put(grammarAccess.getPersonAccess().getFinalObjectAssignment_25(), "rule__Person__FinalObjectAssignment_25");
+					put(grammarAccess.getPerson_OAccess().getItemsAssignment_0(), "rule__Person_O__ItemsAssignment_0");
 					put(grammarAccess.getObjectAccess().getNameAssignment_0(), "rule__Object__NameAssignment_0");
 					put(grammarAccess.getObjectAccess().getTypeAssignment_5(), "rule__Object__TypeAssignment_5");
-					put(grammarAccess.getObjectAccess().getPositionAssignment_9(), "rule__Object__PositionAssignment_9");
-					put(grammarAccess.getObjectAccess().getActionAssignment_13(), "rule__Object__ActionAssignment_13");
+					put(grammarAccess.getObjectAccess().getResponseAssignment_9(), "rule__Object__ResponseAssignment_9");
+					put(grammarAccess.getObjectAccess().getPositionAssignment_13(), "rule__Object__PositionAssignment_13");
+					put(grammarAccess.getObjectAccess().getActionAssignment_17(), "rule__Object__ActionAssignment_17");
 				}
 			};
 		}

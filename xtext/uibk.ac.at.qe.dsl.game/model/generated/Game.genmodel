@@ -10,8 +10,8 @@
       <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_GLOBAL/LEAVE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action_O">
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_O/PICK"/>
       <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_O/USE"/>
+      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_O/INSPECT"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action_P">
       <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_P/TALK"/>
@@ -35,7 +35,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/persons"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/objects"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//LevelDefinition/actions"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//LevelDefinition/goal"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/next"/>
     </genClasses>
     <genClasses ecoreClass="Game.ecore#//Description">
@@ -47,10 +46,16 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/response"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/position"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Person/action"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//Person/objects"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//Person/finalObject"/>
+    </genClasses>
+    <genClasses ecoreClass="Game.ecore#//Person_O">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//Person_O/items"/>
     </genClasses>
     <genClasses ecoreClass="Game.ecore#//Object">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/response"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/position"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//Object/action"/>
     </genClasses>

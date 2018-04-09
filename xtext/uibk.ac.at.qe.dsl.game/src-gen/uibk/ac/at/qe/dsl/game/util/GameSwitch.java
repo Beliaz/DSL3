@@ -14,6 +14,7 @@ import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
 import uibk.ac.at.qe.dsl.game.Person;
+import uibk.ac.at.qe.dsl.game.Person_O;
 import uibk.ac.at.qe.dsl.game.Scene;
 
 /**
@@ -121,6 +122,13 @@ public class GameSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case GamePackage.PERSON_O:
+      {
+        Person_O person_O = (Person_O)theEObject;
+        T result = casePerson_O(person_O);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case GamePackage.OBJECT:
       {
         uibk.ac.at.qe.dsl.game.Object object = (uibk.ac.at.qe.dsl.game.Object)theEObject;
@@ -224,6 +232,22 @@ public class GameSwitch<T> extends Switch<T>
    * @generated
    */
   public T casePerson(Person object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Person O</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Person O</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T casePerson_O(Person_O object)
   {
     return null;
   }

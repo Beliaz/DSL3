@@ -21,16 +21,6 @@ import org.eclipse.emf.common.util.Enumerator;
 public enum Action_O implements Enumerator
 {
   /**
-   * The '<em><b>PICK</b></em>' literal object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #PICK_VALUE
-   * @generated
-   * @ordered
-   */
-  PICK(0, "PICK", "Pick"),
-
-  /**
    * The '<em><b>USE</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -38,22 +28,17 @@ public enum Action_O implements Enumerator
    * @generated
    * @ordered
    */
-  USE(1, "USE", "Use");
+  USE(0, "USE", "Use"),
 
   /**
-   * The '<em><b>PICK</b></em>' literal value.
+   * The '<em><b>INSPECT</b></em>' literal object.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of '<em><b>PICK</b></em>' literal object isn't clear,
-   * there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
-   * @see #PICK
-   * @model literal="Pick"
+   * @see #INSPECT_VALUE
    * @generated
    * @ordered
    */
-  public static final int PICK_VALUE = 0;
+  INSPECT(1, "INSPECT", "Inspect");
 
   /**
    * The '<em><b>USE</b></em>' literal value.
@@ -68,7 +53,22 @@ public enum Action_O implements Enumerator
    * @generated
    * @ordered
    */
-  public static final int USE_VALUE = 1;
+  public static final int USE_VALUE = 0;
+
+  /**
+   * The '<em><b>INSPECT</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>INSPECT</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #INSPECT
+   * @model literal="Inspect"
+   * @generated
+   * @ordered
+   */
+  public static final int INSPECT_VALUE = 1;
 
   /**
    * An array of all the '<em><b>Action O</b></em>' enumerators.
@@ -79,8 +79,8 @@ public enum Action_O implements Enumerator
   private static final Action_O[] VALUES_ARRAY =
     new Action_O[]
     {
-      PICK,
       USE,
+      INSPECT,
     };
 
   /**
@@ -145,8 +145,8 @@ public enum Action_O implements Enumerator
   {
     switch (value)
     {
-      case PICK_VALUE: return PICK;
       case USE_VALUE: return USE;
+      case INSPECT_VALUE: return INSPECT;
     }
     return null;
   }

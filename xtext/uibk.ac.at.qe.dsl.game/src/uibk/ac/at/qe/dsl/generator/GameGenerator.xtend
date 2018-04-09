@@ -30,7 +30,7 @@ class GameGenerator extends AbstractGenerator {
 	
 	def generateScene (Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context, Scene scene) {
 		for (definition : scene.definitions) {
-			fsa.generateFile(definition.name + '.java', generateFiles(resource, fsa, context, definition))
+			fsa.generateFile(definition.name.name + '.java', generateFiles(resource, fsa, context, definition))
 		}
 	}
 	
@@ -54,10 +54,10 @@ class GameGenerator extends AbstractGenerator {
 		«ENDFOR»
 		
 		«FOR object : level.objects»
-			«IF object.action.equals(Action_O::PICK)»
+			«IF object.action.equals(Action_O::USE)»
 			
-			«ELSEIF object.action.equals(Action_O::USE)»
-			
+			«ELSEIF object.action.equals(Action_O::INSPECT)»
+				«generateActionInspect(level)»
 			«ENDIF»
 		«ENDFOR»
 		
@@ -76,9 +76,19 @@ class GameGenerator extends AbstractGenerator {
 		class TalkTo«person.name»Action implements IAction
 		{
 		    private IPerson «person.name»;
+		    «FOR person_o : person.objects»
+		    	private IObject «person_o.items.name»;
+		    «ENDFOR»
+		    int counter;
+		    private boolean available;
 		
 		    TalkTo«person.name»Action(IPerson «person.name») {
 		        this.«person.name» = «person.name»;
+		        this.counter = 0;
+		        «FOR person_o : person.objects»
+		        	 this.«person_o.items.name» = new MyObject("«person_o.items.name»");
+		        «ENDFOR»
+		        this.key = new MyObject("Key");
 		    }
 		
 		    @Override
@@ -88,9 +98,23 @@ class GameGenerator extends AbstractGenerator {
 		
 		    @Override
 		    public void perform(IContext context) {
-		        //String name = (String)context.getState().getData(Player.class.getName(), "name");
-		        //ivan.say(context.getOut(), String.format("Hi %s, nice to see you!", name));
-		       	«person.name».say(context.getOut(), «person.response»);
+		    	if (context.player().hasObject(«person.finalObject.name»)) {
+		    		ivan.say(context.getOut(), String.format("Congratulations!"));
+		    		context.levelComplete();
+		    	} else {
+		       		switch (counter++) {
+		       		«var i = 0»
+		       		«FOR answer : person.response»
+		       			case «i++»:
+		       				String name = (String) context.getState().getData(Player.class.getName(), "name");
+		       				ivan.say(context.getOut(), String.format("«answer»"));
+		       				break
+		       		«ENDFOR»
+		       		default:
+		       			ivan.say(context.getOut(), String.format("I have nothing to say!"));
+		       			break;
+		       		}
+		       	}
 		    }
 		
 		    @Override
@@ -171,9 +195,10 @@ class GameGenerator extends AbstractGenerator {
 	
 	def generateLevel (LevelDefinition level) {
 		return '''
-		public class «level.name» extends TextAdventureLevel {
+		public class «level.name.name» extends TextAdventureLevel {
 		    private List<IAction> actions = new LinkedList<>();
 		    private List<IPerson> persons = new LinkedList<>();
+		    private List<IObject> objects = new LinkedList<>();
 		
 		    public void initialize(IContext context)
 		    {
@@ -185,8 +210,13 @@ class GameGenerator extends AbstractGenerator {
 		    		 «ENDIF»
 		    	«ENDFOR»
 		
+				«{i = 0; ""}»
 				«FOR object : level.objects»
-					
+					objects.add(new MyObject("«object.name»"));
+					«IF object.action.equals(Action_O::USE)»
+					«ELSEIF object.action.equals(Action_O::INSPECT)»
+						new InspectObjectAction(objects.get(«i++»))
+					«ENDIF»
 				«ENDFOR»
 				
 				«FOR action : level.actions»
@@ -201,7 +231,7 @@ class GameGenerator extends AbstractGenerator {
 		
 		    @Override
 		    protected String getDescription(IContext context) {
-		        return "«level.description»";
+		        return "«level.description.name»";
 		    }
 		
 		    @Override
@@ -218,9 +248,99 @@ class GameGenerator extends AbstractGenerator {
 		    «IF level.next !== null»
 		    @Override
 		        public String getNextLevel(IContext context) {
-		            return «level.next».class.getName();
+		            return «level.next.name».class.getName();
 		        }
 		    «ENDIF»
+		}
+		'''
+	}
+	
+	def generateActionInspect(LevelDefinition level) {
+		return '''
+		class InspectObjectAction implements IAction {
+		
+			private IObject obj;
+			«FOR object : level.objects»
+				«IF object.action.equals(Action_O::INSPECT)»
+					private IObject «object.name»;
+				«ENDIF»
+			«ENDFOR»
+		
+			InspectObjectAction(IObject obj) {
+				this.obj = obj;
+				«FOR object : level.objects»
+					«IF object.action.equals(Action_O::INSPECT)»
+						this.«object.name» = new MyObject("«object.name»");
+					«ENDIF»
+				«ENDFOR»
+			}
+		
+			@Override
+			public String getDescription() {
+				return String.format("Take a look at the %s", obj.getName());
+			}
+		
+			@Override
+			public void perform(IContext context) {
+				«FOR object : level.objects»
+					«IF object.action.equals(Action_O::INSPECT)»
+						if (obj.equals(«object.name»)) {
+							context.getOut().println(context.player().getName() + ": «object.response»");
+							context.player().inventory().add(«object.name»);
+						}
+					«ENDIF»
+				«ENDFOR»
+				else {
+					context.getOut().println(
+							context.player().getName() + ": This is a nice " + obj.getName() + ", but i can't use it!");
+				}
+			}
+		
+			@Override
+			public boolean isAvailable(IState state) {
+				return true;
+			}
+		
+			public boolean isExplicitAction() {
+				return false;
+			}
+		}
+		'''
+	}
+	
+	def generateObject (Object object) {
+		return '''
+		class MyObject implements IObject {
+		
+			private String name;
+		
+			public MyObject(String name) {
+				super();
+				this.name = name;
+			}
+		
+			@Override
+			public String getName() {
+				return name;
+			}
+		
+			@Override
+			public String getPosition() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		
+			@Override
+			public void onDiscovered(IContext context) {
+				// TODO Auto-generated method stub
+		
+			}
+		
+			@Override
+			public boolean equals(IObject other) {
+				return other.getName().equals(getName());
+			}
+		
 		}
 		'''
 	}

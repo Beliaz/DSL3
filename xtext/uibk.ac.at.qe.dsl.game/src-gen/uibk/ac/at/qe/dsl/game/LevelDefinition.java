@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getPersons <em>Persons</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getObjects <em>Objects</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getActions <em>Actions</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getGoal <em>Goal</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getNext <em>Next</em>}</li>
  * </ul>
  *
@@ -132,32 +131,6 @@ public interface LevelDefinition extends EObject
    * @generated
    */
   EList<Action_GLOBAL> getActions();
-
-  /**
-   * Returns the value of the '<em><b>Goal</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Goal</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Goal</em>' attribute.
-   * @see #setGoal(String)
-   * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition_Goal()
-   * @model
-   * @generated
-   */
-  String getGoal();
-
-  /**
-   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getGoal <em>Goal</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Goal</em>' attribute.
-   * @see #getGoal()
-   * @generated
-   */
-  void setGoal(String value);
 
   /**
    * Returns the value of the '<em><b>Next</b></em>' reference.

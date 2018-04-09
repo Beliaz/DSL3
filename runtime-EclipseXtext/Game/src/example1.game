@@ -1,43 +1,25 @@
 new gameA {
-	level level_1;
-	level level_2;
-	level_1 = {
-		description = "Some description";
-		person_A = {
+	level Level1;
+	Level1 = {
+		description = "In the entrance room...";
+		Ivan = {
 			type = male;
-			response = "Search for object xyz";
-			position = "On the table";
+			response {"Hi, nice to see you!", "I need a key to open the Door. Find it!", 
+					"Do you already found the key? Give it to me!", "I have nothing to say!"}
+			position = "at the door";
 			action = Talk;
+			objects {Key}
+			final = Key;
 		}
-		object_A = {
+		Key = {
 			type = type_A;
+			response = "Oh... in the box is a key!";
 			position = "At the left corner";
-			action = Pick;
+			action = Inspect;
 		}
-		goal = level_1;
-		next = level_2;
+		Leave
+		next = Level1;
 	}
-	level_2 = {
-		description = "Some description";
-		person_A = {
-			type = female;
-			response = "Hi";
-			position = "Sitting on a chair";
-			action = Talk;
-		}
-		person_B = {
-			type = female;
-			response = "Go to position abc";
-			position = "At the door";
-			action = Talk;
-		}
-		object_A = {
-			type = type_A;
-			position = "In the bookshelf";
-			action = Pick;
-		}
-		goal = object_A;
-	}
-	start = level_1;
-	final = level_2;
+	start = Level1;
+	final = Level1;
 }

@@ -3,6 +3,8 @@
  */
 package uibk.ac.at.qe.dsl.game;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -19,6 +21,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getResponse <em>Response</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getAction <em>Action</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getObjects <em>Objects</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.Person#getFinalObject <em>Final Object</em>}</li>
  * </ul>
  *
  * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson()
@@ -80,30 +84,20 @@ public interface Person extends EObject
   void setType(String value);
 
   /**
-   * Returns the value of the '<em><b>Response</b></em>' attribute.
+   * Returns the value of the '<em><b>Response</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Response</em>' attribute isn't clear,
+   * If the meaning of the '<em>Response</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Response</em>' attribute.
-   * @see #setResponse(String)
+   * @return the value of the '<em>Response</em>' attribute list.
    * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_Response()
-   * @model
+   * @model unique="false"
    * @generated
    */
-  String getResponse();
-
-  /**
-   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getResponse <em>Response</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Response</em>' attribute.
-   * @see #getResponse()
-   * @generated
-   */
-  void setResponse(String value);
+  EList<String> getResponse();
 
   /**
    * Returns the value of the '<em><b>Position</b></em>' attribute.
@@ -159,5 +153,47 @@ public interface Person extends EObject
    * @generated
    */
   void setAction(Action_P value);
+
+  /**
+   * Returns the value of the '<em><b>Objects</b></em>' containment reference list.
+   * The list contents are of type {@link uibk.ac.at.qe.dsl.game.Person_O}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Objects</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Objects</em>' containment reference list.
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_Objects()
+   * @model containment="true"
+   * @generated
+   */
+  EList<Person_O> getObjects();
+
+  /**
+   * Returns the value of the '<em><b>Final Object</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Final Object</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Final Object</em>' reference.
+   * @see #setFinalObject(uibk.ac.at.qe.dsl.game.Object)
+   * @see uibk.ac.at.qe.dsl.game.GamePackage#getPerson_FinalObject()
+   * @model
+   * @generated
+   */
+  uibk.ac.at.qe.dsl.game.Object getFinalObject();
+
+  /**
+   * Sets the value of the '{@link uibk.ac.at.qe.dsl.game.Person#getFinalObject <em>Final Object</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Final Object</em>' reference.
+   * @see #getFinalObject()
+   * @generated
+   */
+  void setFinalObject(uibk.ac.at.qe.dsl.game.Object value);
 
 } // Person

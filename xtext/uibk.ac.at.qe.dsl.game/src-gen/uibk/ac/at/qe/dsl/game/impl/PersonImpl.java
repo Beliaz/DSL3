@@ -3,16 +3,27 @@
  */
 package uibk.ac.at.qe.dsl.game.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.util.EDataTypeEList;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
+
 import uibk.ac.at.qe.dsl.game.Action_P;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.Person;
+import uibk.ac.at.qe.dsl.game.Person_O;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,6 +38,8 @@ import uibk.ac.at.qe.dsl.game.Person;
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getResponse <em>Response</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getAction <em>Action</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getObjects <em>Objects</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getFinalObject <em>Final Object</em>}</li>
  * </ul>
  *
  * @generated
@@ -74,24 +87,14 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
   protected String type = TYPE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getResponse() <em>Response</em>}' attribute.
+   * The cached value of the '{@link #getResponse() <em>Response</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getResponse()
    * @generated
    * @ordered
    */
-  protected static final String RESPONSE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getResponse() <em>Response</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getResponse()
-   * @generated
-   * @ordered
-   */
-  protected String response = RESPONSE_EDEFAULT;
+  protected EList<String> response;
 
   /**
    * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
@@ -132,6 +135,26 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @ordered
    */
   protected Action_P action = ACTION_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getObjects()
+   * @generated
+   * @ordered
+   */
+  protected EList<Person_O> objects;
+
+  /**
+   * The cached value of the '{@link #getFinalObject() <em>Final Object</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getFinalObject()
+   * @generated
+   * @ordered
+   */
+  protected uibk.ac.at.qe.dsl.game.Object finalObject;
 
   /**
    * <!-- begin-user-doc -->
@@ -205,22 +228,13 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getResponse()
+  public EList<String> getResponse()
   {
+    if (response == null)
+    {
+      response = new EDataTypeEList<String>(String.class, this, GamePackage.PERSON__RESPONSE);
+    }
     return response;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setResponse(String newResponse)
-  {
-    String oldResponse = response;
-    response = newResponse;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.PERSON__RESPONSE, oldResponse, response));
   }
 
   /**
@@ -274,6 +288,79 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Person_O> getObjects()
+  {
+    if (objects == null)
+    {
+      objects = new EObjectContainmentEList<Person_O>(Person_O.class, this, GamePackage.PERSON__OBJECTS);
+    }
+    return objects;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public uibk.ac.at.qe.dsl.game.Object getFinalObject()
+  {
+    if (finalObject != null && finalObject.eIsProxy())
+    {
+      InternalEObject oldFinalObject = (InternalEObject)finalObject;
+      finalObject = (uibk.ac.at.qe.dsl.game.Object)eResolveProxy(oldFinalObject);
+      if (finalObject != oldFinalObject)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, GamePackage.PERSON__FINAL_OBJECT, oldFinalObject, finalObject));
+      }
+    }
+    return finalObject;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public uibk.ac.at.qe.dsl.game.Object basicGetFinalObject()
+  {
+    return finalObject;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFinalObject(uibk.ac.at.qe.dsl.game.Object newFinalObject)
+  {
+    uibk.ac.at.qe.dsl.game.Object oldFinalObject = finalObject;
+    finalObject = newFinalObject;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.PERSON__FINAL_OBJECT, oldFinalObject, finalObject));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
+  {
+    switch (featureID)
+    {
+      case GamePackage.PERSON__OBJECTS:
+        return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
@@ -289,6 +376,11 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
         return getPosition();
       case GamePackage.PERSON__ACTION:
         return getAction();
+      case GamePackage.PERSON__OBJECTS:
+        return getObjects();
+      case GamePackage.PERSON__FINAL_OBJECT:
+        if (resolve) return getFinalObject();
+        return basicGetFinalObject();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -298,6 +390,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -310,13 +403,21 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
         setType((String)newValue);
         return;
       case GamePackage.PERSON__RESPONSE:
-        setResponse((String)newValue);
+        getResponse().clear();
+        getResponse().addAll((Collection<? extends String>)newValue);
         return;
       case GamePackage.PERSON__POSITION:
         setPosition((String)newValue);
         return;
       case GamePackage.PERSON__ACTION:
         setAction((Action_P)newValue);
+        return;
+      case GamePackage.PERSON__OBJECTS:
+        getObjects().clear();
+        getObjects().addAll((Collection<? extends Person_O>)newValue);
+        return;
+      case GamePackage.PERSON__FINAL_OBJECT:
+        setFinalObject((uibk.ac.at.qe.dsl.game.Object)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -339,13 +440,19 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
         setType(TYPE_EDEFAULT);
         return;
       case GamePackage.PERSON__RESPONSE:
-        setResponse(RESPONSE_EDEFAULT);
+        getResponse().clear();
         return;
       case GamePackage.PERSON__POSITION:
         setPosition(POSITION_EDEFAULT);
         return;
       case GamePackage.PERSON__ACTION:
         setAction(ACTION_EDEFAULT);
+        return;
+      case GamePackage.PERSON__OBJECTS:
+        getObjects().clear();
+        return;
+      case GamePackage.PERSON__FINAL_OBJECT:
+        setFinalObject((uibk.ac.at.qe.dsl.game.Object)null);
         return;
     }
     super.eUnset(featureID);
@@ -366,11 +473,15 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
       case GamePackage.PERSON__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
       case GamePackage.PERSON__RESPONSE:
-        return RESPONSE_EDEFAULT == null ? response != null : !RESPONSE_EDEFAULT.equals(response);
+        return response != null && !response.isEmpty();
       case GamePackage.PERSON__POSITION:
         return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
       case GamePackage.PERSON__ACTION:
         return action != ACTION_EDEFAULT;
+      case GamePackage.PERSON__OBJECTS:
+        return objects != null && !objects.isEmpty();
+      case GamePackage.PERSON__FINAL_OBJECT:
+        return finalObject != null;
     }
     return super.eIsSet(featureID);
   }

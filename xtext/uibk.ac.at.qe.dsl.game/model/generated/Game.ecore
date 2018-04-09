@@ -27,7 +27,6 @@
         eType="#//Object" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" unique="false"
         upperBound="-1" eType="#//Action_GLOBAL"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="goal" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//LevelDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Description">
@@ -36,13 +35,21 @@
   <eClassifiers xsi:type="ecore:EClass" name="Person">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" unique="false"
+        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action_P"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
+        eType="#//Person_O" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finalObject" eType="#//Object"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Person_O">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" eType="#//Object"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Object">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action_O"/>
   </eClassifiers>
@@ -50,8 +57,8 @@
     <eLiterals name="LEAVE" literal="Leave"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Action_O">
-    <eLiterals name="PICK" literal="Pick"/>
-    <eLiterals name="USE" value="1" literal="Use"/>
+    <eLiterals name="USE" literal="Use"/>
+    <eLiterals name="INSPECT" value="1" literal="Inspect"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Action_P">
     <eLiterals name="TALK" literal="Talk"/>

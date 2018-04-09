@@ -23,6 +23,7 @@ import uibk.ac.at.qe.dsl.game.GamePackage;
  * <ul>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getName <em>Name</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getType <em>Type</em>}</li>
+ *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getResponse <em>Response</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl#getAction <em>Action</em>}</li>
  * </ul>
@@ -72,6 +73,26 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
   protected String type = TYPE_EDEFAULT;
 
   /**
+   * The default value of the '{@link #getResponse() <em>Response</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getResponse()
+   * @generated
+   * @ordered
+   */
+  protected static final String RESPONSE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getResponse() <em>Response</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getResponse()
+   * @generated
+   * @ordered
+   */
+  protected String response = RESPONSE_EDEFAULT;
+
+  /**
    * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -99,7 +120,7 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
    * @generated
    * @ordered
    */
-  protected static final Action_O ACTION_EDEFAULT = Action_O.PICK;
+  protected static final Action_O ACTION_EDEFAULT = Action_O.USE;
 
   /**
    * The cached value of the '{@link #getAction() <em>Action</em>}' attribute.
@@ -183,6 +204,29 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
    * <!-- end-user-doc -->
    * @generated
    */
+  public String getResponse()
+  {
+    return response;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setResponse(String newResponse)
+  {
+    String oldResponse = response;
+    response = newResponse;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.OBJECT__RESPONSE, oldResponse, response));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public String getPosition()
   {
     return position;
@@ -238,6 +282,8 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
         return getName();
       case GamePackage.OBJECT__TYPE:
         return getType();
+      case GamePackage.OBJECT__RESPONSE:
+        return getResponse();
       case GamePackage.OBJECT__POSITION:
         return getPosition();
       case GamePackage.OBJECT__ACTION:
@@ -261,6 +307,9 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
         return;
       case GamePackage.OBJECT__TYPE:
         setType((String)newValue);
+        return;
+      case GamePackage.OBJECT__RESPONSE:
+        setResponse((String)newValue);
         return;
       case GamePackage.OBJECT__POSITION:
         setPosition((String)newValue);
@@ -288,6 +337,9 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
       case GamePackage.OBJECT__TYPE:
         setType(TYPE_EDEFAULT);
         return;
+      case GamePackage.OBJECT__RESPONSE:
+        setResponse(RESPONSE_EDEFAULT);
+        return;
       case GamePackage.OBJECT__POSITION:
         setPosition(POSITION_EDEFAULT);
         return;
@@ -312,6 +364,8 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
       case GamePackage.OBJECT__TYPE:
         return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+      case GamePackage.OBJECT__RESPONSE:
+        return RESPONSE_EDEFAULT == null ? response != null : !RESPONSE_EDEFAULT.equals(response);
       case GamePackage.OBJECT__POSITION:
         return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
       case GamePackage.OBJECT__ACTION:
@@ -335,6 +389,8 @@ public class ObjectImpl extends MinimalEObjectImpl.Container implements uibk.ac.
     result.append(name);
     result.append(", type: ");
     result.append(type);
+    result.append(", response: ");
+    result.append(response);
     result.append(", position: ");
     result.append(position);
     result.append(", action: ");

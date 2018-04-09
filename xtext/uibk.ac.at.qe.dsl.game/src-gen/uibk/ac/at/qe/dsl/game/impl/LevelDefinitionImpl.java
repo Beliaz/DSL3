@@ -40,7 +40,6 @@ import uibk.ac.at.qe.dsl.game.Person;
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getPersons <em>Persons</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getActions <em>Actions</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getGoal <em>Goal</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getNext <em>Next</em>}</li>
  * </ul>
  *
@@ -97,26 +96,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<Action_GLOBAL> actions;
-
-  /**
-   * The default value of the '{@link #getGoal() <em>Goal</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getGoal()
-   * @generated
-   * @ordered
-   */
-  protected static final String GOAL_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getGoal() <em>Goal</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getGoal()
-   * @generated
-   * @ordered
-   */
-  protected String goal = GOAL_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getNext() <em>Next</em>}' reference.
@@ -287,29 +266,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getGoal()
-  {
-    return goal;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setGoal(String newGoal)
-  {
-    String oldGoal = goal;
-    goal = newGoal;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.LEVEL_DEFINITION__GOAL, oldGoal, goal));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public LevelDeclaration getNext()
   {
     if (next != null && next.eIsProxy())
@@ -389,8 +345,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return getObjects();
       case GamePackage.LEVEL_DEFINITION__ACTIONS:
         return getActions();
-      case GamePackage.LEVEL_DEFINITION__GOAL:
-        return getGoal();
       case GamePackage.LEVEL_DEFINITION__NEXT:
         if (resolve) return getNext();
         return basicGetNext();
@@ -427,9 +381,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         getActions().clear();
         getActions().addAll((Collection<? extends Action_GLOBAL>)newValue);
         return;
-      case GamePackage.LEVEL_DEFINITION__GOAL:
-        setGoal((String)newValue);
-        return;
       case GamePackage.LEVEL_DEFINITION__NEXT:
         setNext((LevelDeclaration)newValue);
         return;
@@ -462,9 +413,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
       case GamePackage.LEVEL_DEFINITION__ACTIONS:
         getActions().clear();
         return;
-      case GamePackage.LEVEL_DEFINITION__GOAL:
-        setGoal(GOAL_EDEFAULT);
-        return;
       case GamePackage.LEVEL_DEFINITION__NEXT:
         setNext((LevelDeclaration)null);
         return;
@@ -492,8 +440,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return objects != null && !objects.isEmpty();
       case GamePackage.LEVEL_DEFINITION__ACTIONS:
         return actions != null && !actions.isEmpty();
-      case GamePackage.LEVEL_DEFINITION__GOAL:
-        return GOAL_EDEFAULT == null ? goal != null : !GOAL_EDEFAULT.equals(goal);
       case GamePackage.LEVEL_DEFINITION__NEXT:
         return next != null;
     }
@@ -513,8 +459,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (actions: ");
     result.append(actions);
-    result.append(", goal: ");
-    result.append(goal);
     result.append(')');
     return result.toString();
   }

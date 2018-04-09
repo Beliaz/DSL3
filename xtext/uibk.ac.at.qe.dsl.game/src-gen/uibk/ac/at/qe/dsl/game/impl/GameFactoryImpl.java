@@ -22,6 +22,7 @@ import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
 import uibk.ac.at.qe.dsl.game.Person;
+import uibk.ac.at.qe.dsl.game.Person_O;
 import uibk.ac.at.qe.dsl.game.Scene;
 
 /**
@@ -82,6 +83,7 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
       case GamePackage.LEVEL_DEFINITION: return createLevelDefinition();
       case GamePackage.DESCRIPTION: return createDescription();
       case GamePackage.PERSON: return createPerson();
+      case GamePackage.PERSON_O: return createPerson_O();
       case GamePackage.OBJECT: return createObject();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -194,6 +196,17 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
   {
     PersonImpl person = new PersonImpl();
     return person;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Person_O createPerson_O()
+  {
+    Person_OImpl person_O = new Person_OImpl();
+    return person_O;
   }
 
   /**
