@@ -14,6 +14,12 @@ public class Person implements IPerson
         inventory = new Hashtable<>();
     }
 
+    public Person(String name, String location) {
+        this.name = name;
+        this.location = location;
+        this.inventory = new Hashtable<>();
+    }
+
     @Override
     public void setName(String name) {
         this.name = name;

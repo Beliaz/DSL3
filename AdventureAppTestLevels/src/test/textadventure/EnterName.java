@@ -36,14 +36,13 @@ class EnterNameAction implements IAction
             }
         }
 
-        context.getState().setData(Player.class.getName(), "name", name);
-
+        context.player().setName(name);
         context.getOut().println(String.format("Daniel: Alright %s, come right in", name));
     }
 
     @Override
-    public boolean isAvailable(IState state) {
-        return state.getData(Player.class.getName(), "name") == null;
+    public boolean isAvailable(IContext context) {
+        return context.player().getName() == null;
     }
 
     public boolean isExplicitAction() {
@@ -63,9 +62,8 @@ public class EnterName extends TextAdventureLevel {
     }
 
     @Override
-    protected List<IAction> getAvailableActions(IContext context) {
-        return actions.stream().filter(a -> a.isAvailable(context.getState()))
-                .collect(Collectors.toList());
+    protected List<IAction> getActions(IContext context) {
+        return actions;
     }
 
     @Override
