@@ -65,7 +65,6 @@ LevelDefinition:
 		description=Description
 		persons+=Person*
 		objects+=Object*
-		actions+=Action_GLOBAL
 		('next' '=' next=[LevelDeclaration] ';')?
 	'}'
 ;
@@ -120,13 +119,6 @@ Object:
 		'position' '=' position=STRING ';'
 		'action' '=' action=Action_O ';'
 	'}'
-;
-
-/*
- * Global actions
- */
-enum Action_GLOBAL:
-	LEAVE='Leave'
 ;
 
 /*

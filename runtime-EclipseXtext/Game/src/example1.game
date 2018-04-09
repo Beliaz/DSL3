@@ -17,7 +17,6 @@ new gameA {
 			position = "At the left corner";
 			action = Inspect;
 		}
-		Leave
 		next = Level1;
 	}
 	start = Level1;

@@ -102,14 +102,9 @@ public class GameGenerator extends AbstractGenerator {
     {
       EList<Action_GLOBAL> _actions = level.getActions();
       for(final Action_GLOBAL action : _actions) {
-        {
-          boolean _equals_3 = action.equals(Action_GLOBAL.LEAVE);
-          if (_equals_3) {
-            String _generateActionLeave = this.generateActionLeave();
-            _builder.append(_generateActionLeave);
-            _builder.newLineIfNotEmpty();
-          }
-        }
+        String _generateActionLeave = this.generateActionLeave();
+        _builder.append(_generateActionLeave);
+        _builder.newLineIfNotEmpty();
       }
     }
     _builder.newLine();

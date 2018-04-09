@@ -62,9 +62,7 @@ class GameGenerator extends AbstractGenerator {
 		«ENDFOR»
 		
 		«FOR action : level.actions»
-			«IF action.equals(Action_GLOBAL::LEAVE)»
-				«generateActionLeave()»
-			«ENDIF»
+			«generateActionLeave()»
 		«ENDFOR»
 		
 		«generateLevel(level)»
