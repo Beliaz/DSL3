@@ -2,8 +2,70 @@ grammar uibk.ac.at.qe.dsl.Game with org.eclipse.xtext.common.Terminals
 
 generate game "http://www.ac.uibk/at/qe/dsl/Game"
 
-Model:
-	greetings+=Greeting*;
-	
-Greeting:
-	'Hello' name=ID '!';
+Game:
+	definition=Definition
+	'{'
+	scenes+=Scene*
+	'}'
+;
+
+Definition:
+	'new' name=ID
+;
+
+Scene:
+	declartions+=LevelDeclaration*
+	definitions+=LevelDefinition*
+	'start' '=' startLevel=[LevelDeclaration] ';'
+	'final' '=' finalLevel=[LevelDeclaration] ';'
+	transitions+=LevelTransition*
+;
+
+LevelDeclaration:
+	'level' name=ID ';'
+;
+
+LevelDefinition:
+	name=[LevelDeclaration] '='
+	'{'
+	persons+=Person*
+	objects+=Object*
+	'goal' '=' goalId=ID ';'
+	'}'
+;
+
+LevelTransition:
+	'from' levelFrom=[LevelDeclaration]
+	'to' levelTo=[LevelDeclaration]
+	';'
+;
+
+Person:
+	name=ID '='
+	'{'
+	'type' '=' type=PERSON_T ';'
+	'response' '=' response=STRING ';'
+	'position' '=' '{' position=Position '}'
+	'}'
+;
+
+Object:
+	name=ID '='
+	'{'
+	'type' '=' type=OBJECT_T ';'
+	'position' '=' '{' position=Position '}'
+	'}'
+;
+
+Position:
+	'pos_x' '=' posX=INT ';' 
+	'pos_y' '=' posY=INT ';' 
+;
+
+enum PERSON_T:
+	MALE='male' | FEMALE='female'
+;
+
+enum OBJECT_T:
+	A='type_A'
+;

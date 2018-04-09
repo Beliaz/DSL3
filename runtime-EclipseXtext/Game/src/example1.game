@@ -1,0 +1,51 @@
+new gameA {
+	level level_1;
+	level level_2;
+	level_1 = {
+		person_A = {
+			type = male;
+			response = "Search for object xyz";
+			position = {
+				pos_x = 10; 
+				pos_y = 10;
+			}
+		}
+		object_A = {
+			type = type_A;
+			position = {
+				pos_x = 12; 
+				pos_y = 14;
+			}
+		}
+		goal = level_1;
+	}
+	level_2 = {
+		person_A = {
+			type = female;
+			response = "Hi";
+			position = {
+				pos_x = 10; 
+				pos_y = 10;
+			}
+		}
+		person_B = {
+			type = female;
+			response = "Go to position abc";
+			position = {
+				pos_x = 20; 
+				pos_y = 10;
+			}
+		}
+		object_A = {
+			type = type_A;
+			position = {
+				pos_x = 10; 
+				pos_y = 20;
+			}
+		}
+		goal = object_A;
+	}
+	start = level_1;
+	final = level_2;
+	from level_1 to level_2;
+}
