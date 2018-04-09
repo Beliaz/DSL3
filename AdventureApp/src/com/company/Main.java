@@ -24,6 +24,8 @@ public class Main {
         IContext context = new Context();
         IState state = context.getState();
 
+        context.getOut().println();
+
         ILevel level = loadLevel(loader, startingLevel, context);
         level.run(context);
 

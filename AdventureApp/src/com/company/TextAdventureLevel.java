@@ -5,8 +5,24 @@ import java.util.List;
 
 public abstract class TextAdventureLevel implements ILevel {
     @Override
-    public void initialize(IContext context) {
+    public void initialize(IContext context)
+    {
+        context.player().move(getDescription(context));
 
+        List<IPerson> persons = getPersons(context);
+
+        if(persons.isEmpty()) return;
+
+        context.getOut().println(String.format("There are %d persons here: ", persons.size()));
+        context.getOut().println();
+
+        for(IPerson person : persons) {
+            context.getOut().println(person.getName());
+        }
+
+        for(IPerson person : persons) {
+            person.onDiscovered(context);
+        }
     }
 
     @Override
@@ -22,6 +38,8 @@ public abstract class TextAdventureLevel implements ILevel {
             {
                 actions.get(0).perform(context);
                 actions = getAvailableActions(context);
+
+                context.getOut().println();
 
                 continue;
             }
@@ -71,5 +89,7 @@ public abstract class TextAdventureLevel implements ILevel {
         return null;
     }
 
+    protected abstract String getDescription(IContext context);
+    protected abstract List<IPerson> getPersons(IContext context);
     protected abstract List<IAction> getAvailableActions(IContext context);
 }

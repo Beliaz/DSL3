@@ -1,13 +1,17 @@
 package com.company;
 
 import java.io.BufferedReader;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
 
 public class Context implements IContext {
     private IState state = new State();
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private Player player;
+
+    public Context() {
+        player = new Player(this);
+    }
 
     @Override
     public PrintStream getOut() {
@@ -22,5 +26,10 @@ public class Context implements IContext {
     @Override
     public IState getState() {
         return state;
+    }
+
+    @Override
+    public Player player() {
+        return player;
     }
 }

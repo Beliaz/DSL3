@@ -2,21 +2,28 @@ package test.textadventure;
 
 import com.company.*;
 
+import java.io.PrintStream;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 class TalkToIvanAction implements IAction
 {
+    private IPerson ivan;
+
+    TalkToIvanAction(IPerson ivan) {
+        this.ivan = ivan;
+    }
+
     @Override
     public String getDescription() {
-        return "Talk to Ivan";
+        return String.format("Talk to %s", ivan.getName());
     }
 
     @Override
     public void perform(IContext context) {
-        String name = (String)context.getState().getData("general", "name");
-        context.getOut().println(String.format("Ivan: Hi %s, nice to see you!", name));
+        String name = (String)context.getState().getData(Player.class.getName(), "name");
+        ivan.say(context.getOut(), String.format("Hi %s, nice to see you!", name));
     }
 
     @Override
@@ -38,7 +45,7 @@ class LeaveAction implements IAction
 
     @Override
     public void perform(IContext context) {
-        context.getOut().println("You: I gotta go, see you!");
+        context.player().say(context.getOut(), "I gotta go, see you!");
         context.getState().setGameState(GameState.Finished);
     }
 
@@ -53,15 +60,61 @@ class LeaveAction implements IAction
     }
 }
 
+class Person implements IPerson
+{
+
+    private String name;
+    private String position;
+
+    Person(String name, String position) {
+        this.name = name;
+        this.position = position;
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String getPosition() {
+        return position;
+    }
+
+    @Override
+    public void say(PrintStream stream, String string) {
+        stream.println(String.format("%s: %s", getName(), string));
+    }
+
+    @Override
+    public void onDiscovered(IContext context) {
+
+    }
+}
+
 public class FirstLevel extends TextAdventureLevel {
     private List<IAction> actions = new LinkedList<>();
+    private List<IPerson> persons = new LinkedList<>();
 
     public void initialize(IContext context)
     {
-        super.initialize(context);
+        persons.add(new Person("Ivan", "sitting on a chair"));
+        persons.add(new Person("Daniel", "at the door"));
 
-        actions.add(new TalkToIvanAction());
+        actions.add(new TalkToIvanAction(persons.get(0)));
         actions.add(new LeaveAction());
+
+        super.initialize(context);
+    }
+
+    @Override
+    protected String getDescription(IContext context) {
+        return "in Daniel's House";
+    }
+
+    @Override
+    protected List<IPerson> getPersons(IContext context) {
+        return persons;
     }
 
     @Override

@@ -9,4 +9,5 @@ public interface IContext {
     BufferedReader getIn();
 
     IState getState();
+    Player player();
 }

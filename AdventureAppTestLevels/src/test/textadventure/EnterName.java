@@ -1,9 +1,6 @@
 package test.textadventure;
 
-import com.company.IAction;
-import com.company.IContext;
-import com.company.IState;
-import com.company.TextAdventureLevel;
+import com.company.*;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -12,7 +9,6 @@ import java.util.stream.Collectors;
 
 class EnterNameAction implements IAction
 {
-
     @Override
     public String getDescription() {
         return "Enter Name";
@@ -40,15 +36,14 @@ class EnterNameAction implements IAction
             }
         }
 
-        context.getState().setData("general", "name", name);
+        context.getState().setData(Player.class.getName(), "name", name);
 
-        context.getOut().println(String.format("Daniel: Hello %s, come right in", name));
-        context.getOut().println("You are entering the Daniels's house");
+        context.getOut().println(String.format("Daniel: Alright %s, come right in", name));
     }
 
     @Override
     public boolean isAvailable(IState state) {
-        return state.getData("general", "name") == null;
+        return state.getData(Player.class.getName(), "name") == null;
     }
 
     public boolean isExplicitAction() {
@@ -76,5 +71,15 @@ public class EnterName extends TextAdventureLevel {
     @Override
     public String getNextLevel(IContext context) {
         return FirstLevel.class.getName();
+    }
+
+    @Override
+    protected String getDescription(IContext context) {
+        return "in front of Daniel's House";
+    }
+
+    @Override
+    protected List<IPerson> getPersons(IContext context) {
+        return new LinkedList<>();
     }
 }
