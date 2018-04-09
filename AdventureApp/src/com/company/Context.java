@@ -8,6 +8,7 @@ public class Context implements IContext {
     private IState state = new State();
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private Player player;
+    private boolean changeLevel = false;
 
     public Context() {
         player = new Player(this);
@@ -31,5 +32,20 @@ public class Context implements IContext {
     @Override
     public Player player() {
         return player;
+    }
+
+    @Override
+    public void changeLevel() {
+        changeLevel = true;
+    }
+
+    @Override
+    public boolean levelChangePending() {
+        return changeLevel;
+    }
+
+    @Override
+    public void clearLevelChange() {
+        changeLevel = false;
     }
 }

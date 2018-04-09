@@ -10,4 +10,8 @@ public interface IContext {
 
     IState getState();
     Player player();
+
+    void changeLevel();
+    boolean levelChangePending();
+    void clearLevelChange();
 }

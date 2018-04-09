@@ -43,6 +43,12 @@ public abstract class TextAdventureLevel implements ILevel {
 
         while(context.getState().getGameState() == GameState.Running && !actions.isEmpty()) {
 
+            if(context.levelChangePending())
+            {
+                context.clearLevelChange();
+                break;
+            }
+
             if(actions.size() == 1 && !actions.get(0).isExplicitAction())
             {
                 actions.get(0).perform(context);
