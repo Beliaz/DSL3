@@ -1,0 +1,9 @@
+grammar uibk.ac.at.qe.dsl.Game with org.eclipse.xtext.common.Terminals
+
+generate game "http://www.ac.uibk/at/qe/dsl/Game"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
