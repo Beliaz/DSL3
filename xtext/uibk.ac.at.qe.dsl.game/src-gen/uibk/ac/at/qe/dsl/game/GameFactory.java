@@ -78,6 +78,15 @@ public interface GameFactory extends EFactory
   Person createPerson();
 
   /**
+   * Returns a new object of class '<em>Person R</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Person R</em>'.
+   * @generated
+   */
+  Person_R createPerson_R();
+
+  /**
    * Returns a new object of class '<em>Person O</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -87,13 +96,13 @@ public interface GameFactory extends EFactory
   Person_O createPerson_O();
 
   /**
-   * Returns a new object of class '<em>Object</em>'.
+   * Returns a new object of class '<em>My Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Object</em>'.
+   * @return a new object of class '<em>My Object</em>'.
    * @generated
    */
-  Object createObject();
+  My_Object createMy_Object();
 
   /**
    * Returns the package supported by this factory.

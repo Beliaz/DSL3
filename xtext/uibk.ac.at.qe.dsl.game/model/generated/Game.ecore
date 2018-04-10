@@ -24,7 +24,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="persons" upperBound="-1"
         eType="#//Person" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
-        eType="#//Object" containment="true"/>
+        eType="#//My_Object" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//LevelDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Description">
@@ -33,18 +33,19 @@
   <eClassifiers xsi:type="ecore:EClass" name="Person">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" unique="false"
-        upperBound="-1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="response" upperBound="-1"
+        eType="#//Person_R" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action_P"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
-        eType="#//Person_O" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="finalObject" eType="#//Object"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="finalObject" eType="#//My_Object"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Person_R">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="item" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Person_O">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="items" eType="#//Object"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="items" eType="#//My_Object"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Object">
+  <eClassifiers xsi:type="ecore:EClass" name="My_Object">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

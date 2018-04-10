@@ -23,6 +23,7 @@ import uibk.ac.at.qe.dsl.game.Description;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
+import uibk.ac.at.qe.dsl.game.My_Object;
 import uibk.ac.at.qe.dsl.game.Person;
 
 /**
@@ -82,7 +83,7 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected EList<uibk.ac.at.qe.dsl.game.Object> objects;
+  protected EList<My_Object> objects;
 
   /**
    * The cached value of the '{@link #getNext() <em>Next</em>}' reference.
@@ -225,11 +226,11 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<uibk.ac.at.qe.dsl.game.Object> getObjects()
+  public EList<My_Object> getObjects()
   {
     if (objects == null)
     {
-      objects = new EObjectContainmentEList<uibk.ac.at.qe.dsl.game.Object>(uibk.ac.at.qe.dsl.game.Object.class, this, GamePackage.LEVEL_DEFINITION__OBJECTS);
+      objects = new EObjectContainmentEList<My_Object>(My_Object.class, this, GamePackage.LEVEL_DEFINITION__OBJECTS);
     }
     return objects;
   }
@@ -346,7 +347,7 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return;
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
         getObjects().clear();
-        getObjects().addAll((Collection<? extends uibk.ac.at.qe.dsl.game.Object>)newValue);
+        getObjects().addAll((Collection<? extends My_Object>)newValue);
         return;
       case GamePackage.LEVEL_DEFINITION__NEXT:
         setNext((LevelDeclaration)newValue);

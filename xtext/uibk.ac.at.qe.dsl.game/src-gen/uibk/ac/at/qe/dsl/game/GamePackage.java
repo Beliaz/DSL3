@@ -299,7 +299,7 @@ public interface GamePackage extends EPackage
   int PERSON__TYPE = 1;
 
   /**
-   * The feature id for the '<em><b>Response</b></em>' attribute list.
+   * The feature id for the '<em><b>Response</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -326,22 +326,13 @@ public interface GamePackage extends EPackage
   int PERSON__ACTION = 4;
 
   /**
-   * The feature id for the '<em><b>Objects</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PERSON__OBJECTS = 5;
-
-  /**
    * The feature id for the '<em><b>Final Object</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PERSON__FINAL_OBJECT = 6;
+  int PERSON__FINAL_OBJECT = 5;
 
   /**
    * The number of structural features of the '<em>Person</em>' class.
@@ -350,7 +341,35 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int PERSON_FEATURE_COUNT = 7;
+  int PERSON_FEATURE_COUNT = 6;
+
+  /**
+   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.Person_RImpl <em>Person R</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see uibk.ac.at.qe.dsl.game.impl.Person_RImpl
+   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPerson_R()
+   * @generated
+   */
+  int PERSON_R = 6;
+
+  /**
+   * The feature id for the '<em><b>Item</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PERSON_R__ITEM = 0;
+
+  /**
+   * The number of structural features of the '<em>Person R</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PERSON_R_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.Person_OImpl <em>Person O</em>}' class.
@@ -360,7 +379,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPerson_O()
    * @generated
    */
-  int PERSON_O = 6;
+  int PERSON_O = 7;
 
   /**
    * The feature id for the '<em><b>Items</b></em>' reference.
@@ -381,14 +400,14 @@ public interface GamePackage extends EPackage
   int PERSON_O_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl <em>Object</em>}' class.
+   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.My_ObjectImpl <em>My Object</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see uibk.ac.at.qe.dsl.game.impl.ObjectImpl
-   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getObject()
+   * @see uibk.ac.at.qe.dsl.game.impl.My_ObjectImpl
+   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getMy_Object()
    * @generated
    */
-  int OBJECT = 7;
+  int MY_OBJECT = 8;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -397,7 +416,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int OBJECT__NAME = 0;
+  int MY_OBJECT__NAME = 0;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -406,7 +425,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int OBJECT__TYPE = 1;
+  int MY_OBJECT__TYPE = 1;
 
   /**
    * The feature id for the '<em><b>Response</b></em>' attribute.
@@ -415,7 +434,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int OBJECT__RESPONSE = 2;
+  int MY_OBJECT__RESPONSE = 2;
 
   /**
    * The feature id for the '<em><b>Position</b></em>' attribute.
@@ -424,7 +443,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int OBJECT__POSITION = 3;
+  int MY_OBJECT__POSITION = 3;
 
   /**
    * The feature id for the '<em><b>Action</b></em>' attribute.
@@ -433,16 +452,16 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int OBJECT__ACTION = 4;
+  int MY_OBJECT__ACTION = 4;
 
   /**
-   * The number of structural features of the '<em>Object</em>' class.
+   * The number of structural features of the '<em>My Object</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OBJECT_FEATURE_COUNT = 5;
+  int MY_OBJECT_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_O <em>Action O</em>}' enum.
@@ -452,7 +471,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_O()
    * @generated
    */
-  int ACTION_O = 8;
+  int ACTION_O = 9;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_P <em>Action P</em>}' enum.
@@ -462,7 +481,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_P()
    * @generated
    */
-  int ACTION_P = 9;
+  int ACTION_P = 10;
 
 
   /**
@@ -691,15 +710,15 @@ public interface GamePackage extends EPackage
   EAttribute getPerson_Type();
 
   /**
-   * Returns the meta object for the attribute list '{@link uibk.ac.at.qe.dsl.game.Person#getResponse <em>Response</em>}'.
+   * Returns the meta object for the containment reference list '{@link uibk.ac.at.qe.dsl.game.Person#getResponse <em>Response</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Response</em>'.
+   * @return the meta object for the containment reference list '<em>Response</em>'.
    * @see uibk.ac.at.qe.dsl.game.Person#getResponse()
    * @see #getPerson()
    * @generated
    */
-  EAttribute getPerson_Response();
+  EReference getPerson_Response();
 
   /**
    * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Person#getPosition <em>Position</em>}'.
@@ -724,17 +743,6 @@ public interface GamePackage extends EPackage
   EAttribute getPerson_Action();
 
   /**
-   * Returns the meta object for the containment reference list '{@link uibk.ac.at.qe.dsl.game.Person#getObjects <em>Objects</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Objects</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Person#getObjects()
-   * @see #getPerson()
-   * @generated
-   */
-  EReference getPerson_Objects();
-
-  /**
    * Returns the meta object for the reference '{@link uibk.ac.at.qe.dsl.game.Person#getFinalObject <em>Final Object</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -744,6 +752,27 @@ public interface GamePackage extends EPackage
    * @generated
    */
   EReference getPerson_FinalObject();
+
+  /**
+   * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.Person_R <em>Person R</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Person R</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Person_R
+   * @generated
+   */
+  EClass getPerson_R();
+
+  /**
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Person_R#getItem <em>Item</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Item</em>'.
+   * @see uibk.ac.at.qe.dsl.game.Person_R#getItem()
+   * @see #getPerson_R()
+   * @generated
+   */
+  EAttribute getPerson_R_Item();
 
   /**
    * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.Person_O <em>Person O</em>}'.
@@ -767,69 +796,69 @@ public interface GamePackage extends EPackage
   EReference getPerson_O_Items();
 
   /**
-   * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.Object <em>Object</em>}'.
+   * Returns the meta object for class '{@link uibk.ac.at.qe.dsl.game.My_Object <em>My Object</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Object</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Object
+   * @return the meta object for class '<em>My Object</em>'.
+   * @see uibk.ac.at.qe.dsl.game.My_Object
    * @generated
    */
-  EClass getObject();
+  EClass getMy_Object();
 
   /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.My_Object#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Name</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Object#getName()
-   * @see #getObject()
+   * @see uibk.ac.at.qe.dsl.game.My_Object#getName()
+   * @see #getMy_Object()
    * @generated
    */
-  EAttribute getObject_Name();
+  EAttribute getMy_Object_Name();
 
   /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getType <em>Type</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.My_Object#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Type</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Object#getType()
-   * @see #getObject()
+   * @see uibk.ac.at.qe.dsl.game.My_Object#getType()
+   * @see #getMy_Object()
    * @generated
    */
-  EAttribute getObject_Type();
+  EAttribute getMy_Object_Type();
 
   /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getResponse <em>Response</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.My_Object#getResponse <em>Response</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Response</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Object#getResponse()
-   * @see #getObject()
+   * @see uibk.ac.at.qe.dsl.game.My_Object#getResponse()
+   * @see #getMy_Object()
    * @generated
    */
-  EAttribute getObject_Response();
+  EAttribute getMy_Object_Response();
 
   /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getPosition <em>Position</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.My_Object#getPosition <em>Position</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Position</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Object#getPosition()
-   * @see #getObject()
+   * @see uibk.ac.at.qe.dsl.game.My_Object#getPosition()
+   * @see #getMy_Object()
    * @generated
    */
-  EAttribute getObject_Position();
+  EAttribute getMy_Object_Position();
 
   /**
-   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.Object#getAction <em>Action</em>}'.
+   * Returns the meta object for the attribute '{@link uibk.ac.at.qe.dsl.game.My_Object#getAction <em>Action</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Action</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Object#getAction()
-   * @see #getObject()
+   * @see uibk.ac.at.qe.dsl.game.My_Object#getAction()
+   * @see #getMy_Object()
    * @generated
    */
-  EAttribute getObject_Action();
+  EAttribute getMy_Object_Action();
 
   /**
    * Returns the meta object for enum '{@link uibk.ac.at.qe.dsl.game.Action_O <em>Action O</em>}'.
@@ -1055,12 +1084,12 @@ public interface GamePackage extends EPackage
     EAttribute PERSON__TYPE = eINSTANCE.getPerson_Type();
 
     /**
-     * The meta object literal for the '<em><b>Response</b></em>' attribute list feature.
+     * The meta object literal for the '<em><b>Response</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute PERSON__RESPONSE = eINSTANCE.getPerson_Response();
+    EReference PERSON__RESPONSE = eINSTANCE.getPerson_Response();
 
     /**
      * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
@@ -1079,20 +1108,30 @@ public interface GamePackage extends EPackage
     EAttribute PERSON__ACTION = eINSTANCE.getPerson_Action();
 
     /**
-     * The meta object literal for the '<em><b>Objects</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PERSON__OBJECTS = eINSTANCE.getPerson_Objects();
-
-    /**
      * The meta object literal for the '<em><b>Final Object</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference PERSON__FINAL_OBJECT = eINSTANCE.getPerson_FinalObject();
+
+    /**
+     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.Person_RImpl <em>Person R</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see uibk.ac.at.qe.dsl.game.impl.Person_RImpl
+     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getPerson_R()
+     * @generated
+     */
+    EClass PERSON_R = eINSTANCE.getPerson_R();
+
+    /**
+     * The meta object literal for the '<em><b>Item</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PERSON_R__ITEM = eINSTANCE.getPerson_R_Item();
 
     /**
      * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.Person_OImpl <em>Person O</em>}' class.
@@ -1113,14 +1152,14 @@ public interface GamePackage extends EPackage
     EReference PERSON_O__ITEMS = eINSTANCE.getPerson_O_Items();
 
     /**
-     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.ObjectImpl <em>Object</em>}' class.
+     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.impl.My_ObjectImpl <em>My Object</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see uibk.ac.at.qe.dsl.game.impl.ObjectImpl
-     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getObject()
+     * @see uibk.ac.at.qe.dsl.game.impl.My_ObjectImpl
+     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getMy_Object()
      * @generated
      */
-    EClass OBJECT = eINSTANCE.getObject();
+    EClass MY_OBJECT = eINSTANCE.getMy_Object();
 
     /**
      * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
@@ -1128,7 +1167,7 @@ public interface GamePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OBJECT__NAME = eINSTANCE.getObject_Name();
+    EAttribute MY_OBJECT__NAME = eINSTANCE.getMy_Object_Name();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -1136,7 +1175,7 @@ public interface GamePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OBJECT__TYPE = eINSTANCE.getObject_Type();
+    EAttribute MY_OBJECT__TYPE = eINSTANCE.getMy_Object_Type();
 
     /**
      * The meta object literal for the '<em><b>Response</b></em>' attribute feature.
@@ -1144,7 +1183,7 @@ public interface GamePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OBJECT__RESPONSE = eINSTANCE.getObject_Response();
+    EAttribute MY_OBJECT__RESPONSE = eINSTANCE.getMy_Object_Response();
 
     /**
      * The meta object literal for the '<em><b>Position</b></em>' attribute feature.
@@ -1152,7 +1191,7 @@ public interface GamePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OBJECT__POSITION = eINSTANCE.getObject_Position();
+    EAttribute MY_OBJECT__POSITION = eINSTANCE.getMy_Object_Position();
 
     /**
      * The meta object literal for the '<em><b>Action</b></em>' attribute feature.
@@ -1160,7 +1199,7 @@ public interface GamePackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OBJECT__ACTION = eINSTANCE.getObject_Action();
+    EAttribute MY_OBJECT__ACTION = eINSTANCE.getMy_Object_Action();
 
     /**
      * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.Action_O <em>Action O</em>}' enum.

@@ -45,7 +45,7 @@ class GameGenerator extends AbstractGenerator {
 	 */
 	def generateFiles(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context, LevelDefinition level) {
 		return '''
-		package test.textadventure;
+		package test.generated;
 		
 		import com.company.*;
 		

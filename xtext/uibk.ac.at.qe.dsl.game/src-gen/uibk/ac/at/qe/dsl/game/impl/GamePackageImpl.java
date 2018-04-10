@@ -19,8 +19,10 @@ import uibk.ac.at.qe.dsl.game.GameFactory;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
+import uibk.ac.at.qe.dsl.game.My_Object;
 import uibk.ac.at.qe.dsl.game.Person;
 import uibk.ac.at.qe.dsl.game.Person_O;
+import uibk.ac.at.qe.dsl.game.Person_R;
 import uibk.ac.at.qe.dsl.game.Scene;
 
 /**
@@ -78,6 +80,13 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass person_REClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass person_OEClass = null;
 
   /**
@@ -85,7 +94,7 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass objectEClass = null;
+  private EClass my_ObjectEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -379,9 +388,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getPerson_Response()
+  public EReference getPerson_Response()
   {
-    return (EAttribute)personEClass.getEStructuralFeatures().get(2);
+    return (EReference)personEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -409,7 +418,7 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPerson_Objects()
+  public EReference getPerson_FinalObject()
   {
     return (EReference)personEClass.getEStructuralFeatures().get(5);
   }
@@ -419,9 +428,19 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getPerson_FinalObject()
+  public EClass getPerson_R()
   {
-    return (EReference)personEClass.getEStructuralFeatures().get(6);
+    return person_REClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getPerson_R_Item()
+  {
+    return (EAttribute)person_REClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -449,9 +468,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getObject()
+  public EClass getMy_Object()
   {
-    return objectEClass;
+    return my_ObjectEClass;
   }
 
   /**
@@ -459,9 +478,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getObject_Name()
+  public EAttribute getMy_Object_Name()
   {
-    return (EAttribute)objectEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)my_ObjectEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -469,9 +488,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getObject_Type()
+  public EAttribute getMy_Object_Type()
   {
-    return (EAttribute)objectEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)my_ObjectEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -479,9 +498,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getObject_Response()
+  public EAttribute getMy_Object_Response()
   {
-    return (EAttribute)objectEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)my_ObjectEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -489,9 +508,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getObject_Position()
+  public EAttribute getMy_Object_Position()
   {
-    return (EAttribute)objectEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)my_ObjectEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -499,9 +518,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getObject_Action()
+  public EAttribute getMy_Object_Action()
   {
-    return (EAttribute)objectEClass.getEStructuralFeatures().get(4);
+    return (EAttribute)my_ObjectEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -580,21 +599,23 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     personEClass = createEClass(PERSON);
     createEAttribute(personEClass, PERSON__NAME);
     createEAttribute(personEClass, PERSON__TYPE);
-    createEAttribute(personEClass, PERSON__RESPONSE);
+    createEReference(personEClass, PERSON__RESPONSE);
     createEAttribute(personEClass, PERSON__POSITION);
     createEAttribute(personEClass, PERSON__ACTION);
-    createEReference(personEClass, PERSON__OBJECTS);
     createEReference(personEClass, PERSON__FINAL_OBJECT);
+
+    person_REClass = createEClass(PERSON_R);
+    createEAttribute(person_REClass, PERSON_R__ITEM);
 
     person_OEClass = createEClass(PERSON_O);
     createEReference(person_OEClass, PERSON_O__ITEMS);
 
-    objectEClass = createEClass(OBJECT);
-    createEAttribute(objectEClass, OBJECT__NAME);
-    createEAttribute(objectEClass, OBJECT__TYPE);
-    createEAttribute(objectEClass, OBJECT__RESPONSE);
-    createEAttribute(objectEClass, OBJECT__POSITION);
-    createEAttribute(objectEClass, OBJECT__ACTION);
+    my_ObjectEClass = createEClass(MY_OBJECT);
+    createEAttribute(my_ObjectEClass, MY_OBJECT__NAME);
+    createEAttribute(my_ObjectEClass, MY_OBJECT__TYPE);
+    createEAttribute(my_ObjectEClass, MY_OBJECT__RESPONSE);
+    createEAttribute(my_ObjectEClass, MY_OBJECT__POSITION);
+    createEAttribute(my_ObjectEClass, MY_OBJECT__ACTION);
 
     // Create enums
     action_OEEnum = createEEnum(ACTION_O);
@@ -649,7 +670,7 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     initEReference(getLevelDefinition_Name(), this.getLevelDeclaration(), null, "name", null, 0, 1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLevelDefinition_Description(), this.getDescription(), null, "description", null, 0, 1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLevelDefinition_Persons(), this.getPerson(), null, "persons", null, 0, -1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLevelDefinition_Objects(), this.getObject(), null, "objects", null, 0, -1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLevelDefinition_Objects(), this.getMy_Object(), null, "objects", null, 0, -1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLevelDefinition_Next(), this.getLevelDeclaration(), null, "next", null, 0, 1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(descriptionEClass, Description.class, "Description", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -658,21 +679,23 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     initEClass(personEClass, Person.class, "Person", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPerson_Name(), ecorePackage.getEString(), "name", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPerson_Type(), ecorePackage.getEString(), "type", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPerson_Response(), ecorePackage.getEString(), "response", null, 0, -1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPerson_Response(), this.getPerson_R(), null, "response", null, 0, -1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPerson_Position(), ecorePackage.getEString(), "position", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPerson_Action(), this.getAction_P(), "action", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPerson_Objects(), this.getPerson_O(), null, "objects", null, 0, -1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getPerson_FinalObject(), this.getObject(), null, "finalObject", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPerson_FinalObject(), this.getMy_Object(), null, "finalObject", null, 0, 1, Person.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(person_REClass, Person_R.class, "Person_R", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getPerson_R_Item(), ecorePackage.getEString(), "item", null, 0, 1, Person_R.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(person_OEClass, Person_O.class, "Person_O", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPerson_O_Items(), this.getObject(), null, "items", null, 0, 1, Person_O.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPerson_O_Items(), this.getMy_Object(), null, "items", null, 0, 1, Person_O.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(objectEClass, uibk.ac.at.qe.dsl.game.Object.class, "Object", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getObject_Name(), ecorePackage.getEString(), "name", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getObject_Type(), ecorePackage.getEString(), "type", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getObject_Response(), ecorePackage.getEString(), "response", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getObject_Position(), ecorePackage.getEString(), "position", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getObject_Action(), this.getAction_O(), "action", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(my_ObjectEClass, My_Object.class, "My_Object", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getMy_Object_Name(), ecorePackage.getEString(), "name", null, 0, 1, My_Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMy_Object_Type(), ecorePackage.getEString(), "type", null, 0, 1, My_Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMy_Object_Response(), ecorePackage.getEString(), "response", null, 0, 1, My_Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMy_Object_Position(), ecorePackage.getEString(), "position", null, 0, 1, My_Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMy_Object_Action(), this.getAction_O(), "action", null, 0, 1, My_Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
     initEEnum(action_OEEnum, Action_O.class, "Action_O");

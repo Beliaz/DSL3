@@ -19,8 +19,10 @@ import uibk.ac.at.qe.dsl.game.Game;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
 import uibk.ac.at.qe.dsl.game.LevelDefinition;
+import uibk.ac.at.qe.dsl.game.My_Object;
 import uibk.ac.at.qe.dsl.game.Person;
 import uibk.ac.at.qe.dsl.game.Person_O;
+import uibk.ac.at.qe.dsl.game.Person_R;
 import uibk.ac.at.qe.dsl.game.Scene;
 import uibk.ac.at.qe.dsl.services.GameGrammarAccess;
 
@@ -50,14 +52,17 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 			case GamePackage.LEVEL_DEFINITION:
 				sequence_LevelDefinition(context, (LevelDefinition) semanticObject); 
 				return; 
-			case GamePackage.OBJECT:
-				sequence_Object(context, (uibk.ac.at.qe.dsl.game.Object) semanticObject); 
+			case GamePackage.MY_OBJECT:
+				sequence_My_Object(context, (My_Object) semanticObject); 
 				return; 
 			case GamePackage.PERSON:
 				sequence_Person(context, (Person) semanticObject); 
 				return; 
 			case GamePackage.PERSON_O:
 				sequence_Person_O(context, (Person_O) semanticObject); 
+				return; 
+			case GamePackage.PERSON_R:
+				sequence_Person_R(context, (Person_R) semanticObject); 
 				return; 
 			case GamePackage.SCENE:
 				sequence_Scene(context, (Scene) semanticObject); 
@@ -120,7 +125,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     LevelDefinition returns LevelDefinition
 	 *
 	 * Constraint:
-	 *     (name=[LevelDeclaration|ID] description=Description persons+=Person* objects+=Object* next=[LevelDeclaration|ID]?)
+	 *     (name=[LevelDeclaration|ID] description=Description persons+=Person* objects+=My_Object* next=[LevelDeclaration|ID]?)
 	 */
 	protected void sequence_LevelDefinition(ISerializationContext context, LevelDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -129,30 +134,30 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	
 	/**
 	 * Contexts:
-	 *     Object returns Object
+	 *     My_Object returns My_Object
 	 *
 	 * Constraint:
 	 *     (name=ID type=ID response=STRING position=STRING action=Action_O)
 	 */
-	protected void sequence_Object(ISerializationContext context, uibk.ac.at.qe.dsl.game.Object semanticObject) {
+	protected void sequence_My_Object(ISerializationContext context, My_Object semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__NAME));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__TYPE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__TYPE));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__RESPONSE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__RESPONSE));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__POSITION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__POSITION));
-			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.OBJECT__ACTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.OBJECT__ACTION));
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.MY_OBJECT__NAME) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.MY_OBJECT__NAME));
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.MY_OBJECT__TYPE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.MY_OBJECT__TYPE));
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.MY_OBJECT__RESPONSE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.MY_OBJECT__RESPONSE));
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.MY_OBJECT__POSITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.MY_OBJECT__POSITION));
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.MY_OBJECT__ACTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.MY_OBJECT__ACTION));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getObjectAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
-		feeder.accept(grammarAccess.getObjectAccess().getTypeIDTerminalRuleCall_5_0(), semanticObject.getType());
-		feeder.accept(grammarAccess.getObjectAccess().getResponseSTRINGTerminalRuleCall_9_0(), semanticObject.getResponse());
-		feeder.accept(grammarAccess.getObjectAccess().getPositionSTRINGTerminalRuleCall_13_0(), semanticObject.getPosition());
-		feeder.accept(grammarAccess.getObjectAccess().getActionAction_OEnumRuleCall_17_0(), semanticObject.getAction());
+		feeder.accept(grammarAccess.getMy_ObjectAccess().getNameIDTerminalRuleCall_0_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getMy_ObjectAccess().getTypeIDTerminalRuleCall_5_0(), semanticObject.getType());
+		feeder.accept(grammarAccess.getMy_ObjectAccess().getResponseSTRINGTerminalRuleCall_9_0(), semanticObject.getResponse());
+		feeder.accept(grammarAccess.getMy_ObjectAccess().getPositionSTRINGTerminalRuleCall_13_0(), semanticObject.getPosition());
+		feeder.accept(grammarAccess.getMy_ObjectAccess().getActionAction_OEnumRuleCall_17_0(), semanticObject.getAction());
 		feeder.finish();
 	}
 	
@@ -162,7 +167,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     Person_O returns Person_O
 	 *
 	 * Constraint:
-	 *     items=[Object|ID]
+	 *     items=[My_Object|ID]
 	 */
 	protected void sequence_Person_O(ISerializationContext context, Person_O semanticObject) {
 		if (errorAcceptor != null) {
@@ -170,7 +175,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON_O__ITEMS));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getPerson_OAccess().getItemsObjectIDTerminalRuleCall_0_0_1(), semanticObject.eGet(GamePackage.Literals.PERSON_O__ITEMS, false));
+		feeder.accept(grammarAccess.getPerson_OAccess().getItemsMy_ObjectIDTerminalRuleCall_0_0_1(), semanticObject.eGet(GamePackage.Literals.PERSON_O__ITEMS, false));
 		feeder.finish();
 	}
 	
@@ -186,12 +191,29 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *         response+=Person_R* 
 	 *         position=STRING 
 	 *         action=Action_P 
-	 *         objects+=Person_O 
-	 *         finalObject=[Object|ID]
+	 *         finalObject=[My_Object|ID]?
 	 *     )
 	 */
 	protected void sequence_Person(ISerializationContext context, Person semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * Contexts:
+	 *     Person_R returns Person_R
+	 *
+	 * Constraint:
+	 *     item=STRING
+	 */
+	protected void sequence_Person_R(ISerializationContext context, Person_R semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, GamePackage.Literals.PERSON_R__ITEM) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, GamePackage.Literals.PERSON_R__ITEM));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getPerson_RAccess().getItemSTRINGTerminalRuleCall_0_0(), semanticObject.getItem());
+		feeder.finish();
 	}
 	
 	

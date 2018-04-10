@@ -10,14 +10,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
-import uibk.ac.at.qe.dsl.game.Description;
-import uibk.ac.at.qe.dsl.game.Game;
-import uibk.ac.at.qe.dsl.game.GamePackage;
-import uibk.ac.at.qe.dsl.game.LevelDeclaration;
-import uibk.ac.at.qe.dsl.game.LevelDefinition;
-import uibk.ac.at.qe.dsl.game.Person;
-import uibk.ac.at.qe.dsl.game.Person_O;
-import uibk.ac.at.qe.dsl.game.Scene;
+import uibk.ac.at.qe.dsl.game.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -113,14 +106,19 @@ public class GameAdapterFactory extends AdapterFactoryImpl
         return createPersonAdapter();
       }
       @Override
+      public Adapter casePerson_R(Person_R object)
+      {
+        return createPerson_RAdapter();
+      }
+      @Override
       public Adapter casePerson_O(Person_O object)
       {
         return createPerson_OAdapter();
       }
       @Override
-      public Adapter caseObject(uibk.ac.at.qe.dsl.game.Object object)
+      public Adapter caseMy_Object(My_Object object)
       {
-        return createObjectAdapter();
+        return createMy_ObjectAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -235,6 +233,21 @@ public class GameAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.Person_R <em>Person R</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see uibk.ac.at.qe.dsl.game.Person_R
+   * @generated
+   */
+  public Adapter createPerson_RAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.Person_O <em>Person O</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -250,16 +263,16 @@ public class GameAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.Object <em>Object</em>}'.
+   * Creates a new adapter for an object of class '{@link uibk.ac.at.qe.dsl.game.My_Object <em>My Object</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see uibk.ac.at.qe.dsl.game.Object
+   * @see uibk.ac.at.qe.dsl.game.My_Object
    * @generated
    */
-  public Adapter createObjectAdapter()
+  public Adapter createMy_ObjectAdapter()
   {
     return null;
   }

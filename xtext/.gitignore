@@ -3,3 +3,4 @@
 *.xtendbin
 
 # Generated code
+/.recommenders/

@@ -16,14 +16,14 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import uibk.ac.at.qe.dsl.game.Action_P;
 import uibk.ac.at.qe.dsl.game.GamePackage;
+import uibk.ac.at.qe.dsl.game.My_Object;
 import uibk.ac.at.qe.dsl.game.Person;
-import uibk.ac.at.qe.dsl.game.Person_O;
+import uibk.ac.at.qe.dsl.game.Person_R;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,7 +38,6 @@ import uibk.ac.at.qe.dsl.game.Person_O;
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getResponse <em>Response</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getPosition <em>Position</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getAction <em>Action</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getObjects <em>Objects</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.PersonImpl#getFinalObject <em>Final Object</em>}</li>
  * </ul>
  *
@@ -87,14 +86,14 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
   protected String type = TYPE_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getResponse() <em>Response</em>}' attribute list.
+   * The cached value of the '{@link #getResponse() <em>Response</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getResponse()
    * @generated
    * @ordered
    */
-  protected EList<String> response;
+  protected EList<Person_R> response;
 
   /**
    * The default value of the '{@link #getPosition() <em>Position</em>}' attribute.
@@ -137,16 +136,6 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
   protected Action_P action = ACTION_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getObjects() <em>Objects</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getObjects()
-   * @generated
-   * @ordered
-   */
-  protected EList<Person_O> objects;
-
-  /**
    * The cached value of the '{@link #getFinalObject() <em>Final Object</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -154,7 +143,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * @generated
    * @ordered
    */
-  protected uibk.ac.at.qe.dsl.game.Object finalObject;
+  protected My_Object finalObject;
 
   /**
    * <!-- begin-user-doc -->
@@ -228,11 +217,11 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<String> getResponse()
+  public EList<Person_R> getResponse()
   {
     if (response == null)
     {
-      response = new EDataTypeEList<String>(String.class, this, GamePackage.PERSON__RESPONSE);
+      response = new EObjectContainmentEList<Person_R>(Person_R.class, this, GamePackage.PERSON__RESPONSE);
     }
     return response;
   }
@@ -288,26 +277,12 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Person_O> getObjects()
-  {
-    if (objects == null)
-    {
-      objects = new EObjectContainmentEList<Person_O>(Person_O.class, this, GamePackage.PERSON__OBJECTS);
-    }
-    return objects;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public uibk.ac.at.qe.dsl.game.Object getFinalObject()
+  public My_Object getFinalObject()
   {
     if (finalObject != null && finalObject.eIsProxy())
     {
       InternalEObject oldFinalObject = (InternalEObject)finalObject;
-      finalObject = (uibk.ac.at.qe.dsl.game.Object)eResolveProxy(oldFinalObject);
+      finalObject = (My_Object)eResolveProxy(oldFinalObject);
       if (finalObject != oldFinalObject)
       {
         if (eNotificationRequired())
@@ -322,7 +297,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public uibk.ac.at.qe.dsl.game.Object basicGetFinalObject()
+  public My_Object basicGetFinalObject()
   {
     return finalObject;
   }
@@ -332,9 +307,9 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setFinalObject(uibk.ac.at.qe.dsl.game.Object newFinalObject)
+  public void setFinalObject(My_Object newFinalObject)
   {
-    uibk.ac.at.qe.dsl.game.Object oldFinalObject = finalObject;
+    My_Object oldFinalObject = finalObject;
     finalObject = newFinalObject;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, GamePackage.PERSON__FINAL_OBJECT, oldFinalObject, finalObject));
@@ -350,8 +325,8 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
   {
     switch (featureID)
     {
-      case GamePackage.PERSON__OBJECTS:
-        return ((InternalEList<?>)getObjects()).basicRemove(otherEnd, msgs);
+      case GamePackage.PERSON__RESPONSE:
+        return ((InternalEList<?>)getResponse()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -376,8 +351,6 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
         return getPosition();
       case GamePackage.PERSON__ACTION:
         return getAction();
-      case GamePackage.PERSON__OBJECTS:
-        return getObjects();
       case GamePackage.PERSON__FINAL_OBJECT:
         if (resolve) return getFinalObject();
         return basicGetFinalObject();
@@ -404,7 +377,7 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
         return;
       case GamePackage.PERSON__RESPONSE:
         getResponse().clear();
-        getResponse().addAll((Collection<? extends String>)newValue);
+        getResponse().addAll((Collection<? extends Person_R>)newValue);
         return;
       case GamePackage.PERSON__POSITION:
         setPosition((String)newValue);
@@ -412,12 +385,8 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
       case GamePackage.PERSON__ACTION:
         setAction((Action_P)newValue);
         return;
-      case GamePackage.PERSON__OBJECTS:
-        getObjects().clear();
-        getObjects().addAll((Collection<? extends Person_O>)newValue);
-        return;
       case GamePackage.PERSON__FINAL_OBJECT:
-        setFinalObject((uibk.ac.at.qe.dsl.game.Object)newValue);
+        setFinalObject((My_Object)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -448,11 +417,8 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
       case GamePackage.PERSON__ACTION:
         setAction(ACTION_EDEFAULT);
         return;
-      case GamePackage.PERSON__OBJECTS:
-        getObjects().clear();
-        return;
       case GamePackage.PERSON__FINAL_OBJECT:
-        setFinalObject((uibk.ac.at.qe.dsl.game.Object)null);
+        setFinalObject((My_Object)null);
         return;
     }
     super.eUnset(featureID);
@@ -478,8 +444,6 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
         return POSITION_EDEFAULT == null ? position != null : !POSITION_EDEFAULT.equals(position);
       case GamePackage.PERSON__ACTION:
         return action != ACTION_EDEFAULT;
-      case GamePackage.PERSON__OBJECTS:
-        return objects != null && !objects.isEmpty();
       case GamePackage.PERSON__FINAL_OBJECT:
         return finalObject != null;
     }
@@ -501,8 +465,6 @@ public class PersonImpl extends MinimalEObjectImpl.Container implements Person
     result.append(name);
     result.append(", type: ");
     result.append(type);
-    result.append(", response: ");
-    result.append(response);
     result.append(", position: ");
     result.append(position);
     result.append(", action: ");

@@ -21,11 +21,13 @@ public class GameSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected GameGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_Person_O_CommaKeyword_1_q;
+	protected AbstractElementAlias match_Person_R_CommaKeyword_1_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (GameGrammarAccess) access;
 		match_Person_O_CommaKeyword_1_q = new TokenAlias(false, true, grammarAccess.getPerson_OAccess().getCommaKeyword_1());
+		match_Person_R_CommaKeyword_1_q = new TokenAlias(false, true, grammarAccess.getPerson_RAccess().getCommaKeyword_1());
 	}
 	
 	@Override
@@ -42,6 +44,8 @@ public class GameSyntacticSequencer extends AbstractSyntacticSequencer {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
 			if (match_Person_O_CommaKeyword_1_q.equals(syntax))
 				emit_Person_O_CommaKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Person_R_CommaKeyword_1_q.equals(syntax))
+				emit_Person_R_CommaKeyword_1_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -51,9 +55,20 @@ public class GameSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     ','?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     items=[Object|ID] (ambiguity) (rule end)
+	 *     items=[My_Object|ID] (ambiguity) (rule end)
 	 */
 	protected void emit_Person_O_CommaKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * Ambiguous syntax:
+	 *     ','?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     item=STRING (ambiguity) (rule end)
+	 */
+	protected void emit_Person_R_CommaKeyword_1_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

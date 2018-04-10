@@ -99,7 +99,7 @@ public interface LevelDefinition extends EObject
 
   /**
    * Returns the value of the '<em><b>Objects</b></em>' containment reference list.
-   * The list contents are of type {@link uibk.ac.at.qe.dsl.game.Object}.
+   * The list contents are of type {@link uibk.ac.at.qe.dsl.game.My_Object}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Objects</em>' containment reference list isn't clear,
@@ -111,7 +111,7 @@ public interface LevelDefinition extends EObject
    * @model containment="true"
    * @generated
    */
-  EList<uibk.ac.at.qe.dsl.game.Object> getObjects();
+  EList<My_Object> getObjects();
 
   /**
    * Returns the value of the '<em><b>Next</b></em>' reference.

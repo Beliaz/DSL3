@@ -12,17 +12,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import uibk.ac.at.qe.dsl.game.Action_O;
-import uibk.ac.at.qe.dsl.game.Action_P;
-import uibk.ac.at.qe.dsl.game.Description;
-import uibk.ac.at.qe.dsl.game.Game;
-import uibk.ac.at.qe.dsl.game.GameFactory;
-import uibk.ac.at.qe.dsl.game.GamePackage;
-import uibk.ac.at.qe.dsl.game.LevelDeclaration;
-import uibk.ac.at.qe.dsl.game.LevelDefinition;
-import uibk.ac.at.qe.dsl.game.Person;
-import uibk.ac.at.qe.dsl.game.Person_O;
-import uibk.ac.at.qe.dsl.game.Scene;
+import uibk.ac.at.qe.dsl.game.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -82,8 +72,9 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
       case GamePackage.LEVEL_DEFINITION: return createLevelDefinition();
       case GamePackage.DESCRIPTION: return createDescription();
       case GamePackage.PERSON: return createPerson();
+      case GamePackage.PERSON_R: return createPerson_R();
       case GamePackage.PERSON_O: return createPerson_O();
-      case GamePackage.OBJECT: return createObject();
+      case GamePackage.MY_OBJECT: return createMy_Object();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -198,6 +189,17 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
    * <!-- end-user-doc -->
    * @generated
    */
+  public Person_R createPerson_R()
+  {
+    Person_RImpl person_R = new Person_RImpl();
+    return person_R;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public Person_O createPerson_O()
   {
     Person_OImpl person_O = new Person_OImpl();
@@ -209,10 +211,10 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public uibk.ac.at.qe.dsl.game.Object createObject()
+  public My_Object createMy_Object()
   {
-    ObjectImpl object = new ObjectImpl();
-    return object;
+    My_ObjectImpl my_Object = new My_ObjectImpl();
+    return my_Object;
   }
 
   /**
