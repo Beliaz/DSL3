@@ -1,5 +1,6 @@
 new gameA {
 	level Level1;
+	level Level2;
 	Level1 = {
 		description = "In the entrance room...";
 		Ivan = {
@@ -12,14 +13,55 @@ new gameA {
 			action = Talk;
 			final = Key;
 		}
+		Florian = {
+			type = male;
+			response {"Hi!", 
+					"Do not speak with me!"}
+			position = "sitting on a chair";
+			action = Talk;
+		}
 		Key = {
 			type = type_A;
 			response = "Oh... a key!";
 			position = "At the left corner";
 			action = Inspect;
 		}
-		next = Level1;
+		next = Level2;
+	}
+	Level2 = {
+		description = "In the dining room...";
+		Daniel = {
+			type = male;
+			response {"I am hungry"}
+			position = "near the kitchen";
+			action = Talk;
+			final = Bread;
+		}
+		Markus = {
+			type = male;
+			response {"Hi! The kitchen is closed"}
+			position = "in the kitchen";
+			action = Talk;
+		}
+		Bread = {
+			type = type_A;
+			response = "Oh... maybe i can give it to Daniel";
+			position = "At the table";
+			action = Inspect;
+		}
+		Pen = {
+			type = type_A;
+			response = "Its a pen";
+			position = "At the table";
+			action = Use;
+		}
+		Book = {
+			type = type_A;
+			response = "The book is open. It looks like a recipe book";
+			position = "Under the chair";
+			action = Use;
+		}
 	}
 	start = Level1;
-	final = Level1;
+	final = Level2;
 }

@@ -66,7 +66,7 @@ LevelDefinition:
 	'{'
 		description=Description
 		persons+=Person*
-		objects+=Object*
+		objects+=My_Object*
 		('next' '=' next=[LevelDeclaration] ';')?
 	'}'
 ;
@@ -89,7 +89,7 @@ Person:
 		'response' '{' response+=Person_R* '}'
 		'position' '=' position=STRING ';'
 		'action' '=' action=Action_P ';'
-		'final' '=' finalObject=[Object] ';'
+		('final' '=' finalObject=[My_Object] ';')?
 	'}'
 ;
 
@@ -104,13 +104,13 @@ Person_R:
  * Person objects
  */
 Person_O:
-	items=[Object] (',')?
+	items=[My_Object] (',')?
 ;
 
 /*
  * An object is build by an Id, a position and an action
  */
-Object:
+My_Object:
 	name=ID '='
 	'{'
 		'type' '=' type=ID ';'
