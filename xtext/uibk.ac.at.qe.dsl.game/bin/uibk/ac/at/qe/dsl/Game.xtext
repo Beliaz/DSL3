@@ -89,9 +89,6 @@ Person:
 		'response' '{' response+=Person_R* '}'
 		'position' '=' position=STRING ';'
 		'action' '=' action=Action_P ';'
-		'objects' '{'
-			objects+=Person_O
-		'}'
 		'final' '=' finalObject=[Object] ';'
 	'}'
 ;
@@ -100,7 +97,7 @@ Person:
  * Person responses
  */
 Person_R:
-	STRING (',')?
+	item=STRING (',')?
 ;
 
 /*

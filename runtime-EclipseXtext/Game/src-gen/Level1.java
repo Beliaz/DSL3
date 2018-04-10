@@ -18,6 +18,7 @@ class TalkToIvanAction implements IAction
         this.Ivan = Ivan;
         this.counter = 0;
         this.Key = new Game_Object("Key");
+
     }
 
     @Override
@@ -84,7 +85,7 @@ class InspectObjectAction implements IAction {
 	@Override
 	public void perform(IContext context) {
 		if (obj.equals(Key)) {
-			context.getOut().println(context.player().getName() + ": Oh... in the box is a key!");
+			context.getOut().println(context.player().getName() + ": Oh... a key!");
 			context.player().take(Key);
 		}
 		else {

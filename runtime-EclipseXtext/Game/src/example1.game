@@ -4,16 +4,17 @@ new gameA {
 		description = "In the entrance room...";
 		Ivan = {
 			type = male;
-			response {"Hi, nice to see you!", "I need a key to open the Door. Find it!", 
-					"Do you already found the key? Give it to me!", "I have nothing to say!"}
+			response {"Hi, nice to see you!", 
+					"I need a key to open the Door. Find it!", 
+					"Do you already found the key? Give it to me!", 
+					"I have nothing to say!"}
 			position = "at the door";
 			action = Talk;
-			objects {Key}
 			final = Key;
 		}
 		Key = {
 			type = type_A;
-			response = "Oh... in the box is a key!";
+			response = "Oh... a key!";
 			position = "At the left corner";
 			action = Inspect;
 		}
