@@ -1,4 +1,4 @@
-package test.textadventure;
+package test.generated;
 
 import com.company.*;
 
@@ -68,7 +68,7 @@ public class EnterName extends TextAdventureLevel {
 
     @Override
     public String getNextLevel(IContext context) {
-        return FirstLevel.class.getName();
+        return Level1.class.getName();
     }
 
     @Override

@@ -22,12 +22,11 @@ class TalkToIvanAction implements IAction
 
     @Override
     public void perform(IContext context) {
-        String name = (String)context.getState().getData(Player.class.getName(), "name");
-        ivan.say(context.getOut(), String.format("Hi %s, nice to see you!", name));
+        ivan.say(context.getOut(), String.format("Hi %s, nice to see you!", context.player().getName()));
     }
 
     @Override
-    public boolean isAvailable(IState state) {
+    public boolean isAvailable(IContext state) {
         return true;
     }
 
@@ -50,45 +49,13 @@ class LeaveAction implements IAction
     }
 
     @Override
-    public boolean isAvailable(IState state) {
+    public boolean isAvailable(IContext state) {
         return true;
     }
 
     @Override
     public boolean isExplicitAction() {
         return true;
-    }
-}
-
-class Person implements IPerson
-{
-
-    private String name;
-    private String position;
-
-    Person(String name, String position) {
-        this.name = name;
-        this.position = position;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public String getPosition() {
-        return position;
-    }
-
-    @Override
-    public void say(PrintStream stream, String string) {
-        stream.println(String.format("%s: %s", getName(), string));
-    }
-
-    @Override
-    public void onDiscovered(IContext context) {
-
     }
 }
 
@@ -118,8 +85,7 @@ public class FirstLevel extends TextAdventureLevel {
     }
 
     @Override
-    protected List<IAction> getAvailableActions(IContext context) {
-        return actions.stream().filter(a -> a.isAvailable(context.getState()))
-                .collect(Collectors.toList());
+    protected List<IAction> getActions(IContext context) {
+        return actions;
     }
 }
