@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: uibk.ac.at.qe.dsl.game
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: uibk.ac.at.qe.dsl.game; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.5.0",
+ org.eclipse.emf.ecore,
+ org.eclipse.xtext.xbase.lib;bundle-version="2.13.0",
+ org.antlr.runtime,
+ org.eclipse.xtext.util,
+ org.eclipse.emf.common,
+ org.eclipse.xtend.lib;bundle-version="2.13.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: uibk.ac.at.qe.dsl.game.impl,
+ uibk.ac.at.qe.dsl.parser.antlr,
+ uibk.ac.at.qe.dsl.game.util,
+ uibk.ac.at.qe.dsl.validation,
+ uibk.ac.at.qe.dsl,
+ uibk.ac.at.qe.dsl.services,
+ uibk.ac.at.qe.dsl.scoping,
+ uibk.ac.at.qe.dsl.serializer,
+ uibk.ac.at.qe.dsl.parser.antlr.internal,
+ uibk.ac.at.qe.dsl.generator,
+ uibk.ac.at.qe.dsl.game
+Import-Package: org.apache.log4j

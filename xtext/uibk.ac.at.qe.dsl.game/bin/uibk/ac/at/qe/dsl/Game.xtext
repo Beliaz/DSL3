@@ -1,0 +1,135 @@
+// TEAM: Florian Tischler, Waldboth Ivan, Daniel Kopp
+
+grammar uibk.ac.at.qe.dsl.Game with org.eclipse.xtext.common.Terminals
+
+generate game "http://www.ac.uibk/at/qe/dsl/Game"
+
+/*
+ * With our language it is possible to describe a simple text based game
+ * 
+ * A game is build by different person and objects. For each of them different
+ * actions are available e.g. talk, pick, use
+ * 
+ * Also global actions are possible e.g. leave
+ * 
+ */
+
+/* 
+ * A game is build by a scene
+ * Each scene is a sequence of different levels
+ */
+Game:
+	scenes+=Scene*
+;
+
+/*
+ * A scene contains multiple levels
+ * 
+ * First the levels are declared to get an overview of the levels at a level
+ * 
+ * After each level is defined
+ * 
+ * Also the start and final level are set
+ */
+Scene:
+	'new' name=ID
+	'{'
+		declartions+=LevelDeclaration*
+		definitions+=LevelDefinition*
+		'start' '=' startLevel=[LevelDeclaration] ';'
+		'final' '=' finalLevel=[LevelDeclaration] ';'
+	'}'
+;
+
+/*
+ * declaring a level by some id
+ */
+LevelDeclaration:
+	'level' name=ID ';'
+;
+
+/*
+ * A level definition contains multiple elements
+ * 
+ * A description which will be given to the user
+ * 
+ * Multiple persons
+ * 
+ * Multiple objects
+ * 
+ * Global actions
+ * 
+ * A level can contain an optional next level
+ */
+LevelDefinition:
+	name=[LevelDeclaration] '='
+	'{'
+		description=Description
+		persons+=Person*
+		objects+=My_Object*
+		('next' '=' next=[LevelDeclaration] ';')?
+	'}'
+;
+
+/*
+ * Description of a level
+ */
+Description:
+	'description' '=' name=STRING ';'
+;
+
+/*
+ * A person is build by an Id, different responses, a position, an action, can hold different objects and 
+ * if the user has a certain object he finishes the level
+ */
+Person:
+	name=ID '='
+	'{'
+		'type' '=' type=ID ';'
+		'response' '{' response+=Person_R* '}'
+		'position' '=' position=STRING ';'
+		'action' '=' action=Action_P ';'
+		('final' '=' finalObject=[My_Object] ';')?
+	'}'
+;
+
+/*
+ * Person responses
+ */
+Person_R:
+	item=STRING (',')?
+;
+
+/*
+ * Person objects
+ */
+Person_O:
+	items=[My_Object] (',')?
+;
+
+/*
+ * An object is build by an Id, a position and an action
+ */
+My_Object:
+	name=ID '='
+	'{'
+		'type' '=' type=ID ';'
+		'response' '=' response=STRING ';'
+		'position' '=' position=STRING ';'
+		'action' '=' action=Action_O ';'
+	'}'
+;
+
+/*
+ * Object actions
+ */
+enum Action_O:
+	USE = 'Use' | INSPECT='Inspect'
+;
+
+/*
+ * Person actions
+ */
+enum Action_P:
+	TALK='Talk'
+;
