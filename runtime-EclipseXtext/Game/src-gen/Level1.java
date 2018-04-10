@@ -119,7 +119,7 @@ class InspectObjectKeyAction implements IAction {
 	private IObject obj;
 	private Game_Object Key;
 
-	InspectObjectAction(IObject obj) {
+	InspectObjectKeyAction(IObject obj) {
 		this.obj = obj;
 		this.Key = new Game_Object("Key");
 	}

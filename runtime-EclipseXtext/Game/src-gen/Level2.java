@@ -104,7 +104,7 @@ class InspectObjectBreadAction implements IAction {
 	private IObject obj;
 	private Game_Object Bread;
 
-	InspectObjectAction(IObject obj) {
+	InspectObjectBreadAction(IObject obj) {
 		this.obj = obj;
 		this.Bread = new Game_Object("Bread");
 	}
@@ -141,7 +141,7 @@ class UseObjectPenAction implements IAction {
 	private Game_Object Pen;
 	private Game_Object Book;
 
-	InspectObjectAction(IObject obj) {
+	UseObjectPenAction(IObject obj) {
 		this.obj = obj;
 		this.Pen = new Game_Object("Pen");
 		this.Book = new Game_Object("Book");
@@ -158,7 +158,7 @@ class UseObjectPenAction implements IAction {
 			context.getOut().println(context.player().getName() + ": Its a pen");
 		}
 		if (obj.equals(Book)) {
-			context.getOut().println(context.player().getName() + ": The booke is open. It looks like a recipe book");
+			context.getOut().println(context.player().getName() + ": The book is open. It looks like a recipe book");
 		}
 		else {
 			context.getOut().println(
@@ -181,7 +181,7 @@ class UseObjectBookAction implements IAction {
 	private Game_Object Pen;
 	private Game_Object Book;
 
-	InspectObjectAction(IObject obj) {
+	UseObjectBookAction(IObject obj) {
 		this.obj = obj;
 		this.Pen = new Game_Object("Pen");
 		this.Book = new Game_Object("Book");
@@ -198,7 +198,7 @@ class UseObjectBookAction implements IAction {
 			context.getOut().println(context.player().getName() + ": Its a pen");
 		}
 		if (obj.equals(Book)) {
-			context.getOut().println(context.player().getName() + ": The booke is open. It looks like a recipe book");
+			context.getOut().println(context.player().getName() + ": The book is open. It looks like a recipe book");
 		}
 		else {
 			context.getOut().println(
@@ -243,7 +243,7 @@ public class Level2 extends TextAdventureLevel {
 
     @Override
     protected String getDescription(IContext context) {
-        return "In the entrance room...";
+        return "In the dining room...";
     }
 
     @Override
