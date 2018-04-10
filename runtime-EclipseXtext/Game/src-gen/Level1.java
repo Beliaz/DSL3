@@ -31,6 +31,7 @@ class TalkToIvanAction implements IAction
 	if (context.player().hasObject("Key")) {
 		Ivan.say(context.getOut(), String.format("Congratulations!"));
 		context.changeLevel();
+		
 	} else {
     		String name;
        		switch (counter++) {
@@ -85,7 +86,7 @@ class TalkToFlorianAction implements IAction
 
     @Override
     public void perform(IContext context) {
-	if (ture) {
+	if (true) {
     		String name;
        		switch (counter++) {
        		case 0:
@@ -113,7 +114,7 @@ class TalkToFlorianAction implements IAction
     }
 }
 
-class InspectObjectAction implements IAction {
+class InspectObjectKeyAction implements IAction {
 
 	private IObject obj;
 	private Game_Object Key;
@@ -150,30 +151,6 @@ class InspectObjectAction implements IAction {
 	}
 }
 
-class LeaveAction implements IAction
-{
-    @Override
-    public String getDescription() {
-        return "Leave";
-    }
-
-    @Override
-    public void perform(IContext context) {
-        //context.player().say(context.getOut(), "I gotta go, see you!");
-        context.getState().setGameState(GameState.Finished);
-    }
-
-    @Override
-    public boolean isAvailable(IContext state) {
-        return true;
-    }
-
-    @Override
-    public boolean isExplicitAction() {
-        return true;
-    }
-}
-
 
 public class Level1 extends TextAdventureLevel {
     private List<IAction> actions = new LinkedList<>();
@@ -188,7 +165,7 @@ public class Level1 extends TextAdventureLevel {
     	actions.add(new TalkToFlorianAction(persons.get(1)));
 
 		objects.add(new Game_Object("Key"));
-		actions.add(new InspectObjectAction(objects.get(0)));
+		actions.add(new InspectObjectKeyAction(objects.get(0)));
 
         
 

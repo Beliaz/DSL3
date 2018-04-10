@@ -30,7 +30,9 @@ class TalkToDanielAction implements IAction
     public void perform(IContext context) {
 	if (context.player().hasObject("Bread")) {
 		Daniel.say(context.getOut(), String.format("Congratulations!"));
+		context.getState().setGameState(GameState.Finished);
 		context.changeLevel();
+		
 	} else {
     		String name;
        		switch (counter++) {
@@ -73,7 +75,7 @@ class TalkToMarkusAction implements IAction
 
     @Override
     public void perform(IContext context) {
-	if (ture) {
+	if (true) {
     		String name;
        		switch (counter++) {
        		case 0:
@@ -97,7 +99,7 @@ class TalkToMarkusAction implements IAction
     }
 }
 
-class InspectObjectAction implements IAction {
+class InspectObjectBreadAction implements IAction {
 
 	private IObject obj;
 	private Game_Object Bread;
@@ -133,31 +135,85 @@ class InspectObjectAction implements IAction {
 		return false;
 	}
 }
+class UseObjectPenAction implements IAction {
 
+	private IObject obj;
+	private Game_Object Pen;
+	private Game_Object Book;
 
+	InspectObjectAction(IObject obj) {
+		this.obj = obj;
+		this.Pen = new Game_Object("Pen");
+		this.Book = new Game_Object("Book");
+	}
 
-class LeaveAction implements IAction
-{
-    @Override
-    public String getDescription() {
-        return "Leave";
-    }
+	@Override
+	public String getDescription() {
+		return String.format("Take a look at the %s", obj.getName());
+	}
 
-    @Override
-    public void perform(IContext context) {
-        //context.player().say(context.getOut(), "I gotta go, see you!");
-        context.getState().setGameState(GameState.Finished);
-    }
+	@Override
+	public void perform(IContext context) {
+		if (obj.equals(Pen)) {
+			context.getOut().println(context.player().getName() + ": Its a pen");
+		}
+		if (obj.equals(Book)) {
+			context.getOut().println(context.player().getName() + ": The booke is open. It looks like a recipe book");
+		}
+		else {
+			context.getOut().println(
+					context.player().getName() + ": This is a nice " + obj.getName() + ", but i can't use it!");
+		}
+	}
 
-    @Override
-    public boolean isAvailable(IContext state) {
-        return true;
-    }
+	@Override
+	public boolean isAvailable(IContext state) {
+		return true;
+	}
 
-    @Override
-    public boolean isExplicitAction() {
-        return true;
-    }
+	public boolean isExplicitAction() {
+		return false;
+	}
+}
+class UseObjectBookAction implements IAction {
+
+	private IObject obj;
+	private Game_Object Pen;
+	private Game_Object Book;
+
+	InspectObjectAction(IObject obj) {
+		this.obj = obj;
+		this.Pen = new Game_Object("Pen");
+		this.Book = new Game_Object("Book");
+	}
+
+	@Override
+	public String getDescription() {
+		return String.format("Take a look at the %s", obj.getName());
+	}
+
+	@Override
+	public void perform(IContext context) {
+		if (obj.equals(Pen)) {
+			context.getOut().println(context.player().getName() + ": Its a pen");
+		}
+		if (obj.equals(Book)) {
+			context.getOut().println(context.player().getName() + ": The booke is open. It looks like a recipe book");
+		}
+		else {
+			context.getOut().println(
+					context.player().getName() + ": This is a nice " + obj.getName() + ", but i can't use it!");
+		}
+	}
+
+	@Override
+	public boolean isAvailable(IContext state) {
+		return true;
+	}
+
+	public boolean isExplicitAction() {
+		return false;
+	}
 }
 
 
@@ -174,9 +230,11 @@ public class Level2 extends TextAdventureLevel {
     	actions.add(new TalkToMarkusAction(persons.get(1)));
 
 		objects.add(new Game_Object("Bread"));
-		actions.add(new InspectObjectAction(objects.get(0)));
+		actions.add(new InspectObjectBreadAction(objects.get(0)));
 		objects.add(new Game_Object("Pen"));
+		actions.add(new UseObjectPenAction(objects.get(1)));
 		objects.add(new Game_Object("Book"));
+		actions.add(new UseObjectBookAction(objects.get(2)));
 
         
 
