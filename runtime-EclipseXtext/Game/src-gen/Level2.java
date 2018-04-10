@@ -7,51 +7,39 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-class TalkToIvanAction implements IAction
+class TalkToDanielAction implements IAction
 {
-    private IPerson Ivan;
-    private IObject Key;
+    private IPerson Daniel;
+    private IObject Bread;
     int counter;
     private boolean available;
 
-    TalkToIvanAction(IPerson Ivan) {
-        this.Ivan = Ivan;
+    TalkToDanielAction(IPerson Daniel) {
+        this.Daniel = Daniel;
         this.counter = 0;
-        this.Key = new Game_Object("Key");
+        this.Bread = new Game_Object("Bread");
 
     }
 
     @Override
     public String getDescription() {
-        return String.format("Talk to %s", Ivan.getName());
+        return String.format("Talk to %s", Daniel.getName());
     }
 
     @Override
     public void perform(IContext context) {
-	if (context.player().hasObject("Key")) {
-		Ivan.say(context.getOut(), String.format("Congratulations!"));
+	if (context.player().hasObject("Bread")) {
+		Daniel.say(context.getOut(), String.format("Congratulations!"));
 		context.changeLevel();
 	} else {
     		String name;
        		switch (counter++) {
        		case 0:
        			name = (String) context.getState().getData(Player.class.getName(), "name");
-       			Ivan.say(context.getOut(), String.format("Hi, nice to see you!"));
-       			break;
-       		case 1:
-       			name = (String) context.getState().getData(Player.class.getName(), "name");
-       			Ivan.say(context.getOut(), String.format("I need a key to open the Door. Find it!"));
-       			break;
-       		case 2:
-       			name = (String) context.getState().getData(Player.class.getName(), "name");
-       			Ivan.say(context.getOut(), String.format("Do you already found the key? Give it to me!"));
-       			break;
-       		case 3:
-       			name = (String) context.getState().getData(Player.class.getName(), "name");
-       			Ivan.say(context.getOut(), String.format("I have nothing to say!"));
+       			Daniel.say(context.getOut(), String.format("I am hungry"));
        			break;
        		default:
-       			Ivan.say(context.getOut(), String.format("I have nothing to say!"));
+       			Daniel.say(context.getOut(), String.format("I have nothing to say!"));
        			break;
        		}
        	}
@@ -66,21 +54,21 @@ class TalkToIvanAction implements IAction
         return false;
     }
 }
-class TalkToFlorianAction implements IAction
+class TalkToMarkusAction implements IAction
 {
-    private IPerson Florian;
+    private IPerson Markus;
     int counter;
     private boolean available;
 
-    TalkToFlorianAction(IPerson Florian) {
-        this.Florian = Florian;
+    TalkToMarkusAction(IPerson Markus) {
+        this.Markus = Markus;
         this.counter = 0;
 
     }
 
     @Override
     public String getDescription() {
-        return String.format("Talk to %s", Florian.getName());
+        return String.format("Talk to %s", Markus.getName());
     }
 
     @Override
@@ -90,14 +78,10 @@ class TalkToFlorianAction implements IAction
        		switch (counter++) {
        		case 0:
        			name = (String) context.getState().getData(Player.class.getName(), "name");
-       			Florian.say(context.getOut(), String.format("Hi!"));
-       			break;
-       		case 1:
-       			name = (String) context.getState().getData(Player.class.getName(), "name");
-       			Florian.say(context.getOut(), String.format("Do not speak with me!"));
+       			Markus.say(context.getOut(), String.format("Hi! The kitchen is closed"));
        			break;
        		default:
-       			Florian.say(context.getOut(), String.format("I have nothing to say!"));
+       			Markus.say(context.getOut(), String.format("I have nothing to say!"));
        			break;
        		}
        	}
@@ -116,11 +100,11 @@ class TalkToFlorianAction implements IAction
 class InspectObjectAction implements IAction {
 
 	private IObject obj;
-	private Game_Object Key;
+	private Game_Object Bread;
 
 	InspectObjectAction(IObject obj) {
 		this.obj = obj;
-		this.Key = new Game_Object("Key");
+		this.Bread = new Game_Object("Bread");
 	}
 
 	@Override
@@ -130,9 +114,9 @@ class InspectObjectAction implements IAction {
 
 	@Override
 	public void perform(IContext context) {
-		if (obj.equals(Key)) {
-			context.getOut().println(context.player().getName() + ": Oh... a key!");
-			context.player().take(Key);
+		if (obj.equals(Bread)) {
+			context.getOut().println(context.player().getName() + ": Oh... maybe i can give it to Daniel");
+			context.player().take(Bread);
 		}
 		else {
 			context.getOut().println(
@@ -149,6 +133,8 @@ class InspectObjectAction implements IAction {
 		return false;
 	}
 }
+
+
 
 class LeaveAction implements IAction
 {
@@ -175,20 +161,22 @@ class LeaveAction implements IAction
 }
 
 
-public class Level1 extends TextAdventureLevel {
+public class Level2 extends TextAdventureLevel {
     private List<IAction> actions = new LinkedList<>();
     private List<IPerson> persons = new LinkedList<>();
     private List<IObject> objects = new LinkedList<>();
 
     public void initialize(IContext context)
     {
-    	persons.add(new Person("Ivan", "at the door"));
-    	actions.add(new TalkToIvanAction(persons.get(0)));
-    	persons.add(new Person("Florian", "sitting on a chair"));
-    	actions.add(new TalkToFlorianAction(persons.get(1)));
+    	persons.add(new Person("Daniel", "near the kitchen"));
+    	actions.add(new TalkToDanielAction(persons.get(0)));
+    	persons.add(new Person("Markus", "in the kitchen"));
+    	actions.add(new TalkToMarkusAction(persons.get(1)));
 
-		objects.add(new Game_Object("Key"));
+		objects.add(new Game_Object("Bread"));
 		actions.add(new InspectObjectAction(objects.get(0)));
+		objects.add(new Game_Object("Pen"));
+		objects.add(new Game_Object("Book"));
 
         
 
@@ -210,8 +198,4 @@ public class Level1 extends TextAdventureLevel {
         return actions;
     }
     
-    @Override
-        public String getNextLevel(IContext context) {
-            return Level2.class.getName();
-        }
 }
