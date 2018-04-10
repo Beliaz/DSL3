@@ -374,32 +374,13 @@ ruleLevelDefinition returns [EObject current=null]
 			)
 		)*
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getLevelDefinitionAccess().getActionsAction_GLOBALEnumRuleCall_6_0());
-				}
-				lv_actions_6_0=ruleAction_GLOBAL
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getLevelDefinitionRule());
-					}
-					add(
-						$current,
-						"actions",
-						lv_actions_6_0,
-						"uibk.ac.at.qe.dsl.Game.Action_GLOBAL");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		(
-			otherlv_7='next'
+			otherlv_6='next'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getLevelDefinitionAccess().getNextKeyword_7_0());
+				newLeafNode(otherlv_6, grammarAccess.getLevelDefinitionAccess().getNextKeyword_6_0());
 			}
-			otherlv_8='='
+			otherlv_7='='
 			{
-				newLeafNode(otherlv_8, grammarAccess.getLevelDefinitionAccess().getEqualsSignKeyword_7_1());
+				newLeafNode(otherlv_7, grammarAccess.getLevelDefinitionAccess().getEqualsSignKeyword_6_1());
 			}
 			(
 				(
@@ -408,20 +389,20 @@ ruleLevelDefinition returns [EObject current=null]
 							$current = createModelElement(grammarAccess.getLevelDefinitionRule());
 						}
 					}
-					otherlv_9=RULE_ID
+					otherlv_8=RULE_ID
 					{
-						newLeafNode(otherlv_9, grammarAccess.getLevelDefinitionAccess().getNextLevelDeclarationCrossReference_7_2_0());
+						newLeafNode(otherlv_8, grammarAccess.getLevelDefinitionAccess().getNextLevelDeclarationCrossReference_6_2_0());
 					}
 				)
 			)
-			otherlv_10=';'
+			otherlv_9=';'
 			{
-				newLeafNode(otherlv_10, grammarAccess.getLevelDefinitionAccess().getSemicolonKeyword_7_3());
+				newLeafNode(otherlv_9, grammarAccess.getLevelDefinitionAccess().getSemicolonKeyword_6_3());
 			}
 		)?
-		otherlv_11='}'
+		otherlv_10='}'
 		{
-			newLeafNode(otherlv_11, grammarAccess.getLevelDefinitionAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_10, grammarAccess.getLevelDefinitionAccess().getRightCurlyBracketKeyword_7());
 		}
 	)
 ;
@@ -939,23 +920,6 @@ ruleObject returns [EObject current=null]
 		otherlv_19='}'
 		{
 			newLeafNode(otherlv_19, grammarAccess.getObjectAccess().getRightCurlyBracketKeyword_19());
-		}
-	)
-;
-
-// Rule Action_GLOBAL
-ruleAction_GLOBAL returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		enumLiteral_0='Leave'
-		{
-			$current = grammarAccess.getAction_GLOBALAccess().getLEAVEEnumLiteralDeclaration().getEnumLiteral().getInstance();
-			newLeafNode(enumLiteral_0, grammarAccess.getAction_GLOBALAccess().getLEAVEEnumLiteralDeclaration());
 		}
 	)
 ;

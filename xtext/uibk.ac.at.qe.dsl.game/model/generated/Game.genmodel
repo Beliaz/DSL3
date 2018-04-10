@@ -6,9 +6,6 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.13">
   <genPackages prefix="Game" basePackage="uibk.ac.at.qe.dsl" disposableProviderFactory="true"
       fileExtensions="game" ecorePackage="Game.ecore#/">
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action_GLOBAL">
-      <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_GLOBAL/LEAVE"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Game.ecore#//Action_O">
       <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_O/USE"/>
       <genEnumLiterals ecoreEnumLiteral="Game.ecore#//Action_O/INSPECT"/>
@@ -34,7 +31,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/description"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/persons"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/objects"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Game.ecore#//LevelDefinition/actions"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Game.ecore#//LevelDefinition/next"/>
     </genClasses>
     <genClasses ecoreClass="Game.ecore#//Description">

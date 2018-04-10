@@ -12,7 +12,6 @@ import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
-import uibk.ac.at.qe.dsl.game.Action_GLOBAL;
 import uibk.ac.at.qe.dsl.game.Action_O;
 import uibk.ac.at.qe.dsl.game.Action_P;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
@@ -28,6 +27,9 @@ import uibk.ac.at.qe.dsl.game.Scene;
  */
 @SuppressWarnings("all")
 public class GameGenerator extends AbstractGenerator {
+  /**
+   * Main generate function
+   */
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     Iterable<Scene> _filter = Iterables.<Scene>filter(IteratorExtensions.<EObject>toIterable(resource.getAllContents()), Scene.class);
@@ -36,6 +38,9 @@ public class GameGenerator extends AbstractGenerator {
     }
   }
   
+  /**
+   * For each scene the level files are generated
+   */
   public void generateScene(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context, final Scene scene) {
     EList<LevelDefinition> _definitions = scene.getDefinitions();
     for (final LevelDefinition definition : _definitions) {
@@ -45,6 +50,9 @@ public class GameGenerator extends AbstractGenerator {
     }
   }
   
+  /**
+   * Creates a level by calling the necessary functions
+   */
   public String generateFiles(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context, final LevelDefinition level) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package test.textadventure;");
@@ -99,14 +107,10 @@ public class GameGenerator extends AbstractGenerator {
       }
     }
     _builder.newLine();
-    {
-      EList<Action_GLOBAL> _actions = level.getActions();
-      for(final Action_GLOBAL action : _actions) {
-        String _generateActionLeave = this.generateActionLeave();
-        _builder.append(_generateActionLeave);
-        _builder.newLineIfNotEmpty();
-      }
-    }
+    String _generateActionLeave = this.generateActionLeave();
+    _builder.append(_generateActionLeave);
+    _builder.newLineIfNotEmpty();
+    _builder.newLine();
     _builder.newLine();
     String _generateLevel = this.generateLevel(level);
     _builder.append(_generateLevel);
@@ -114,6 +118,9 @@ public class GameGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
+  /**
+   * Talk to a person action
+   */
   public String generateActionTalk(final Person person) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("class TalkTo");
@@ -212,16 +219,16 @@ public class GameGenerator extends AbstractGenerator {
     _builder.append("public void perform(IContext context) {");
     _builder.newLine();
     _builder.append("    \t");
-    _builder.append("if (context.player().hasObject(");
+    _builder.append("if (context.player().hasObject(\"");
     String _name_10 = person.getFinalObject().getName();
     _builder.append(_name_10, "    \t");
-    _builder.append(")) {");
+    _builder.append("\")) {");
     _builder.newLineIfNotEmpty();
     _builder.append("    \t\t");
     _builder.append("ivan.say(context.getOut(), String.format(\"Congratulations!\"));");
     _builder.newLine();
     _builder.append("    \t\t");
-    _builder.append("context.levelComplete();");
+    _builder.append("context.changeLevel();");
     _builder.newLine();
     _builder.append("    \t");
     _builder.append("} else {");
@@ -280,7 +287,7 @@ public class GameGenerator extends AbstractGenerator {
     _builder.append("@Override");
     _builder.newLine();
     _builder.append("    ");
-    _builder.append("public boolean isAvailable(IState state) {");
+    _builder.append("public boolean isAvailable(IContext state) {");
     _builder.newLine();
     _builder.append("        ");
     _builder.append("return true;");
@@ -303,6 +310,9 @@ public class GameGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
+  /**
+   * Leave action (go to next level)
+   */
   public String generateActionLeave() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("class LeaveAction implements IAction");
@@ -368,276 +378,9 @@ public class GameGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
-  public String generateCommonPerson() {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("class Person implements IPerson");
-    _builder.newLine();
-    _builder.append("{");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("private String name;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("private String position;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("Person(String name, String position) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("this.name = name;");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("this.position = position;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public String getName() {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("return name;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public String getPosition() {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("return position;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public void say(PrintStream stream, String string) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("stream.println(String.format(\"%s: %s\", getName(), string));");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public void onDiscovered(IContext context) {");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    return _builder.toString();
-  }
-  
-  public String generateLevel(final LevelDefinition level) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("public class ");
-    String _name = level.getName().getName();
-    _builder.append(_name);
-    _builder.append(" extends TextAdventureLevel {");
-    _builder.newLineIfNotEmpty();
-    _builder.append("    ");
-    _builder.append("private List<IAction> actions = new LinkedList<>();");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("private List<IPerson> persons = new LinkedList<>();");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("private List<IObject> objects = new LinkedList<>();");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public void initialize(IContext context)");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("{");
-    _builder.newLine();
-    _builder.append("    \t");
-    int i = 0;
-    _builder.newLineIfNotEmpty();
-    {
-      EList<Person> _persons = level.getPersons();
-      for(final Person person : _persons) {
-        _builder.append("    \t");
-        _builder.append("persons.add(new Person(");
-        String _name_1 = person.getName();
-        _builder.append(_name_1, "    \t");
-        _builder.append(", \"");
-        String _position = person.getPosition();
-        _builder.append(_position, "    \t");
-        _builder.append("\"));");
-        _builder.newLineIfNotEmpty();
-        {
-          boolean _equals = person.getAction().equals(Action_P.TALK);
-          if (_equals) {
-            _builder.append("    \t");
-            _builder.append("actions.add(new TalkTo");
-            String _name_2 = person.getName();
-            _builder.append(_name_2, "    \t");
-            _builder.append("Action(persons.get(");
-            int _plusPlus = i++;
-            _builder.append(_plusPlus, "    \t");
-            _builder.append(")));");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
-    _builder.newLine();
-    _builder.append("\t\t");
-    String _xblockexpression = null;
-    {
-      i = 0;
-      _xblockexpression = "";
-    }
-    _builder.append(_xblockexpression, "\t\t");
-    _builder.newLineIfNotEmpty();
-    {
-      EList<uibk.ac.at.qe.dsl.game.Object> _objects = level.getObjects();
-      for(final uibk.ac.at.qe.dsl.game.Object object : _objects) {
-        _builder.append("\t\t");
-        _builder.append("objects.add(new MyObject(\"");
-        String _name_3 = object.getName();
-        _builder.append(_name_3, "\t\t");
-        _builder.append("\"));");
-        _builder.newLineIfNotEmpty();
-        {
-          boolean _equals_1 = object.getAction().equals(Action_O.USE);
-          if (_equals_1) {
-          } else {
-            boolean _equals_2 = object.getAction().equals(Action_O.INSPECT);
-            if (_equals_2) {
-              _builder.append("\t\t");
-              _builder.append("new InspectObjectAction(objects.get(");
-              int _plusPlus_1 = i++;
-              _builder.append(_plusPlus_1, "\t\t");
-              _builder.append("))");
-              _builder.newLineIfNotEmpty();
-            }
-          }
-        }
-      }
-    }
-    _builder.append("\t\t");
-    _builder.newLine();
-    {
-      EList<Action_GLOBAL> _actions = level.getActions();
-      for(final Action_GLOBAL action : _actions) {
-        {
-          boolean _equals_3 = action.equals(Action_GLOBAL.LEAVE);
-          if (_equals_3) {
-            _builder.append("\t\t");
-            _builder.append("actions.add(new LeaveAction());");
-            _builder.newLine();
-          }
-        }
-      }
-    }
-    _builder.append("        ");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("super.initialize(context);");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("protected String getDescription(IContext context) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("return \"");
-    String _name_4 = level.getDescription().getName();
-    _builder.append(_name_4, "        ");
-    _builder.append("\";");
-    _builder.newLineIfNotEmpty();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("protected List<IPerson> getPersons(IContext context) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("return persons;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("protected List<IAction> getAvailableActions(IContext context) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("return actions.stream().filter(a -> a.isAvailable(context.getState()))");
-    _builder.newLine();
-    _builder.append("                ");
-    _builder.append(".collect(Collectors.toList());");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    {
-      LevelDeclaration _next = level.getNext();
-      boolean _tripleNotEquals = (_next != null);
-      if (_tripleNotEquals) {
-        _builder.append("    ");
-        _builder.append("@Override");
-        _builder.newLine();
-        _builder.append("    ");
-        _builder.append("    ");
-        _builder.append("public String getNextLevel(IContext context) {");
-        _builder.newLine();
-        _builder.append("    ");
-        _builder.append("        ");
-        _builder.append("return ");
-        String _name_5 = level.getNext().getName();
-        _builder.append(_name_5, "            ");
-        _builder.append(".class.getName();");
-        _builder.newLineIfNotEmpty();
-        _builder.append("    ");
-        _builder.append("    ");
-        _builder.append("}");
-        _builder.newLine();
-      }
-    }
-    _builder.append("}");
-    _builder.newLine();
-    return _builder.toString();
-  }
-  
+  /**
+   * Inspect action (user inspects an object and takes it)
+   */
   public String generateActionInspect(final LevelDefinition level) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("class InspectObjectAction implements IAction {");
@@ -732,7 +475,7 @@ public class GameGenerator extends AbstractGenerator {
             _builder.newLineIfNotEmpty();
             _builder.append("\t\t");
             _builder.append("\t");
-            _builder.append("context.player().inventory().add(");
+            _builder.append("context.player().take(");
             String _name_4 = object_2.getName();
             _builder.append(_name_4, "\t\t\t");
             _builder.append(");");
@@ -764,7 +507,7 @@ public class GameGenerator extends AbstractGenerator {
     _builder.append("@Override");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("public boolean isAvailable(IState state) {");
+    _builder.append("public boolean isAvailable(IContext state) {");
     _builder.newLine();
     _builder.append("\t\t");
     _builder.append("return true;");
@@ -787,6 +530,93 @@ public class GameGenerator extends AbstractGenerator {
     return _builder.toString();
   }
   
+  /**
+   * Person
+   */
+  public String generateCommonPerson() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("class Person implements IPerson");
+    _builder.newLine();
+    _builder.append("{");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private String name;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private String position;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("Person(String name, String position) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("this.name = name;");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("this.position = position;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public String getName() {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return name;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public String getPosition() {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return position;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public void say(PrintStream stream, String string) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("stream.println(String.format(\"%s: %s\", getName(), string));");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public void onDiscovered(IContext context) {");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder.toString();
+  }
+  
+  /**
+   * Object
+   */
   public String generateObject(final Object object) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("class MyObject implements IObject {");
@@ -826,45 +656,195 @@ public class GameGenerator extends AbstractGenerator {
     _builder.append("@Override");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("public String getPosition() {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("// TODO Auto-generated method stub");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return null;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public void onDiscovered(IContext context) {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("// TODO Auto-generated method stub");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("@Override");
-    _builder.newLine();
-    _builder.append("\t");
     _builder.append("public boolean equals(IObject other) {");
     _builder.newLine();
     _builder.append("\t\t");
-    _builder.append("return other.getName().equals(getName());");
+    _builder.append("return this.name==other.getName();");
     _builder.newLine();
     _builder.append("\t");
     _builder.append("}");
     _builder.newLine();
     _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    return _builder.toString();
+  }
+  
+  /**
+   * Creates the main class for a level
+   */
+  public String generateLevel(final LevelDefinition level) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("public class ");
+    String _name = level.getName().getName();
+    _builder.append(_name);
+    _builder.append(" extends TextAdventureLevel {");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("private List<IAction> actions = new LinkedList<>();");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private List<IPerson> persons = new LinkedList<>();");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private List<IObject> objects = new LinkedList<>();");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public void initialize(IContext context)");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("{");
+    _builder.newLine();
+    _builder.append("    \t");
+    int i = 0;
+    _builder.newLineIfNotEmpty();
+    {
+      EList<Person> _persons = level.getPersons();
+      for(final Person person : _persons) {
+        _builder.append("    \t");
+        _builder.append("persons.add(new Person(");
+        String _name_1 = person.getName();
+        _builder.append(_name_1, "    \t");
+        _builder.append(", \"");
+        String _position = person.getPosition();
+        _builder.append(_position, "    \t");
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+        {
+          boolean _equals = person.getAction().equals(Action_P.TALK);
+          if (_equals) {
+            _builder.append("    \t");
+            _builder.append("actions.add(new TalkTo");
+            String _name_2 = person.getName();
+            _builder.append(_name_2, "    \t");
+            _builder.append("Action(persons.get(");
+            int _plusPlus = i++;
+            _builder.append(_plusPlus, "    \t");
+            _builder.append(")));");
+            _builder.newLineIfNotEmpty();
+          }
+        }
+      }
+    }
+    _builder.newLine();
+    _builder.append("\t\t");
+    String _xblockexpression = null;
+    {
+      i = 0;
+      _xblockexpression = "";
+    }
+    _builder.append(_xblockexpression, "\t\t");
+    _builder.newLineIfNotEmpty();
+    {
+      EList<uibk.ac.at.qe.dsl.game.Object> _objects = level.getObjects();
+      for(final uibk.ac.at.qe.dsl.game.Object object : _objects) {
+        _builder.append("\t\t");
+        _builder.append("objects.add(new MyObject(\"");
+        String _name_3 = object.getName();
+        _builder.append(_name_3, "\t\t");
+        _builder.append("\"));");
+        _builder.newLineIfNotEmpty();
+        {
+          boolean _equals_1 = object.getAction().equals(Action_O.USE);
+          if (_equals_1) {
+          } else {
+            boolean _equals_2 = object.getAction().equals(Action_O.INSPECT);
+            if (_equals_2) {
+              _builder.append("\t\t");
+              _builder.append("new InspectObjectAction(objects.get(");
+              int _plusPlus_1 = i++;
+              _builder.append(_plusPlus_1, "\t\t");
+              _builder.append("))");
+              _builder.newLineIfNotEmpty();
+            }
+          }
+        }
+      }
+    }
+    _builder.append("\t\t");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("actions.add(new LeaveAction());");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("super.initialize(context);");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("protected String getDescription(IContext context) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return \"");
+    String _name_4 = level.getDescription().getName();
+    _builder.append(_name_4, "        ");
+    _builder.append("\";");
+    _builder.newLineIfNotEmpty();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("protected List<IPerson> getPersons(IContext context) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return persons;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("protected List<IAction> getActions(IContext context) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return actions;");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.newLine();
+    {
+      LevelDeclaration _next = level.getNext();
+      boolean _tripleNotEquals = (_next != null);
+      if (_tripleNotEquals) {
+        _builder.append("    ");
+        _builder.append("@Override");
+        _builder.newLine();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("public String getNextLevel(IContext context) {");
+        _builder.newLine();
+        _builder.append("    ");
+        _builder.append("        ");
+        _builder.append("return ");
+        String _name_5 = level.getNext().getName();
+        _builder.append(_name_5, "            ");
+        _builder.append(".class.getName();");
+        _builder.newLineIfNotEmpty();
+        _builder.append("    ");
+        _builder.append("    ");
+        _builder.append("}");
+        _builder.newLine();
+      }
+    }
     _builder.append("}");
     _builder.newLine();
     return _builder.toString();

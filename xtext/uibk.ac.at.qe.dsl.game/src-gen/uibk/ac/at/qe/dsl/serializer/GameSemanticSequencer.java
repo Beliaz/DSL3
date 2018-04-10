@@ -120,14 +120,7 @@ public class GameSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     LevelDefinition returns LevelDefinition
 	 *
 	 * Constraint:
-	 *     (
-	 *         name=[LevelDeclaration|ID] 
-	 *         description=Description 
-	 *         persons+=Person* 
-	 *         objects+=Object* 
-	 *         actions+=Action_GLOBAL 
-	 *         next=[LevelDeclaration|ID]?
-	 *     )
+	 *     (name=[LevelDeclaration|ID] description=Description persons+=Person* objects+=Object* next=[LevelDeclaration|ID]?)
 	 */
 	protected void sequence_LevelDefinition(ISerializationContext context, LevelDefinition semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);

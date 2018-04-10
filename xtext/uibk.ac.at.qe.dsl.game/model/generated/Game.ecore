@@ -25,8 +25,6 @@
         eType="#//Person" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="objects" upperBound="-1"
         eType="#//Object" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="actions" unique="false"
-        upperBound="-1" eType="#//Action_GLOBAL"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="next" eType="#//LevelDeclaration"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Description">
@@ -52,9 +50,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="response" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="position" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="action" eType="#//Action_O"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="Action_GLOBAL">
-    <eLiterals name="LEAVE" literal="Leave"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="Action_O">
     <eLiterals name="USE" literal="Use"/>

@@ -225,22 +225,13 @@ public interface GamePackage extends EPackage
   int LEVEL_DEFINITION__OBJECTS = 3;
 
   /**
-   * The feature id for the '<em><b>Actions</b></em>' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LEVEL_DEFINITION__ACTIONS = 4;
-
-  /**
    * The feature id for the '<em><b>Next</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LEVEL_DEFINITION__NEXT = 5;
+  int LEVEL_DEFINITION__NEXT = 4;
 
   /**
    * The number of structural features of the '<em>Level Definition</em>' class.
@@ -249,7 +240,7 @@ public interface GamePackage extends EPackage
    * @generated
    * @ordered
    */
-  int LEVEL_DEFINITION_FEATURE_COUNT = 6;
+  int LEVEL_DEFINITION_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.impl.DescriptionImpl <em>Description</em>}' class.
@@ -454,16 +445,6 @@ public interface GamePackage extends EPackage
   int OBJECT_FEATURE_COUNT = 5;
 
   /**
-   * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_GLOBAL <em>Action GLOBAL</em>}' enum.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see uibk.ac.at.qe.dsl.game.Action_GLOBAL
-   * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_GLOBAL()
-   * @generated
-   */
-  int ACTION_GLOBAL = 8;
-
-  /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_O <em>Action O</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -471,7 +452,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_O()
    * @generated
    */
-  int ACTION_O = 9;
+  int ACTION_O = 8;
 
   /**
    * The meta object id for the '{@link uibk.ac.at.qe.dsl.game.Action_P <em>Action P</em>}' enum.
@@ -481,7 +462,7 @@ public interface GamePackage extends EPackage
    * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_P()
    * @generated
    */
-  int ACTION_P = 10;
+  int ACTION_P = 9;
 
 
   /**
@@ -644,17 +625,6 @@ public interface GamePackage extends EPackage
    * @generated
    */
   EReference getLevelDefinition_Objects();
-
-  /**
-   * Returns the meta object for the attribute list '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getActions <em>Actions</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute list '<em>Actions</em>'.
-   * @see uibk.ac.at.qe.dsl.game.LevelDefinition#getActions()
-   * @see #getLevelDefinition()
-   * @generated
-   */
-  EAttribute getLevelDefinition_Actions();
 
   /**
    * Returns the meta object for the reference '{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getNext <em>Next</em>}'.
@@ -862,16 +832,6 @@ public interface GamePackage extends EPackage
   EAttribute getObject_Action();
 
   /**
-   * Returns the meta object for enum '{@link uibk.ac.at.qe.dsl.game.Action_GLOBAL <em>Action GLOBAL</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for enum '<em>Action GLOBAL</em>'.
-   * @see uibk.ac.at.qe.dsl.game.Action_GLOBAL
-   * @generated
-   */
-  EEnum getAction_GLOBAL();
-
-  /**
    * Returns the meta object for enum '{@link uibk.ac.at.qe.dsl.game.Action_O <em>Action O</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1043,14 +1003,6 @@ public interface GamePackage extends EPackage
     EReference LEVEL_DEFINITION__OBJECTS = eINSTANCE.getLevelDefinition_Objects();
 
     /**
-     * The meta object literal for the '<em><b>Actions</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LEVEL_DEFINITION__ACTIONS = eINSTANCE.getLevelDefinition_Actions();
-
-    /**
      * The meta object literal for the '<em><b>Next</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1209,16 +1161,6 @@ public interface GamePackage extends EPackage
      * @generated
      */
     EAttribute OBJECT__ACTION = eINSTANCE.getObject_Action();
-
-    /**
-     * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.Action_GLOBAL <em>Action GLOBAL</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see uibk.ac.at.qe.dsl.game.Action_GLOBAL
-     * @see uibk.ac.at.qe.dsl.game.impl.GamePackageImpl#getAction_GLOBAL()
-     * @generated
-     */
-    EEnum ACTION_GLOBAL = eINSTANCE.getAction_GLOBAL();
 
     /**
      * The meta object literal for the '{@link uibk.ac.at.qe.dsl.game.Action_O <em>Action O</em>}' enum.

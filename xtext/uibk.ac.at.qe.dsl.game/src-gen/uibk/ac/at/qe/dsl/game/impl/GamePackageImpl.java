@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EReference;
 
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
-import uibk.ac.at.qe.dsl.game.Action_GLOBAL;
 import uibk.ac.at.qe.dsl.game.Action_O;
 import uibk.ac.at.qe.dsl.game.Action_P;
 import uibk.ac.at.qe.dsl.game.Description;
@@ -87,13 +86,6 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * @generated
    */
   private EClass objectEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EEnum action_GLOBALEEnum = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -327,19 +319,9 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getLevelDefinition_Actions()
-  {
-    return (EAttribute)levelDefinitionEClass.getEStructuralFeatures().get(4);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getLevelDefinition_Next()
   {
-    return (EReference)levelDefinitionEClass.getEStructuralFeatures().get(5);
+    return (EReference)levelDefinitionEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -527,16 +509,6 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EEnum getAction_GLOBAL()
-  {
-    return action_GLOBALEEnum;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EEnum getAction_O()
   {
     return action_OEEnum;
@@ -600,7 +572,6 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     createEReference(levelDefinitionEClass, LEVEL_DEFINITION__DESCRIPTION);
     createEReference(levelDefinitionEClass, LEVEL_DEFINITION__PERSONS);
     createEReference(levelDefinitionEClass, LEVEL_DEFINITION__OBJECTS);
-    createEAttribute(levelDefinitionEClass, LEVEL_DEFINITION__ACTIONS);
     createEReference(levelDefinitionEClass, LEVEL_DEFINITION__NEXT);
 
     descriptionEClass = createEClass(DESCRIPTION);
@@ -626,7 +597,6 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     createEAttribute(objectEClass, OBJECT__ACTION);
 
     // Create enums
-    action_GLOBALEEnum = createEEnum(ACTION_GLOBAL);
     action_OEEnum = createEEnum(ACTION_O);
     action_PEEnum = createEEnum(ACTION_P);
   }
@@ -680,7 +650,6 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     initEReference(getLevelDefinition_Description(), this.getDescription(), null, "description", null, 0, 1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLevelDefinition_Persons(), this.getPerson(), null, "persons", null, 0, -1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLevelDefinition_Objects(), this.getObject(), null, "objects", null, 0, -1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getLevelDefinition_Actions(), this.getAction_GLOBAL(), "actions", null, 0, -1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLevelDefinition_Next(), this.getLevelDeclaration(), null, "next", null, 0, 1, LevelDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(descriptionEClass, Description.class, "Description", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -706,9 +675,6 @@ public class GamePackageImpl extends EPackageImpl implements GamePackage
     initEAttribute(getObject_Action(), this.getAction_O(), "action", null, 0, 1, uibk.ac.at.qe.dsl.game.Object.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Initialize enums and add enum literals
-    initEEnum(action_GLOBALEEnum, Action_GLOBAL.class, "Action_GLOBAL");
-    addEEnumLiteral(action_GLOBALEEnum, Action_GLOBAL.LEAVE);
-
     initEEnum(action_OEEnum, Action_O.class, "Action_O");
     addEEnumLiteral(action_OEEnum, Action_O.USE);
     addEEnumLiteral(action_OEEnum, Action_O.INSPECT);

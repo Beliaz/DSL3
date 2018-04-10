@@ -1,10 +1,9 @@
 ','=26
 ';'=15
 '='=14
-'Inspect'=29
-'Leave'=27
-'Talk'=30
-'Use'=28
+'Inspect'=28
+'Talk'=29
+'Use'=27
 'action'=24
 'description'=20
 'final'=16
@@ -44,4 +43,3 @@ T__26=26
 T__27=27
 T__28=28
 T__29=29
-T__30=30

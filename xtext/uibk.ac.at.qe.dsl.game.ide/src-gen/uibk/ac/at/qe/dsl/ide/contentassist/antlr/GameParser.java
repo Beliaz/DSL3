@@ -35,7 +35,7 @@ public class GameParser extends AbstractContentAssistParser {
 					put(grammarAccess.getSceneAccess().getGroup(), "rule__Scene__Group__0");
 					put(grammarAccess.getLevelDeclarationAccess().getGroup(), "rule__LevelDeclaration__Group__0");
 					put(grammarAccess.getLevelDefinitionAccess().getGroup(), "rule__LevelDefinition__Group__0");
-					put(grammarAccess.getLevelDefinitionAccess().getGroup_7(), "rule__LevelDefinition__Group_7__0");
+					put(grammarAccess.getLevelDefinitionAccess().getGroup_6(), "rule__LevelDefinition__Group_6__0");
 					put(grammarAccess.getDescriptionAccess().getGroup(), "rule__Description__Group__0");
 					put(grammarAccess.getPersonAccess().getGroup(), "rule__Person__Group__0");
 					put(grammarAccess.getPerson_RAccess().getGroup(), "rule__Person_R__Group__0");
@@ -52,8 +52,7 @@ public class GameParser extends AbstractContentAssistParser {
 					put(grammarAccess.getLevelDefinitionAccess().getDescriptionAssignment_3(), "rule__LevelDefinition__DescriptionAssignment_3");
 					put(grammarAccess.getLevelDefinitionAccess().getPersonsAssignment_4(), "rule__LevelDefinition__PersonsAssignment_4");
 					put(grammarAccess.getLevelDefinitionAccess().getObjectsAssignment_5(), "rule__LevelDefinition__ObjectsAssignment_5");
-					put(grammarAccess.getLevelDefinitionAccess().getActionsAssignment_6(), "rule__LevelDefinition__ActionsAssignment_6");
-					put(grammarAccess.getLevelDefinitionAccess().getNextAssignment_7_2(), "rule__LevelDefinition__NextAssignment_7_2");
+					put(grammarAccess.getLevelDefinitionAccess().getNextAssignment_6_2(), "rule__LevelDefinition__NextAssignment_6_2");
 					put(grammarAccess.getDescriptionAccess().getNameAssignment_2(), "rule__Description__NameAssignment_2");
 					put(grammarAccess.getPersonAccess().getNameAssignment_0(), "rule__Person__NameAssignment_0");
 					put(grammarAccess.getPersonAccess().getTypeAssignment_5(), "rule__Person__TypeAssignment_5");

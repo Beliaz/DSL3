@@ -16,11 +16,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EDataTypeEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import uibk.ac.at.qe.dsl.game.Action_GLOBAL;
 import uibk.ac.at.qe.dsl.game.Description;
 import uibk.ac.at.qe.dsl.game.GamePackage;
 import uibk.ac.at.qe.dsl.game.LevelDeclaration;
@@ -39,7 +37,6 @@ import uibk.ac.at.qe.dsl.game.Person;
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getPersons <em>Persons</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getObjects <em>Objects</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getActions <em>Actions</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.impl.LevelDefinitionImpl#getNext <em>Next</em>}</li>
  * </ul>
  *
@@ -86,16 +83,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EList<uibk.ac.at.qe.dsl.game.Object> objects;
-
-  /**
-   * The cached value of the '{@link #getActions() <em>Actions</em>}' attribute list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getActions()
-   * @generated
-   * @ordered
-   */
-  protected EList<Action_GLOBAL> actions;
 
   /**
    * The cached value of the '{@link #getNext() <em>Next</em>}' reference.
@@ -252,20 +239,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Action_GLOBAL> getActions()
-  {
-    if (actions == null)
-    {
-      actions = new EDataTypeEList<Action_GLOBAL>(Action_GLOBAL.class, this, GamePackage.LEVEL_DEFINITION__ACTIONS);
-    }
-    return actions;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public LevelDeclaration getNext()
   {
     if (next != null && next.eIsProxy())
@@ -343,8 +316,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return getPersons();
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
         return getObjects();
-      case GamePackage.LEVEL_DEFINITION__ACTIONS:
-        return getActions();
       case GamePackage.LEVEL_DEFINITION__NEXT:
         if (resolve) return getNext();
         return basicGetNext();
@@ -377,10 +348,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         getObjects().clear();
         getObjects().addAll((Collection<? extends uibk.ac.at.qe.dsl.game.Object>)newValue);
         return;
-      case GamePackage.LEVEL_DEFINITION__ACTIONS:
-        getActions().clear();
-        getActions().addAll((Collection<? extends Action_GLOBAL>)newValue);
-        return;
       case GamePackage.LEVEL_DEFINITION__NEXT:
         setNext((LevelDeclaration)newValue);
         return;
@@ -410,9 +377,6 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
         getObjects().clear();
         return;
-      case GamePackage.LEVEL_DEFINITION__ACTIONS:
-        getActions().clear();
-        return;
       case GamePackage.LEVEL_DEFINITION__NEXT:
         setNext((LevelDeclaration)null);
         return;
@@ -438,29 +402,10 @@ public class LevelDefinitionImpl extends MinimalEObjectImpl.Container implements
         return persons != null && !persons.isEmpty();
       case GamePackage.LEVEL_DEFINITION__OBJECTS:
         return objects != null && !objects.isEmpty();
-      case GamePackage.LEVEL_DEFINITION__ACTIONS:
-        return actions != null && !actions.isEmpty();
       case GamePackage.LEVEL_DEFINITION__NEXT:
         return next != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (actions: ");
-    result.append(actions);
-    result.append(')');
-    return result.toString();
   }
 
 } //LevelDefinitionImpl

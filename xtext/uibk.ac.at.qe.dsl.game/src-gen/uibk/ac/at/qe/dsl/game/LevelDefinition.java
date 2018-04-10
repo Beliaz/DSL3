@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getDescription <em>Description</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getPersons <em>Persons</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getObjects <em>Objects</em>}</li>
- *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getActions <em>Actions</em>}</li>
  *   <li>{@link uibk.ac.at.qe.dsl.game.LevelDefinition#getNext <em>Next</em>}</li>
  * </ul>
  *
@@ -113,24 +112,6 @@ public interface LevelDefinition extends EObject
    * @generated
    */
   EList<uibk.ac.at.qe.dsl.game.Object> getObjects();
-
-  /**
-   * Returns the value of the '<em><b>Actions</b></em>' attribute list.
-   * The list contents are of type {@link uibk.ac.at.qe.dsl.game.Action_GLOBAL}.
-   * The literals are from the enumeration {@link uibk.ac.at.qe.dsl.game.Action_GLOBAL}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Actions</em>' attribute list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Actions</em>' attribute list.
-   * @see uibk.ac.at.qe.dsl.game.Action_GLOBAL
-   * @see uibk.ac.at.qe.dsl.game.GamePackage#getLevelDefinition_Actions()
-   * @model unique="false"
-   * @generated
-   */
-  EList<Action_GLOBAL> getActions();
 
   /**
    * Returns the value of the '<em><b>Next</b></em>' reference.

@@ -12,7 +12,6 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import uibk.ac.at.qe.dsl.game.Action_GLOBAL;
 import uibk.ac.at.qe.dsl.game.Action_O;
 import uibk.ac.at.qe.dsl.game.Action_P;
 import uibk.ac.at.qe.dsl.game.Description;
@@ -100,8 +99,6 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case GamePackage.ACTION_GLOBAL:
-        return createAction_GLOBALFromString(eDataType, initialValue);
       case GamePackage.ACTION_O:
         return createAction_OFromString(eDataType, initialValue);
       case GamePackage.ACTION_P:
@@ -121,8 +118,6 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
   {
     switch (eDataType.getClassifierID())
     {
-      case GamePackage.ACTION_GLOBAL:
-        return convertAction_GLOBALToString(eDataType, instanceValue);
       case GamePackage.ACTION_O:
         return convertAction_OToString(eDataType, instanceValue);
       case GamePackage.ACTION_P:
@@ -218,28 +213,6 @@ public class GameFactoryImpl extends EFactoryImpl implements GameFactory
   {
     ObjectImpl object = new ObjectImpl();
     return object;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Action_GLOBAL createAction_GLOBALFromString(EDataType eDataType, String initialValue)
-  {
-    Action_GLOBAL result = Action_GLOBAL.get(initialValue);
-    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertAction_GLOBALToString(EDataType eDataType, Object instanceValue)
-  {
-    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**
