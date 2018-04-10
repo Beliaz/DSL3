@@ -28,7 +28,7 @@ class TalkToIvanAction implements IAction
     @Override
     public void perform(IContext context) {
     	if (context.player().hasObject("Key")) {
-    		ivan.say(context.getOut(), String.format("Congratulations!"));
+    		Ivan.say(context.getOut(), String.format("Congratulations!"));
     		context.changeLevel();
     	} else {
     		String name;
@@ -73,7 +73,7 @@ class InspectObjectAction implements IAction {
 
 	InspectObjectAction(IObject obj) {
 		this.obj = obj;
-		this.Key = new MyObject("Key");
+		this.Key = new Game_Object("Key");
 	}
 
 	@Override
@@ -138,10 +138,8 @@ public class Level1 extends TextAdventureLevel {
     	persons.add(new Person("Ivan", "at the door"));
     	actions.add(new TalkToIvanAction(persons.get(0)));
 
-		objects.add(new MyObject("Key"));
-		new InspectObjectAction(objects.get(0));
-		
-		actions.add(new LeaveAction());
+		objects.add(new Game_Object("Key"));
+		actions.add(new InspectObjectAction(objects.get(0)));
 
         
 
