@@ -1,16 +1,4 @@
-Controls
-{
-	rotaryKnob "myKnob" (
-			x 0
-			y 0
-			width 20
-			height 20
-			)
-	slider "mySlider" (
-		...
-}
-
-Sound ​
+Sound 
 {
 	sawToothOscillator "mySawTooth" (
 					min 50.0
@@ -33,6 +21,24 @@ Circuit
 
 Connections 
 {
-	linear (0.5) "myKnob" "mySawTooth" "property"
+	circuitA circuitB
 	...
+}
+
+Controls
+{
+	rotaryKnob "myKnob" (
+			x 0
+			y 0
+			width 20
+			height 20
+			connection (
+				type linear 
+				value 0.5 
+				target "mySawTooth" 
+				property "property"
+				)
+			)
+	slider "mySlider" (
+		...
 }
