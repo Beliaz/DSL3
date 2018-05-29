@@ -1,0 +1,38 @@
+Controls
+{
+	rotaryKnob "myKnob" (
+						x ​0
+						y 0
+						width 20
+						height 20
+						)
+	slider "mySlider"
+		...
+}
+
+Sound ​
+{
+	sawToothOscillator "mySawTooth" (
+						min 50.0
+						maximum 10.000
+						default 300.0
+						)
+		...
+}
+
+Circuit
+{
+	"circuitA" (
+			soundX1 soundX2 .. soundXn
+			"property1" soundX1 propertyName soundX2 propertyName .. soundXn propertyName 
+			"property2" soundX1 propertyName soundX2 propertyName .. soundXn propertyName 
+			...
+			"propertyn" soundX1 propertyName soundX2 propertyName .. soundXn propertyName 
+	)
+}
+
+Connections 
+{
+	linear (0.5) "myKnob" "mySawTooth" "property"
+	...
+}
