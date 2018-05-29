@@ -27,7 +27,7 @@ Connections
 
 Controls
 {
-	rotaryKnob "myKnob" (
+	rotaryKnob (
 			x 0
 			y 0
 			width 20
@@ -39,6 +39,6 @@ Controls
 				property "property"
 				)
 			)
-	slider "mySlider" (
+	slider (
 		...
 }
