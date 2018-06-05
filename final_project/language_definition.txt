@@ -1,44 +1,82 @@
-Sound 
+Circuits
 {
-	sawToothOscillator "mySawTooth" (
-					min 50.0
-					maximum 10.000
-					default 300.0
-					)
-		...
-}
+	"circuitA" {
+	
+		Sounds
+		{
+			Oscillator "mySawTooth" (
+				type sawTooth, sine, square, triangle
+				min 50.0
+				maximum 10.000
+				default 300.0
+			)
 
-Circuit
-{
-	"circuitA" (
-			soundX1 soundX2 .. soundXn
+			PassFilter "highPass" (
+				type high, low
+				frequency 5.000
+			)
+
+			BandPass "highPass" (
+				lower_frequency 5.000
+				upper_frequency 10.000
+			)
+
+			Add "add"
+			Multiply "mult"
+			Divide "div"
+
+			...
+		}
+		
+		Properties
+		{	
 			"property1" soundX1 propertyName soundX2 propertyName .. soundXn propertyName 
 			"property2" soundX1 propertyName soundX2 propertyName .. soundXn propertyName 
 			...
 			"propertyn" soundX1 propertyName soundX2 propertyName .. soundXn propertyName 
-	)
+		}
+		
+		Connections
+		{
+			"sound1" "property1" "sound2" "property2"
+			"sound3" "property1" "sound4" "property2"
+		}
+	}
 }
 
-Connections 
+CircuitConnections 
 {
 	circuitA circuitB
+	circuitB master
 	...
 }
 
 Controls
 {
-	rotaryKnob (
-			x 0
-			y 0
-			width 20
-			height 20
-			connection (
-				type linear 
-				value 0.5 
-				target "mySawTooth" 
-				property "property"
+	VerticalPanel {
+		HorizontalPanel "group1" {
+			rotaryKnob "name" (
+				connection (
+					type linear 
+					value 0.5 
+					target "circuitA.mySawTooth" 
+					property "property"
 				)
 			)
-	slider (
-		...
+			
+			slider (
+				...
+			)
+			
+			audioScope (
+				connection (
+					target master
+				)	
+			)
+		
+		}
+
+	
+	}
+
 }
