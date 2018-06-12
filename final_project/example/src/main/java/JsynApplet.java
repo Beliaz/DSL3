@@ -88,7 +88,7 @@ public class JsynApplet extends AppletBase {
 
     @Override
     protected void setupUI() {
-        setLayout(new BorderLayout());
+        super.setupUI();
 
         JPanel globalPanel = createVerticalStackPanel(3);
         JPanel globalControlsPanel = createHorizontalStackPanel(6);
