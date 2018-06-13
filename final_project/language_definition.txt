@@ -53,9 +53,8 @@ CircuitConnections
 
 Controls
 {
-	Window "MySynthesizer"
+	Window "My Synthesizer"
 	{
-		title 
 		width 1280
 		height 960
 	}
