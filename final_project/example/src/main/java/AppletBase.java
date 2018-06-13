@@ -130,10 +130,6 @@ public abstract class AppletBase extends JApplet {
         return circuits.get(name);
     }
 
-    protected final UnitGenerator getGenerator(String circuitName, String generatorName) {
-        return getGenerator(new String[]{circuitName, generatorName});
-    }
-
     protected final UnitGenerator getGenerator(String qualifiedName) {
         return getGenerator(qualifiedName.split("\\."));
     }
@@ -226,8 +222,7 @@ public abstract class AppletBase extends JApplet {
         input.connect(output);
     }
 
-    protected final void connectCircuit(String inputCircuitName, String outputCircuitName)
-    {
+    protected final void connectCircuit(String inputCircuitName, String outputCircuitName){
         if(inputCircuitName.toLowerCase().equals("master"))
             connect(master.input, getCircuit(outputCircuitName).output);
         else
@@ -235,8 +230,7 @@ public abstract class AppletBase extends JApplet {
             //connect(getCircuit(inputCircuitName).input, getCircuit(outputCircuitName).output);
     }
 
-    protected final void connect(String qualifiedInputName, String qualifiedOutputName)
-    {
+    protected final void connect(String qualifiedInputName, String qualifiedOutputName) {
         getInputPort(qualifiedInputName).connect(getOutputPort(qualifiedOutputName));
     }
 
@@ -268,14 +262,6 @@ public abstract class AppletBase extends JApplet {
         return scope.getView();
     }
 
-    protected final JPanel createHorizontalStackPanel(int columns) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(1, columns, 10, 10));
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        return panel;
-    }
-
     protected final CustomGrid createGrid() {
 
         return new CustomGrid();
@@ -298,14 +284,6 @@ public abstract class AppletBase extends JApplet {
         CustomGrid grid = createGrid(columnWeights, rowWeights);
         grid.getPanel().setBorder(BorderFactory.createTitledBorder(label));
         return grid;
-    }
-
-    protected final JPanel createVerticalStackPanel(int rows) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(rows, 1, 10, 10));
-        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
-        return panel;
     }
 
     protected void setupOutputMixer() {
@@ -334,13 +312,16 @@ public abstract class AppletBase extends JApplet {
     public void init() {
         synth = JSyn.createSynthesizer();
 
-        setupCircuits();
-
         setupOutputMixer();
 
-        setupUI();
+        // Circuits
+        setupCircuits();
 
+        // CircuitConnections
         setupCircuitConnections(master);
+
+        // Controls
+        setupUI();
 
         validate();
     }
