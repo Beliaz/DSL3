@@ -1,5 +1,6 @@
 package main.java;
 
+import com.jsyn.ports.UnitInputPort;
 import com.jsyn.ports.UnitOutputPort;
 import com.jsyn.unitgen.Circuit;
 import com.jsyn.unitgen.PassThrough;

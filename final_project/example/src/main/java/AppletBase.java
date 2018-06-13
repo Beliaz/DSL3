@@ -4,14 +4,12 @@ import com.jsyn.JSyn;
 import com.jsyn.Synthesizer;
 import com.jsyn.ports.UnitInputPort;
 import com.jsyn.ports.UnitOutputPort;
+import com.jsyn.ports.UnitPort;
 import com.jsyn.scope.AudioScope;
 import com.jsyn.swing.DoubleBoundedRangeModel;
 import com.jsyn.swing.PortModelFactory;
 import com.jsyn.swing.RotaryTextController;
-import com.jsyn.unitgen.LineOut;
-import com.jsyn.unitgen.Multiply;
-import com.jsyn.unitgen.PassThrough;
-import com.jsyn.unitgen.UnitGenerator;
+import com.jsyn.unitgen.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -223,6 +221,25 @@ public abstract class AppletBase extends JApplet {
         return createExponentialModel(getInputPort(g, names[2]));
     }
 
+    protected final void connect(UnitInputPort input, UnitOutputPort output)
+    {
+        input.connect(output);
+    }
+
+    protected final void connectCircuit(String inputCircuitName, String outputCircuitName)
+    {
+        if(inputCircuitName.toLowerCase().equals("master"))
+            connect(master.input, getCircuit(outputCircuitName).output);
+        else
+            throw new java.lang.UnsupportedOperationException();
+            //connect(getCircuit(inputCircuitName).input, getCircuit(outputCircuitName).output);
+    }
+
+    protected final void connect(String qualifiedInputName, String qualifiedOutputName)
+    {
+        getInputPort(qualifiedInputName).connect(getOutputPort(qualifiedOutputName));
+    }
+
     protected final JComponent createKnob(String label, DoubleBoundedRangeModel model) {
         JPanel knobPanel = new JPanel();
         knobPanel.setLayout(new GridLayout(1, 1));
@@ -276,7 +293,6 @@ public abstract class AppletBase extends JApplet {
         return new CustomGrid(columnWeights, rowWeights);
     }
 
-
     protected final CustomGrid createBorderedGrid(String label, double[] columnWeights, double[] rowWeights) {
 
         CustomGrid grid = createGrid(columnWeights, rowWeights);
@@ -295,12 +311,6 @@ public abstract class AppletBase extends JApplet {
     protected void setupOutputMixer() {
         // master pass through
         master = new PassThrough();
-        Enumeration<CustomCircuit> e = circuits.elements();
-        while (e.hasMoreElements()) {
-            CustomCircuit c = e.nextElement();
-            master.input.connect(c.output);
-        }
-
         synth.add(master);
 
         // limiter
@@ -330,7 +340,7 @@ public abstract class AppletBase extends JApplet {
 
         setupUI();
 
-        setupConnections();
+        setupCircuitConnections(master);
 
         validate();
     }
@@ -346,5 +356,5 @@ public abstract class AppletBase extends JApplet {
         synth.stop();
     }
 
-    protected abstract void setupConnections();
+    protected abstract void setupCircuitConnections(PassThrough master);
 }
