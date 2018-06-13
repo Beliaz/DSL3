@@ -53,8 +53,19 @@ CircuitConnections
 
 Controls
 {
-	VerticalPanel {
-		HorizontalPanel "group1" {
+	Window "MySynthesizer"
+	{
+		title 
+		width 1280
+		height 960
+	}
+	
+	Grid {
+		Grid "group1" {
+			Column 0.2
+			Column 0.5
+			Column 0.3
+			
 			rotaryKnob "name" (
 				connection (
 					type linear 
@@ -65,10 +76,12 @@ Controls
 			)
 			
 			slider (
+				columnIndex 1
 				...
 			)
 			
 			audioScope (
+				columnIndex 2
 				connection (
 					target master
 				)	
