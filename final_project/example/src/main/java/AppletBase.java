@@ -15,10 +15,107 @@ import com.jsyn.unitgen.UnitGenerator;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Arrays;
-import java.util.Dictionary;
-import java.util.Enumeration;
-import java.util.Hashtable;
+import java.util.*;
+import java.util.List;
+
+class Cells
+{
+    Cells()
+    {
+        this(new double[]{ 1 }, new double[]{ 1 });
+    }
+
+    Cells(double[] columnWeights, double[] rowWeights)
+    {
+        cells = new ArrayList<>();
+
+        for (int i = 0; i < rowWeights.length; ++i) {
+
+            List<GridBagConstraints> row = new ArrayList<>();
+
+            for (int j = 0; j < columnWeights.length; ++j) {
+
+                GridBagConstraints c = new GridBagConstraints();
+
+                c.fill = GridBagConstraints.BOTH;
+
+                c.gridx = j;
+                c.gridy = i;
+
+                c.weightx = columnWeights[c.gridx];
+                c.weighty = rowWeights[c.gridy];
+
+                row.add(c);
+            }
+
+            cells.add(row);
+        }
+
+        if(cells.size() == 0)
+        {
+            List<GridBagConstraints> row = new ArrayList<>();
+
+            GridBagConstraints c = new GridBagConstraints();
+            c.gridx = 0;
+            c.weighty = 1;
+            c.gridy = 0;
+            c.weightx = 1;
+            row.add(c);
+
+            cells.add(row);
+        }
+    }
+
+    GridBagConstraints getConstraint(int columnIndex, int rowIndex)
+    {
+        if(rowIndex >= cells.size()) throw new IllegalArgumentException();
+        if(columnIndex >= cells.get(0).size()) throw new IllegalArgumentException();
+
+        return cells.get(rowIndex).get(columnIndex);
+    }
+
+    List<List<GridBagConstraints>> cells;
+}
+
+class CustomGrid
+{
+    public CustomGrid(JPanel panel, Cells cells) {
+        this.panel = panel;
+        this.cells = cells;
+
+        panel.setLayout(new GridBagLayout());
+    }
+
+    public CustomGrid(double[] columnWeights, double[] rowWeights) {
+        this(new JPanel(), new Cells(columnWeights, rowWeights));
+    }
+
+    public CustomGrid() {
+        this(new JPanel(), new Cells());
+    }
+
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public Cells getCells() {
+        return cells;
+    }
+
+    void add(JComponent component, int columnIndex, int rowIndex)
+    {
+        panel.add(component, cells.getConstraint(columnIndex, rowIndex));
+    }
+
+    void add(CustomGrid grid, int columnIndex, int rowIndex)
+    {
+        add(grid.getPanel(), columnIndex, rowIndex);
+    }
+
+    JPanel panel;
+    Cells cells;
+}
 
 public abstract class AppletBase extends JApplet {
     protected Multiply limiter;
@@ -126,20 +223,20 @@ public abstract class AppletBase extends JApplet {
         return createExponentialModel(getInputPort(g, names[2]));
     }
 
-    protected final void addKnob(JPanel panel, String label, DoubleBoundedRangeModel model) {
+    protected final JComponent createKnob(String label, DoubleBoundedRangeModel model) {
         JPanel knobPanel = new JPanel();
-
         knobPanel.setLayout(new GridLayout(1, 1));
+        knobPanel.setMinimumSize(new Dimension(80, 80));
+        knobPanel.setMaximumSize(new Dimension(120, 120));
 
         RotaryTextController controller = new RotaryTextController(model, 5);
         controller.setTitle(label);
-
         knobPanel.add(BorderLayout.NORTH, controller);
 
-        panel.add(BorderLayout.NORTH, knobPanel);
+        return knobPanel;
     }
 
-    protected final void addWaveView(JPanel panel, UnitOutputPort[] probes) {
+    protected final JComponent createWaveView(UnitOutputPort[] probes) {
         AudioScope scope = new AudioScope(synth);
 
         for (UnitOutputPort probe : probes) {
@@ -149,22 +246,48 @@ public abstract class AppletBase extends JApplet {
         scope.setTriggerMode(AudioScope.TriggerMode.NORMAL);
         scope.start();
 
-        panel.add(BorderLayout.SOUTH, scope.getView());
+        scope.getView().setMinimumSize(new Dimension(100, 50));
+
+        return scope.getView();
     }
 
     protected final JPanel createHorizontalStackPanel(int columns) {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(1, columns, 10, 10));
-
-        panel.setBorder(BorderFactory.createCompoundBorder());
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         return panel;
+    }
+
+    protected final CustomGrid createGrid() {
+
+        return new CustomGrid();
+    }
+
+    protected final CustomGrid createBorderedGrid(String label) {
+
+        CustomGrid grid = createGrid();
+        grid.getPanel().setBorder(BorderFactory.createTitledBorder(label));
+        return grid;
+    }
+
+    protected final CustomGrid createGrid(double[] columnWeights, double[] rowWeights) {
+
+        return new CustomGrid(columnWeights, rowWeights);
+    }
+
+
+    protected final CustomGrid createBorderedGrid(String label, double[] columnWeights, double[] rowWeights) {
+
+        CustomGrid grid = createGrid(columnWeights, rowWeights);
+        grid.getPanel().setBorder(BorderFactory.createTitledBorder(label));
+        return grid;
     }
 
     protected final JPanel createVerticalStackPanel(int rows) {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(rows, 1, 10, 10));
-        panel.setBorder(BorderFactory.createCompoundBorder());
+        panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 
         return panel;
     }

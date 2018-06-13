@@ -13,9 +13,9 @@ public class JsynApplet extends AppletBase {
     public static void main(String args[]) {
         JsynApplet applet = new JsynApplet();
         JAppletFrame frame = new JAppletFrame(
-                "SawFaders", applet
+                "Example Program", applet
         );
-        frame.setSize(800, 600);
+        frame.setSize(1280, 960);
         frame.setVisible(true);
         frame.test();
     }
@@ -25,7 +25,7 @@ public class JsynApplet extends AppletBase {
         // Circuit 1 ===================================================================================================
         {
             // build
-            CustomCircuit circuit = new CustomCircuit("Circuit1");
+            CustomCircuit circuit = new CustomCircuit("CircuitA");
 
             circuit.add("OSC1", new SineOscillator());
             circuit.add("HPASS", new FilterHighPass());
@@ -38,14 +38,14 @@ public class JsynApplet extends AppletBase {
             add(circuit);
 
             // configure generators
-            UnitGenerator osc1 = getGenerator("Circuit1.OSC1");
+            UnitGenerator osc1 = getGenerator("CircuitA.OSC1");
 
             // setup frequency
             UnitInputPort frequencyPort = getInputPort(osc1, UnitGenerator.PORT_NAME_FREQUENCY);
             frequencyPort.setup(50.0, 300.0, 10000.0);
 
             // lag to smooth out amplitude changes
-            UnitGenerator lag = getGenerator("Circuit1.LAG");
+            UnitGenerator lag = getGenerator("CircuitA.LAG");
             UnitInputPort amplitudePort = getInputPort(osc1, UnitGenerator.PORT_NAME_AMPLITUDE);
 
             getOutputPort(lag, UnitGenerator.PORT_NAME_OUTPUT).connect(amplitudePort);
@@ -57,7 +57,7 @@ public class JsynApplet extends AppletBase {
         // Circuit 2 ===================================================================================================
         {
             // build
-            CustomCircuit circuit2 = new CustomCircuit("Circuit2");
+            CustomCircuit circuit2 = new CustomCircuit("CircuitB");
 
             circuit2.add("OSC3", new SquareOscillator());
             circuit2.add("LPASS", new FilterLowPass());
@@ -70,14 +70,14 @@ public class JsynApplet extends AppletBase {
             add(circuit2);
 
             // configure generators
-            UnitGenerator osc3 = getGenerator("Circuit2.OSC3");
+            UnitGenerator osc3 = getGenerator("CircuitB.OSC3");
 
             // setup frequency
             UnitInputPort frequencyPort = getInputPort(osc3, UnitGenerator.PORT_NAME_FREQUENCY);
             frequencyPort.setup(50.0, 300.0, 10000.0);
 
             // lag to smooth out amplitude changes
-            UnitGenerator lag = getGenerator("Circuit2.LAG");
+            UnitGenerator lag = getGenerator("CircuitB.LAG");
             UnitInputPort amplitudePort = getInputPort(osc3, UnitGenerator.PORT_NAME_AMPLITUDE);
 
             getOutputPort(lag, UnitGenerator.PORT_NAME_OUTPUT).connect(amplitudePort);
@@ -90,63 +90,63 @@ public class JsynApplet extends AppletBase {
     protected void setupUI() {
         super.setupUI();
 
-        JPanel globalPanel = createVerticalStackPanel(3);
-        JPanel globalControlsPanel = createHorizontalStackPanel(6);
-        JPanel circuitsPanel = createHorizontalStackPanel(2);
+        CustomGrid globalGrid = createGrid(new double[] { 1 }, new double[] { 0.25, 0.5, 0.25 });
+        CustomGrid globalControlsGrid = createBorderedGrid("Global Controls", new double[] { 0.9, 0.1 }, new double[] { 1 });
+        globalControlsGrid.getPanel().setMinimumSize(new Dimension(100, 50));
 
-        globalControlsPanel.add(new Panel());
-        globalControlsPanel.add(new Panel());
-        globalControlsPanel.add(new Panel());
-        globalControlsPanel.add(new Panel());
+        CustomGrid circuitsPanel = createGrid(new double[]{ 0.5, 0.5 }, new double[]{ 1 });
 
-        addKnob(globalControlsPanel, "Master volume", createExponentialModel(limiter.inputB));
+        globalControlsGrid.add(new JPanel(), 0, 0);
+        globalControlsGrid.add(createKnob("Master volume", createExponentialModel(limiter.inputB)), 1, 0);
 
-        globalPanel.add(globalControlsPanel);
-        globalPanel.add(circuitsPanel);
+        globalGrid.add(globalControlsGrid, 0, 0);
+        globalGrid.add(circuitsPanel, 0, 1);
 
-        JPanel circuitAPanel = createVerticalStackPanel(3);
-        JPanel circuitBPanel = createVerticalStackPanel(3);
+        CustomGrid circuitAPanel = createBorderedGrid("Circuit A", new double[]{ 1 }, new double[]{ 0.5, 0.5 });
+        CustomGrid circuitBPanel = createBorderedGrid("Circuit B", new double[]{ 1 }, new double[]{ 0.5, 0.5 });
 
-        circuitsPanel.add(circuitAPanel);
-        circuitsPanel.add(circuitBPanel);
+        circuitsPanel.add(circuitAPanel, 0, 0);
+        circuitsPanel.add(circuitBPanel, 1, 0);
 
-        JPanel circuitAKnobPanel = createHorizontalStackPanel(3);
-        JPanel circuitBKnobPanel = createHorizontalStackPanel(3);
+        CustomGrid circuitAKnobPanel = createGrid(new double[]{ 0.5, 0.5, 0.5 }, new double[]{ 1 });
+        CustomGrid circuitBKnobPanel = createGrid(new double[]{ 0.5, 0.5, 0.5 }, new double[]{ 1 });
 
-        circuitAPanel.add(circuitAKnobPanel);
-        circuitBPanel.add(circuitBKnobPanel);
+        circuitAPanel.add(circuitAKnobPanel, 0, 0);
+        circuitBPanel.add(circuitBKnobPanel, 0, 0);
 
-        addKnob(circuitAKnobPanel, "OSC1 Frequency", createLinearModel("Circuit1.OSC1.Frequency"));
-        addKnob(circuitAKnobPanel, "LAG Input", createExponentialModel("Circuit1.LAG.Input"));
-        addKnob(circuitAKnobPanel, "HPASS Frequency", createLinearModel("Circuit1.HPASS.Frequency"));
+        circuitAKnobPanel.add(createKnob("OSC1 Frequency", createLinearModel("CircuitA.OSC1.Frequency")), 0, 0);
+        circuitAKnobPanel.add(createKnob("LAG Input", createExponentialModel("CircuitA.LAG.Input")), 1, 0);
+        circuitAKnobPanel.add(createKnob("HPASS Frequency", createLinearModel("CircuitA.HPASS.Frequency")), 2, 0);
 
-        addKnob(circuitBKnobPanel, "OSC3 Frequency", createLinearModel("Circuit2.OSC3.Frequency"));
-        addKnob(circuitBKnobPanel, "LAG Input", createExponentialModel("Circuit2.LAG.Input"));
-        addKnob(circuitBKnobPanel, "LPASS Frequency", createLinearModel("Circuit2.LPASS.Frequency"));
+        circuitBKnobPanel.add(createKnob("OSC3 Frequency", createLinearModel("CircuitB.OSC3.Frequency")), 0, 0);
+        circuitBKnobPanel.add(createKnob("LAG Input", createExponentialModel("CircuitB.LAG.Input")), 1, 0);
+        circuitBKnobPanel.add(createKnob("LPASS Frequency", createLinearModel("CircuitB.LPASS.Frequency")), 2, 0);
 
-        addWaveView(circuitAPanel, new UnitOutputPort[]{getCircuit("Circuit1").output});
-        addWaveView(circuitBPanel, new UnitOutputPort[]{getCircuit("Circuit2").output});
+        circuitAPanel.add(createWaveView(new UnitOutputPort[]{getCircuit("CircuitA").output}), 0, 1);
+        circuitBPanel.add(createWaveView(new UnitOutputPort[]{getCircuit("CircuitB").output}), 0, 1);
 
-        addWaveView(globalPanel, new UnitOutputPort[]{limiter.output});
+        CustomGrid masterWaveViewGrid = createBorderedGrid("Master Output Wave View");
+        masterWaveViewGrid.add(createWaveView(new UnitOutputPort[]{limiter.output}), 0, 0);
+        globalGrid.add(masterWaveViewGrid, 0, 2);
 
         //EnvelopeEditorBox box = new EnvelopeEditorBox();
         //box.setPoints(new EnvelopePoints());
         //circuitAPanel.add(box);
 
-        add(globalPanel);
+        add(globalGrid.getPanel());
     }
 
     @Override
     protected void setupConnections() {
         {
-            UnitOutputPort oscOut = getOutputPort("Circuit1.OSC2.Output");
-            UnitInputPort filterIn = getInputPort("Circuit1.HPASS.Input");
+            UnitOutputPort oscOut = getOutputPort("CircuitA.OSC2.Output");
+            UnitInputPort filterIn = getInputPort("CircuitA.HPASS.Input");
             oscOut.connect(filterIn);
         }
 
         {
-            UnitOutputPort oscOut = getOutputPort("Circuit2.OSC4.Output");
-            UnitInputPort filterIn = getInputPort("Circuit2.LPASS.Input");
+            UnitOutputPort oscOut = getOutputPort("CircuitB.OSC4.Output");
+            UnitInputPort filterIn = getInputPort("CircuitB.LPASS.Input");
             oscOut.connect(filterIn);
         }
     }
