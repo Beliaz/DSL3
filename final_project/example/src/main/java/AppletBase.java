@@ -318,7 +318,7 @@ public abstract class AppletBase extends JApplet {
         setupCircuits();
 
         // CircuitConnections
-        setupCircuitConnections(master);
+        setupCircuitConnections();
 
         // Controls
         setupUI();
@@ -337,5 +337,5 @@ public abstract class AppletBase extends JApplet {
         synth.stop();
     }
 
-    protected abstract void setupCircuitConnections(PassThrough master);
+    protected abstract void setupCircuitConnections();
 }

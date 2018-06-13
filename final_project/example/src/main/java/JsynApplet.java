@@ -7,7 +7,6 @@ import com.jsyn.unitgen.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Enumeration;
 
 public class JsynApplet extends AppletBase {
 
@@ -39,20 +38,18 @@ public class JsynApplet extends AppletBase {
 
                 add(circuit);
 
-                // configure generators
-                UnitGenerator osc1 = getGenerator("CircuitA.OSC1");
+                // setup OSC1
+                getInputPort("CircuitA.OSC1.Frequency")
+                    .setup(50.0, 300.0, 10000.0);
 
-                // setup frequency
-                UnitInputPort frequencyPort = getInputPort(osc1, UnitGenerator.PORT_NAME_FREQUENCY);
-                frequencyPort.setup(50.0, 300.0, 10000.0);
+                // setup OSC2
+                getInputPort("CircuitA.OSC2.Frequency")
+                    .setup(50.0, 300.0, 10000.0);
 
-                // lag to smooth out amplitude changes
+                // setup LAG
                 UnitGenerator lag = getGenerator("CircuitA.LAG");
-                UnitInputPort amplitudePort = getInputPort(osc1, UnitGenerator.PORT_NAME_AMPLITUDE);
-
-
-                getInputPort(lag, UnitGenerator.PORT_NAME_INPUT).setup(0.0, 0.5, 1);
-                getInputPort(lag, UnitGenerator.PORT_NAME_TIME).set(0.2);
+                getInputPort(lag,"Input").setup(0.0, 0.5, 1);
+                getInputPort(lag,"Time").set(0.2);
             }
 
             // connect
@@ -79,20 +76,18 @@ public class JsynApplet extends AppletBase {
 
                 add(circuit2);
 
-                // configure generators
-                UnitGenerator osc3 = getGenerator("CircuitB.OSC3");
+                // setup OSC3
+                getInputPort("CircuitB.OSC3.Frequency")
+                    .setup(50.0, 300.0, 10000.0);
 
-                // setup frequency
-                UnitInputPort frequencyPort = getInputPort(osc3, UnitGenerator.PORT_NAME_FREQUENCY);
-                frequencyPort.setup(50.0, 300.0, 10000.0);
+                // setup OSC4
+                getInputPort("CircuitB.OSC2.Frequency")
+                    .setup(50.0, 300.0, 10000.0);
 
-                // lag to smooth out amplitude changes
+                // setup LAG
                 UnitGenerator lag = getGenerator("CircuitB.LAG");
-                UnitInputPort amplitudePort = getInputPort(osc3, UnitGenerator.PORT_NAME_AMPLITUDE);
-
-                getOutputPort(lag, UnitGenerator.PORT_NAME_OUTPUT).connect(amplitudePort);
-                getInputPort(lag, UnitGenerator.PORT_NAME_INPUT).setup(0.0, 0.5, 1);
-                getInputPort(lag, UnitGenerator.PORT_NAME_TIME).set(0.2);
+                getInputPort(lag,"Input").setup(0.0, 0.5, 1);
+                getInputPort(lag,"Time").set(0.2);
             }
 
             // connect
@@ -157,10 +152,7 @@ public class JsynApplet extends AppletBase {
         masterWaveViewGrid.add(createWaveView(new UnitOutputPort[]{limiter.output}), 0, 0);
         globalGrid.add(masterWaveViewGrid, 0, 2);
 
-        //EnvelopeEditorBox box = new EnvelopeEditorBox();
-        //box.setPoints(new EnvelopePoints());
-        //circuitAPanel.add(box);
-
+        // add global grid to root component
         add(globalGrid.getPanel());
     }
 
