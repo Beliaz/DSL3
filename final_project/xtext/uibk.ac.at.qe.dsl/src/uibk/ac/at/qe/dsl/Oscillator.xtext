@@ -1,0 +1,217 @@
+grammar uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope with org.eclipse.xtext.common.Terminals
+
+generate oscilloscope "http://www.ac.uibk/at/qe/dsl/oscilloscope/Oscilloscope"
+
+/*------------------- Toplevel ------------------- */
+
+Top:
+	{Top}
+
+	
+	'Circuits' '{'
+		circuits+=Circuit*
+	'}'
+	
+	'CircuitConnections' '{'
+		circuitConnection+=CircuitConnection*
+	'}'
+	
+	'Controls' '{'
+		controls+=Control*	
+	'}'
+;
+
+/*------------------- Circuit ------------------- */
+
+	Circuit:
+		name=STRING '('
+			'Sounds' '{'
+				sounds+=Sound*
+			'}'
+			
+			'Properties' '{'
+				properties+=Properties*
+			'}'
+			
+			'Connections' '{'
+				connections+=Connection*
+			'}'
+		')'
+	;
+	
+	/*------------------- Sound ------------------- */		
+	
+		Sound:
+			oscillator=Oscillator |
+			passFilter=PassFilter |
+			badPass=BandPass |
+			add=Add |
+			multiply=Multiply |
+			div=Div
+		;
+		
+		Oscillator:
+			 'Oscillator' name=STRING '('
+			 	'type' type=OscillatorType
+				'min' min=FLOAT
+				'maximum' maximum=FLOAT
+				'default' default=FLOAT
+			')'
+		;
+		
+		PassFilter:
+			'PassFilter' name=STRING '('
+			 	'type' type=PassFilterType
+				'frequency' frequency=FLOAT
+			')'
+		;
+		
+		BandPass:
+			'BandPass' name=STRING '('
+				'lower_frequency' lower_frequency=FLOAT
+				'upper_frequency' upper_frequency=FLOAT
+			')'
+		;
+		
+		Add:
+			'Add' 'add'
+		;
+		
+		Multiply:
+			'Multiply' 'multiply'
+		;
+		
+		
+		Div:
+			'Divide''div'
+		;
+
+		/*------------------- Properties ------------------- */	
+
+		Properties:
+			name=STRING values+=Property+
+		;
+
+		Property:
+			soundName=ID propertyName=ID
+		;
+
+		/*------------------- Connection ------------------- */	
+
+		Connection:
+			sound1=ID property1=STRING sound2=ID property2=STRING 
+		;
+		
+/*------------------- Circuit Connection ------------------- */	
+
+	CircuitConnection:
+		circuitA=ID circuitB=ID
+	;
+
+/*------------------- Control ------------------- */	
+
+	Control:
+		window=Window
+		grid=Grid
+	;
+
+		/*------------------- Window ------------------- */		
+
+		Window:
+			'Window' name=STRING
+			'{'
+				'width' width=INT
+				'height' height=INT
+			'}'
+		;
+		
+		/*------------------- Grid ------------------- */	
+				
+		Grid:
+			'Grid' name=STRING '{'
+				(
+					grid=Grid  |
+					(
+						columns+=Column*
+						rows+=Row*
+						controls+=ControlElement*
+					)
+				)
+			'}'
+		;
+		
+			/*------------------- Column ------------------- */	
+		
+			Column:
+				'Column' size=FLOAT
+			;
+			
+			/*------------------- Row ------------------- */	
+			
+			Row:
+				'Row' size=FLOAT
+			;
+			
+			/*------------------- Control Element ------------------- */	
+			
+			ControlElement:
+				rotaryKnob=RotaryKnob |
+				slider=Slider |
+				audioScope=AudioScope
+			;
+			
+			/*------------------- Rotary Knob ------------------- */	
+			
+			RotaryKnob:
+				'rotaryKnob' name=STRING '('
+					'connection' '('
+						'type' type=ConnectionType
+						'value' value=FLOAT 
+						'target' target=STRING
+						'property' property=STRING
+					')'
+				')'
+			;
+			
+			/*------------------- Slider ------------------- */	
+			
+			Slider:
+				
+				'slider' name=STRING '('
+					'columnIndex' columnIndex=INT
+				')'
+			;
+			
+			/*------------------- Scope ------------------- */	
+			
+			AudioScope:
+				'audioScope' name=STRING '('
+					'columnIndex' columnIndex=INT
+					'connection' '('
+						'target' target=ID
+					')'
+				')'
+			;
+			
+
+/*------------------- Data Types ------------------- */	
+
+FLOAT returns EFloat:
+	{EFloat}
+	INT '.' INT
+;
+
+
+/*------------------- Enums ------------------- */	
+
+enum OscillatorType:
+	SAW_TOOTH='sawTooth' | SINE='sine' | 
+	SQUARE='square' | TRIANGLE='triangle'
+;
+
+enum PassFilterType:
+	HIGH='high' | LOW='low'
+;
+enum ConnectionType:
+	LINEAR='linear'
+;
