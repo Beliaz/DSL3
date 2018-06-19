@@ -124,7 +124,7 @@ public class JsynApplet extends AppletBase {
 
 	@Override
 	protected void setupCircuitConnections() {
-		connectCircuit("circuitA", "circuitB");
+		connectCircuit("circuitA", "master");
 		connectCircuit("circuitB", "master");
 	}
 
