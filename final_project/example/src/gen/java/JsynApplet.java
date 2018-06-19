@@ -1,13 +1,9 @@
-package gen.java;
+package main.java;
 
 import com.jsyn.ports.UnitInputPort;
 import com.jsyn.ports.UnitOutputPort;
 import com.jsyn.swing.JAppletFrame;
 import com.jsyn.unitgen.*;
-import main.java.AppletBase;
-import main.java.CustomCircuit;
-import main.java.CustomGrid;
-import main.java.Cells;
 
 import javax.swing.*;
 import java.awt.*;
@@ -74,17 +70,19 @@ public class JsynApplet extends AppletBase {
 	protected void setupUI() {
 		super.setupUI();
 	
-		CustomGrid globalGrid = createGrid(new double[] {
+		CustomGrid globalGrid = createGrid(new double[] { 
 			1.0
 		}, new double[] { 
 			0.25,
 			0.5,
 			0.25
 		 });
-
+	
+		
+		
 		// Global Controls
 		{
-			CustomGrid Grid = createBorderedGrid("Global Controls", new double[] { 
+			CustomGrid GlobalControlsGrid = createBorderedGrid("Global Controls", new double[] { 
 			1.0
 		}, new double[] { 
 			0.25,
@@ -92,10 +90,11 @@ public class JsynApplet extends AppletBase {
 			0.25
 		 });
 		 Grid.add(createKnob("Master Volume", createExponentialModel("master.Amplitude")), 1, 0);
+		 globalGrid.add(GlobalControlsGrid, 0, 0)
 		}
 		// Circuit A
 		{
-			CustomGrid Grid = createBorderedGrid("Circuit A", new double[] { 
+			CustomGrid CircuitAGrid = createBorderedGrid("Circuit A", new double[] { 
 			1.0
 		}, new double[] { 
 			0.25,
@@ -104,19 +103,20 @@ public class JsynApplet extends AppletBase {
 		 });
 		 // Controls
 		 {
-		 	CustomGrid Grid = createBorderedGrid("Controls", new double[] { 
+		 	CustomGrid ControlsGrid = createBorderedGrid("Controls", new double[] { 
 		 	1.0,
 		 	1.0,
 		 	1.0
 		 }, new double[] { 
 		 	1.0
 		  });
-		 Grid.add(createKnob("OSCI Frequency", createLinearModel("CircuitA.OSC1.Frequency")), 0, 0);
-		 Grid.add(createKnob("LAG", createExponentialModel("CircuitA.LAG.Input")), 1, 0);
-		 Grid.add(createKnob("HPASS Frequency", createLinearModel("CircuitA.HPASS.Frequency")), 2, 0);
-		  	parent.add(Grid, 0, 0)
+		 Grid.add(createKnob("OSCI Frequency", createLinearModel(CircuitA.OSC1.Frequency)), 0, 0);
+		 Grid.add(createKnob("LAG", createExponentialModel(CircuitA.LAG.Input)), 1, 0);
+		 Grid.add(createKnob("HPASS Frequency", createLinearModel(CircuitA.HPASS.Frequency)), 2, 0);
+		  	CircuitAGrid.add(ControlsGrid, 0, 0)
 		 }
-		 Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("CircuitA.Output")}) , 0, 1);
+		 Grid.add(createWaveView("", new UnitOutputPort[]{getOutputPort("CircuitA.Output")} ,0, 1);
+		 globalGrid.add(CircuitAGrid, 0, 1)
 		}
 	
 		// add global grid to root component
