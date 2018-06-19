@@ -1,9 +1,10 @@
-package main.java;
+package gen.java;
 
 import com.jsyn.ports.UnitInputPort;
 import com.jsyn.ports.UnitOutputPort;
 import com.jsyn.swing.JAppletFrame;
 import com.jsyn.unitgen.*;
+import main.java.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -89,8 +90,8 @@ public class JsynApplet extends AppletBase {
 			0.5,
 			0.25
 		 });
-		 Grid.add(createKnob("Master Volume", createExponentialModel("master.Amplitude")), 1, 0);
-		 globalGrid.add(GlobalControlsGrid, 0, 0)
+		 GlobalControlsGrid.add(createKnob("Master Volume", createExponentialModel("master.Amplitude")), 1, 0);
+		 globalGrid.add(GlobalControlsGrid, 0, 0);
 		}
 		// Circuit A
 		{
@@ -110,13 +111,13 @@ public class JsynApplet extends AppletBase {
 		 }, new double[] { 
 		 	1.0
 		  });
-		 Grid.add(createKnob("OSCI Frequency", createLinearModel(CircuitA.OSC1.Frequency)), 0, 0);
-		 Grid.add(createKnob("LAG", createExponentialModel(CircuitA.LAG.Input)), 1, 0);
-		 Grid.add(createKnob("HPASS Frequency", createLinearModel(CircuitA.HPASS.Frequency)), 2, 0);
-		  	CircuitAGrid.add(ControlsGrid, 0, 0)
+		 ControlsGrid.add(createKnob("OSCI Frequency", createLinearModel(!CircuitA.OSC1.Frequency!)), 0, 0);
+		 ControlsGrid.add(createKnob("LAG", createExponentialModel(!CircuitA.LAG.Input!)), 1, 0);
+		 ControlsGrid.add(createKnob("HPASS Frequency", createLinearModel(!CircuitA.HPASS.Frequency!)), 2, 0);
+		  	CircuitAGrid.add(ControlsGrid, 0, 0);
 		 }
-		 Grid.add(createWaveView("", new UnitOutputPort[]{getOutputPort("CircuitA.Output")} ,0, 1);
-		 globalGrid.add(CircuitAGrid, 0, 1)
+		 CircuitAGrid.add(createWaveView(new UnitOutputPort[]{getOutputPort("CircuitA.Output")}) ,0, 1);
+		 globalGrid.add(CircuitAGrid, 0, 1);
 		}
 	
 		// add global grid to root component
