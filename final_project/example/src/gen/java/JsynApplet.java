@@ -1,9 +1,13 @@
-package main.java;
+package gen.java;
 
 import com.jsyn.ports.UnitInputPort;
 import com.jsyn.ports.UnitOutputPort;
 import com.jsyn.swing.JAppletFrame;
 import com.jsyn.unitgen.*;
+import main.java.AppletBase;
+import main.java.CustomCircuit;
+import main.java.CustomGrid;
+import main.java.Cells;
 
 import javax.swing.*;
 import java.awt.*;
@@ -64,21 +68,20 @@ public class JsynApplet extends AppletBase {
 				connect("circuitA.sound3.property1","circuitA.sound4.property2");
 			}
 		}
+	}
 
 	@Override
 	protected void setupUI() {
 		super.setupUI();
 	
-		CustomGrid globalGrid = createGrid(new double[] { 
+		CustomGrid globalGrid = createGrid(new double[] {
 			1.0
 		}, new double[] { 
 			0.25,
 			0.5,
 			0.25
 		 });
-	
-		
-		
+
 		// Global Controls
 		{
 			CustomGrid Grid = createBorderedGrid("Global Controls", new double[] { 
@@ -88,7 +91,7 @@ public class JsynApplet extends AppletBase {
 			0.5,
 			0.25
 		 });
-		 Grid.add(createKnob("Master Volume", createExponentialModel(master.Amplitude)), 1, 0);
+		 Grid.add(createKnob("Master Volume", createExponentialModel("master.Amplitude")), 1, 0);
 		}
 		// Circuit A
 		{
@@ -108,12 +111,12 @@ public class JsynApplet extends AppletBase {
 		 }, new double[] { 
 		 	1.0
 		  });
-		 Grid.add(createKnob("OSCI Frequency", createLinearModel(CircuitA.OSC1.Frequency)), 0, 0);
-		 Grid.add(createKnob("LAG", createExponentialModel(CircuitA.LAG.Input)), 1, 0);
-		 Grid.add(createKnob("HPASS Frequency", createLinearModel(CircuitA.HPASS.Frequency)), 2, 0);
+		 Grid.add(createKnob("OSCI Frequency", createLinearModel("CircuitA.OSC1.Frequency")), 0, 0);
+		 Grid.add(createKnob("LAG", createExponentialModel("CircuitA.LAG.Input")), 1, 0);
+		 Grid.add(createKnob("HPASS Frequency", createLinearModel("CircuitA.HPASS.Frequency")), 2, 0);
 		  	parent.add(Grid, 0, 0)
 		 }
-		 Grid.add(createWaveView("", new UnitOutputPort[]{getOutputPort("CircuitA.Output")} ,gridControl.rotaryKnob.column�, 1);
+		 Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("CircuitA.Output")}) , 0, 1);
 		}
 	
 		// add global grid to root component
