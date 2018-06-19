@@ -1,6 +1,5 @@
 package main.java;
 
-import com.jsyn.ports.UnitInputPort;
 import com.jsyn.ports.UnitOutputPort;
 import com.jsyn.swing.JAppletFrame;
 import com.jsyn.unitgen.*;
@@ -48,8 +47,8 @@ public class JsynApplet extends AppletBase {
 
                 // setup LAG
                 UnitGenerator lag = getGenerator("CircuitA.LAG");
-                getInputPort(lag,"Input").setup(0.0, 0.5, 1);
-                getInputPort(lag,"Time").set(0.2);
+                getInputPort(lag, UnitGenerator.PORT_NAME_INPUT).setup(0.0, 0.5, 1);
+                getInputPort(lag, UnitGenerator.PORT_NAME_TIME).set(0.2);
             }
 
             // connect
@@ -158,7 +157,7 @@ public class JsynApplet extends AppletBase {
 
     @Override
     protected void setupCircuitConnections() {
-        connectCircuit("master", "CircuitA");
-        connectCircuit("master", "CircuitB");
+        connectCircuit("CircuitA", "master");
+        connectCircuit("CircuitB", "master");
     }
 }

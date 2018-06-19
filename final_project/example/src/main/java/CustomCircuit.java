@@ -12,6 +12,7 @@ import java.util.Hashtable;
 
 public class CustomCircuit extends Circuit {
     public UnitOutputPort output;
+    public UnitInputPort input;
     private String name;
     private PassThrough passThrough = new PassThrough();
     private Dictionary<String, UnitGenerator> generators = new Hashtable<>();
@@ -21,6 +22,7 @@ public class CustomCircuit extends Circuit {
 
         add(passThrough);
         addPort(output = passThrough.output);
+        addPort(input = new UnitInputPort("Input"));
     }
 
     public String getName() {
