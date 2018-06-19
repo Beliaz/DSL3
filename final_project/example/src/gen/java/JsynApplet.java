@@ -1,159 +1,134 @@
-Circuits{
-	"circuitA" (
+package gen.java;
 
-		Sounds
-		{
-			Oscillator "mySawTooth" (
-				output true
-				type sawTooth
-				min 50.0
-				maximum 10.000
-				default 300.0
-			)
+import com.jsyn.ports.UnitInputPort;
+import com.jsyn.ports.UnitOutputPort;
+import com.jsyn.swing.JAppletFrame;
+import com.jsyn.unitgen.*;
+import main.java.*;
 
-			PassFilter "highPass" (
-				output true
-				type high
-				frequency 5.000
-			)
+import javax.swing.*;
+import java.awt.*;
 
-			BandPass "highPass" (
-				output false
-				lower_frequency 5.000
-				upper_frequency 10.000
-			)
+public class JsynApplet extends AppletBase {
 
-			Add "A1" (
-				output false
-			)
-			
-			Multiply "M1" (
-				output true
-			)
-			
-			Divide "D1" (
-				output false
-			)
-
-		}
-		
-		Properties
-		{	
-			"property1" soundX1 propertyName soundX2 propertyName 
-			"property2" soundX1 propertyName soundX2 propertyName 
-		}
-		
-		Connections
-		{
-		}
-	)
-}
-
-CircuitConnections 
-{
-	circuitA master
-}
-
-Controls
-{
-	Window "My Synthesizer"
-	{
-		width 1280
-		height 960
+	public static void main(String args[]) {
+		JsynApplet applet = new JsynApplet();
+		JAppletFrame frame = new JAppletFrame(
+		        "My Synthesizer", applet
+		);
+		frame.setSize(1280, 960);
+		frame.setVisible(true);
+		frame.test();
 	}
+
+	@Override
+	protected void setupCircuits() {
+		// Circuit CircuitA ===================================================================================================
+		{
+			// build
+			{
+				CustomCircuit circuit = new CustomCircuit("CircuitA");
+				add(circuit);
+				circuit.add("OSC1", new SawtoothOscillator());
+				circuit.add("HPASS", new FilterHighPass());
+				
+				circuit.combineOutputs(); // connect outputs of all current elements to circuit output
+				
+				circuit.add("OSC2", new SquareOscillator());
+				circuit.add("LAG1", new LinearRamp());
+				
+				
+					// setup OSC1
+					getInputPort("CircuitA.OSC1.Frequency")
+										.setup(50.0, 300.0, 10000.0);
 	
-	Grid "master" {
-		Column 1.0
-		Row 0.25
-		Row 0.50
-		Row 0.25
-		
-		Grid "Global Controls" {
-			column 0
-			row 0
-			
-			Column 0.9
-			Column 0.1
-			Row 1.0
-			
-			rotaryKnob "Master Volume" (
-				column 1
-				row 0
-				connection (
-					type exponential
-					value 0.5
-					target "master.limiter"
-					property "Amplitude"
-				)
 				
-			)
-		}
-		
-		Grid "Circuit A" {
-			column 0
-			row 1
-			
-			Column 1.0
-			Row 0.5
-			Row 0.5
-			
-			
-			Grid "Controls" {
-				column 0
-				row 0
+	
 				
-				Column 1.0
-				Column 1.0
-				Column 1.0
-				Row 1.0
-
-				rotaryKnob "OSCI Frequency" (
-					column 0
-					row 0
-					connection (
-						type linear
-						value 0.5
-						target "CircuitA.OSC1"
-						property "Frequency"
-					)
-				)
-
-				rotaryKnob "LAG" (
-					column 1
-					row 0
-					connection (
-						type exponential
-						value 0.5
-						target "CircuitA.LAG"
-						property "Input"
-					)
-				)
-
-				rotaryKnob "HPASS Frequency" (
-					column 2
-					row 0
-					connection (
-						type linear
-						value 0.5
-						target "CircuitA.HPASS"
-						property "Frequency"
-					)
-				)
-
+					// setup OSC2
+					getInputPort("CircuitA.OSC2.Frequency")
+										.setup(50.0, 300.0, 10000.0);
+	
+				
+					// setup LAG1
+					getInputPort("CircuitA.LAG1.Frequency")
+									.setup(0,
+							 			            0.5,
+										1);
+					getInputPort("CircuitA.LAG1.Time")
+										.setup(0.2);
+	
+				
 			}
-
 			
-			audioScope "" (
-				column 0
-				row 1
-				
-				connection (
-					target CircuitA
-				)	
-			)
-		
-
+			//properties
+			
+			// connect
+			{
+				connect("CircuitA.HPASS.Input","CircuitA.OSC2.Output");
+				connect("CircuitA.OSC1.Amplitude","CircuitA.LAG1.Output");
+			}
 		}
+	}
+
+	@Override
+	protected void setupUI() {
+		super.setupUI();
+	
+		CustomGrid globalGrid = createGrid(new double[] { 
+			1.0
+		}, new double[] { 
+			0.25,
+			0.5,
+			0.25
+		 });
+	
+		
+		
+		// Global Controls
+		{
+			CustomGrid GlobalControlsGrid = createBorderedGrid("Global Controls", new double[] { 
+			0.9,
+			0.1
+		}, new double[] { 
+			1.0
+		 });
+		 GlobalControlsGrid.add(createKnob("Master Volume", createExponentialModel("master.limiter.Amplitude")), 1, 0);
+		 globalGrid.add(GlobalControlsGrid, 0, 0);
+		}
+		// Circuit A
+		{
+			CustomGrid CircuitAGrid = createBorderedGrid("Circuit A", new double[] { 
+			1.0
+		}, new double[] { 
+			0.5,
+			0.5
+		 });
+		 // Controls
+		 {
+		 	CustomGrid ControlsGrid = createBorderedGrid("Controls", new double[] { 
+		 	1.0,
+		 	1.0,
+		 	1.0
+		 }, new double[] { 
+		 	1.0
+		  });
+		 ControlsGrid.add(createKnob("OSC1 Frequency", createLinearModel("CircuitA.OSC1.Frequency")), 0, 0);
+		 ControlsGrid.add(createKnob("LAG1", createExponentialModel("CircuitA.LAG1.Input")), 1, 0);
+		 ControlsGrid.add(createKnob("HPASS Frequency", createLinearModel("CircuitA.HPASS.Frequency")), 2, 0);
+		  	CircuitAGrid.add(ControlsGrid, 0, 0);
+		 }
+		 CircuitAGrid.add(createWaveView(new UnitOutputPort[]{getOutputPort("CircuitA.Output")}) ,0, 1);
+		 globalGrid.add(CircuitAGrid, 0, 1);
+		}
+	
+		// add global grid to root component
+		add(globalGrid.getPanel());
+	}
+
+	@Override
+	protected void setupCircuitConnections() {
+		connectCircuit("CircuitA", "master");
 	}
 
 }
