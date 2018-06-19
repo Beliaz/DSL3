@@ -37,7 +37,7 @@ public class JsynApplet extends AppletBase {
 				
 				circuit.add("highPass", new FilterBandPass());
 				circuit.add("A1", new Add());
-				circuit.add("D1", new Divide();
+				circuit.add("D1", new Divide());
 				
 				
 					// setup mySawTooth
@@ -111,9 +111,9 @@ public class JsynApplet extends AppletBase {
 		 }, new double[] { 
 		 	1.0
 		  });
-		 ControlsGrid.add(createKnob("OSCI Frequency", createLinearModel(!CircuitA.OSC1.Frequency!)), 0, 0);
-		 ControlsGrid.add(createKnob("LAG", createExponentialModel(!CircuitA.LAG.Input!)), 1, 0);
-		 ControlsGrid.add(createKnob("HPASS Frequency", createLinearModel(!CircuitA.HPASS.Frequency!)), 2, 0);
+		 ControlsGrid.add(createKnob("OSCI Frequency", createLinearModel("CircuitA.OSC1.Frequency")), 0, 0);
+		 ControlsGrid.add(createKnob("LAG", createExponentialModel("CircuitA.LAG.Input")), 1, 0);
+		 ControlsGrid.add(createKnob("HPASS Frequency", createLinearModel("CircuitA.HPASS.Frequency")), 2, 0);
 		  	CircuitAGrid.add(ControlsGrid, 0, 0);
 		 }
 		 CircuitAGrid.add(createWaveView(new UnitOutputPort[]{getOutputPort("CircuitA.Output")}) ,0, 1);
