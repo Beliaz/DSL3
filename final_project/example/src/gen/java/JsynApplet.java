@@ -31,7 +31,7 @@ public class JsynApplet extends AppletBase {
 				add(circuit);
 				circuit.add("mySawTooth", new SawtoothOscillator());
 				circuit.add("highPass", new FilterHighPass());
-				circuit.add("M1", new Multiply();
+				circuit.add("M1", new Multiply());
 				
 				circuit.combineOutputs(); // connect outputs of all current elements to circuit output
 				
@@ -61,8 +61,6 @@ public class JsynApplet extends AppletBase {
 			
 			// connect
 			{
-				connect("circuitA.sound1.property1","circuitA.sound2.property2");
-				connect("circuitA.sound3.property1","circuitA.sound4.property2");
 			}
 		}
 	}
