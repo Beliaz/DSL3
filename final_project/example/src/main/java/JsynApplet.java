@@ -80,7 +80,7 @@ public class JsynApplet extends AppletBase {
                     .setup(50.0, 300.0, 10000.0);
 
                 // setup OSC4
-                getInputPort("CircuitB.OSC2.Frequency")
+                getInputPort("CircuitB.OSC4.Frequency")
                     .setup(50.0, 300.0, 10000.0);
 
                 // setup LAG
@@ -108,7 +108,7 @@ public class JsynApplet extends AppletBase {
             CustomGrid globalControlsGrid = createBorderedGrid("Global Controls", new double[] { 0.9, 0.1 }, new double[] { 1 });
             globalControlsGrid.getPanel().setMinimumSize(new Dimension(100, 50));
             globalControlsGrid.add(new JPanel(), 0, 0);
-            globalControlsGrid.add(createKnob("Master volume", createExponentialModel(limiter.inputB)), 1, 0);
+            globalControlsGrid.add(createKnob("Master volume", createExponentialModel("Master.Amplitude")), 1, 0);
             globalGrid.add(globalControlsGrid, 0, 0);
 
         }
@@ -148,7 +148,7 @@ public class JsynApplet extends AppletBase {
 
         // master wave view
         CustomGrid masterWaveViewGrid = createBorderedGrid("Master Output Wave View");
-        masterWaveViewGrid.add(createWaveView(new UnitOutputPort[]{limiter.output}), 0, 0);
+        masterWaveViewGrid.add(createWaveView(new UnitOutputPort[]{getCircuit("master").output}), 0, 0);
         globalGrid.add(masterWaveViewGrid, 0, 2);
 
         // add global grid to root component

@@ -14,15 +14,18 @@ public class CustomCircuit extends Circuit {
     public UnitOutputPort output;
     public UnitInputPort input;
     private String name;
-    private PassThrough passThrough = new PassThrough();
+    private PassThrough outputPassThrough = new PassThrough();
+    protected PassThrough inputPassThrough = new PassThrough();
     private Dictionary<String, UnitGenerator> generators = new Hashtable<>();
 
     public CustomCircuit(String name) {
         this.name = name;
 
-        add(passThrough);
-        addPort(output = passThrough.output);
-        addPort(input = new UnitInputPort("Input"));
+        add(outputPassThrough);
+        add(inputPassThrough);
+
+        addPort(output = outputPassThrough.output);
+        addPort(input = inputPassThrough.input);
     }
 
     public String getName() {
@@ -30,7 +33,7 @@ public class CustomCircuit extends Circuit {
     }
 
     public void add(String name, UnitGenerator generator) {
-        generators.put(name, generator);
+        generators.put(name.toLowerCase(), generator);
         add(generator);
     }
 
@@ -39,7 +42,7 @@ public class CustomCircuit extends Circuit {
     }
 
     public void combineOutputs() {
-        passThrough.input.disconnectAll();
+        outputPassThrough.input.disconnectAll();
 
         Enumeration<UnitGenerator> e = generators.elements();
         while (e.hasMoreElements()) {
@@ -49,7 +52,11 @@ public class CustomCircuit extends Circuit {
 
             if (port == null) continue;
 
-            passThrough.input.connect(port);
+            outputPassThrough.input.connect(port);
         }
+    }
+
+    public UnitGenerator getGenerator(String name) {
+        return generators.get(name.toLowerCase());
     }
 }

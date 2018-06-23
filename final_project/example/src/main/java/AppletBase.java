@@ -15,11 +15,40 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
+final class MasterCircuit extends CustomCircuit
+{
+    private Multiply limiter;
+    private PassThrough amplitudePassThrough;
+
+    public UnitInputPort amplitude;
+
+    public MasterCircuit() {
+        super("master");
+
+        // limiter
+        limiter = new Multiply();
+        limiter.inputB.set(0.5);
+        inputPassThrough.output.connect(limiter.inputA);
+
+        add("limiter", limiter);
+
+        // amplitude
+        amplitudePassThrough = new PassThrough();
+        amplitudePassThrough.input.setName(UnitGenerator.PORT_NAME_AMPLITUDE);
+        amplitudePassThrough.output.connect(limiter.inputB);
+        amplitudePassThrough.input.set(0.5);
+
+        addPort(amplitude = amplitudePassThrough.input);
+
+        combineOutputs();
+    }
+}
+
 public abstract class AppletBase extends JApplet {
-    protected Multiply limiter;
+
     protected LineOut lineOut;
     private Synthesizer synth;
-    private PassThrough master;
+
     private Dictionary<String, CustomCircuit> circuits = new Hashtable<>();
 
     protected Dictionary<String, CustomCircuit> getCircuits() {
@@ -27,7 +56,7 @@ public abstract class AppletBase extends JApplet {
     }
 
     protected CustomCircuit getCircuit(String name) {
-        return circuits.get(name);
+        return circuits.get(name.toLowerCase());
     }
 
     protected final UnitGenerator getGenerator(String qualifiedName) {
@@ -37,9 +66,28 @@ public abstract class AppletBase extends JApplet {
     {
         String[] names = qualifiedPortName.split("\\.");
 
-        UnitGenerator g = getGenerator(Arrays.stream(names).limit(2).toArray(String[]::new));
+        if(names.length < 2)
+            throw new AssertionError("qualified name must be of form " +
+                    "<circuitName>.<generatorName>.<propertyName> or " +
+                    "<circuitName>.<propertyName>");
 
-        return g.getPortByName(names[2]);
+        CustomCircuit c = getCircuit(names[0]);
+
+        // its a circuit property
+        if (names.length == 2)
+        {
+            return c.getPortByName(names[1]);
+        }
+        else if(names.length == 3)
+        {
+            return c.getGenerator(names[1]).getPortByName(names[2]);
+        }
+        else
+        {
+            throw new AssertionError("qualified name must be of form " +
+                    "<circuitName>.<generatorName>.<propertyName> or " +
+                    "<circuitName>.<propertyName>");
+        }
     }
 
     protected final UnitOutputPort getOutputPort(String qualifiedPortName) {
@@ -71,26 +119,17 @@ public abstract class AppletBase extends JApplet {
     protected final UnitGenerator getGenerator(String[] names) {
         if (names.length != 2) throw new AssertionError("qualified name must be of form <circuitName>.<generatorName>");
 
-        if(names[0].toLowerCase().equals("master"))
-        {
-            if(names[1].toLowerCase().equals("limiter")) return limiter;
-
-            throw new UnsupportedOperationException("master generator not found");
-        }
-
         CustomCircuit c = getCircuit(names[0]);
 
         if (c == null) throw new AssertionError(String.format("circuit '%s' not found", names[0]));
 
-        UnitGenerator g = c.getGenerators().get(names[1]);
-
-        if (g == null) throw new AssertionError(String.format("generator '%s' not found", names[1]));
+        UnitGenerator g = c.getGenerators().get(names[1].toLowerCase());
 
         return g;
     }
 
     protected void add(CustomCircuit circuit) {
-        circuits.put(circuit.getName(), circuit);
+        circuits.put(circuit.getName().toLowerCase(), circuit);
         synth.add(circuit);
     }
 
@@ -116,10 +155,10 @@ public abstract class AppletBase extends JApplet {
     }
 
     protected final void connectCircuit(String outputCircuitName, String inputCircuitName){
-        if(inputCircuitName.toLowerCase().equals("master"))
-            connect(master.input, getCircuit(outputCircuitName).output);
-        else
-            connect(getCircuit(inputCircuitName).input, getCircuit(outputCircuitName).output);
+        if(!inputCircuitName.toLowerCase().equals("master"))
+            throw new RuntimeException("not supported");
+
+        connect(getCircuit(inputCircuitName).input, getCircuit(outputCircuitName).output);
     }
 
     protected final void connect(String qualifiedInputName, String qualifiedOutputName) {
@@ -179,28 +218,15 @@ public abstract class AppletBase extends JApplet {
     }
 
     protected void setupOutputMixer() {
-        // master pass through
-        master = new PassThrough();
-        synth.add(master);
 
-        // limiter
-        limiter = new Multiply();
-        limiter.inputB.set(0.5);
-
-        // Amplitude
-        PassThrough amplitude = new PassThrough();
-        amplitude.input.setName(UnitGenerator.PORT_NAME_AMPLITUDE);
-        amplitude.output.connect(limiter.inputB);
-        limiter.addPort(amplitude.input);
-
-        limiter.addPort(new UnitInputPort(""));
-        master.output.connect(limiter.inputA);
-        synth.add(limiter);
+        MasterCircuit master = new MasterCircuit();
 
         // output mixer
         lineOut = new LineOut();
-        limiter.output.connect(lineOut.input);
+        master.output.connect(lineOut.input);
         synth.add(lineOut);
+
+        add(master);
     }
 
     protected abstract void setupCircuits();
