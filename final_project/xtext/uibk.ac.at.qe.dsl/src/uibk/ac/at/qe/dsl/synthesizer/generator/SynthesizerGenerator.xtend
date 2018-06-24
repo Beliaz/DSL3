@@ -7,6 +7,15 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Circuit
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Control
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.CircuitConnection
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.OscillatorType
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.PassFilterType
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Top
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.BOOLEAN
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Grid
+import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.ConnectionType
 
 /**
  * Generates code from your model files on save.
@@ -16,10 +25,267 @@ import org.eclipse.xtext.generator.IGeneratorContext
 class SynthesizerGenerator extends AbstractGenerator {
 
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+		fsa.generateFile('JsynApplet.java', getJsynApplet(resource));
 	}
+	
+	def getJsynApplet(Resource resource) {
+		return '''
+		«getJsynAppletTop(resource.allContents.toIterable.filter(Top).get(0).control)»
+		
+			«getCircuits(resource.allContents.toIterable.filter(Circuit))»
+		
+			«getUI(resource.allContents.toIterable.filter(Top).get(0).control)»
+		
+			«getCircuitConnection(resource.allContents.toIterable.filter(CircuitConnection))»
+		
+		«getJsynAppletBottom»
+		'''
+	}
+	
+	def getJsynAppletTop(Control control) {
+		return '''
+		package gen.java;
+		
+		import com.jsyn.ports.UnitInputPort;
+		import com.jsyn.ports.UnitOutputPort;
+		import com.jsyn.swing.JAppletFrame;
+		import com.jsyn.unitgen.*;
+		import main.java.*;
+		
+		import javax.swing.*;
+		import java.awt.*;
+		
+		public class JsynApplet extends AppletBase {
+		
+			public static void main(String args[]) {
+				JsynApplet applet = new JsynApplet();
+				JAppletFrame frame = new JAppletFrame(
+				        "«control.window.name»", applet
+				);
+				frame.setSize(«control.window.width», «control.window.height»);
+				frame.setVisible(true);
+				frame.test();
+			}
+		'''	
+	}
+	
+	def getCircuits(Iterable<Circuit> circuits) {
+		return '''
+		@Override
+		protected void setupCircuits() {
+			«FOR circuit : circuits»
+			// Circuit «circuit.name» ===================================================================================================
+			{
+				// build
+				{
+					CustomCircuit circuit = new CustomCircuit("«circuit.name»");
+					add(circuit);
+					«FOR sound : circuit.sounds»
+						«IF sound.oscillator !== null && sound.oscillator.output == BOOLEAN::TRUE»
+							«IF sound.oscillator.type == OscillatorType::SAW_TOOTH»
+							 	circuit.add("«sound.oscillator.name»", new SawtoothOscillator());
+							«ELSEIF sound.oscillator.type == OscillatorType::SINE»
+								circuit.add("«sound.oscillator.name»", new SineOscillator());
+							«ELSEIF sound.oscillator.type == OscillatorType::SQUARE»
+								circuit.add("«sound.oscillator.name»", new SquareOscillator());
+							«ELSEIF sound.oscillator.type == OscillatorType::TRIANGLE»
+								circuit.add("«sound.oscillator.name»", new TriangleOscillator());
+							«ENDIF»
+						«ELSEIF sound.lag !== null && sound.lag.output == BOOLEAN::TRUE»
+							circuit.add("«sound.lag.name»", new LinearRamp());
+						«ELSEIF sound.passFilter !== null && sound.passFilter.output == BOOLEAN::TRUE»
+							«IF sound.passFilter.type == PassFilterType::HIGH»
+								circuit.add("«sound.passFilter.name»", new FilterHighPass());
+							«ELSEIF sound.passFilter.type == PassFilterType::LOW»
+								circuit.add("«sound.passFilter.name»", new FilterLowPass());
+							«ENDIF»
+						«ELSEIF sound.bandPass !== null && sound.bandPass.output == BOOLEAN::TRUE»
+							circuit.add("«sound.bandPass.name»", new FilterBandPass());
+						«ELSEIF sound.add !== null && sound.add.output == BOOLEAN::TRUE»
+							circuit.add("«sound.add.name»", new Add());
+						«ELSEIF sound.div !== null && sound.div.output == BOOLEAN::TRUE»
+							circuit.add("«sound.div.name»", new Divide());
+						«ELSEIF sound.multiply !== null && sound.multiply.output == BOOLEAN::TRUE»
+							circuit.add("«sound.multiply.name»", new Multiply());
+						«ENDIF»
+					«ENDFOR»
+					
+					circuit.combineOutputs(); // connect outputs of all current elements to circuit output
+					
+					«FOR sound : circuit.sounds»
+						«IF sound.oscillator !== null && sound.oscillator.output == BOOLEAN::FALSE»
+							«IF sound.oscillator.type == OscillatorType::SAW_TOOTH»
+							 	circuit.add("«sound.oscillator.name»", new SawtoothOscillator());
+							«ELSEIF sound.oscillator.type == OscillatorType::SINE»
+								circuit.add("«sound.oscillator.name»", new SineOscillator());
+							«ELSEIF sound.oscillator.type == OscillatorType::SQUARE»
+								circuit.add("«sound.oscillator.name»", new SquareOscillator());
+							«ELSEIF sound.oscillator.type == OscillatorType::TRIANGLE»
+								circuit.add("«sound.oscillator.name»", new TriangleOscillator());
+							«ENDIF»
+						«ELSEIF sound.lag !== null && sound.lag.output == BOOLEAN::FALSE»
+							circuit.add("«sound.lag.name»", new LinearRamp());
+						«ELSEIF sound.passFilter !== null && sound.passFilter.output == BOOLEAN::FALSE»
+							«IF sound.passFilter.type == PassFilterType::HIGH»
+								circuit.add("«sound.passFilter.name»", new FilterHighPass());
+							«ELSEIF sound.passFilter.type == PassFilterType::LOW»
+								circuit.add("«sound.passFilter.name»", new FilterLowPass());
+							«ENDIF»
+						«ELSEIF sound.bandPass !== null && sound.bandPass.output == BOOLEAN::FALSE»
+							circuit.add("«sound.bandPass.name»", new FilterBandPass());
+						«ELSEIF sound.add !== null && sound.add.output == BOOLEAN::FALSE»
+							circuit.add("«sound.add.name»", new Add());
+						«ELSEIF sound.div !== null && sound.div.output == BOOLEAN::FALSE»
+							circuit.add("«sound.div.name»", new Divide());
+						«ELSEIF sound.multiply !== null && sound.multiply.output == BOOLEAN::FALSE»
+							circuit.add("«sound.multiply.name»", new Multiply());
+						«ENDIF»
+					«ENDFOR»
+					
+					«FOR sound : circuit.sounds»
+					
+						«IF sound.oscillator !== null»
+							// setup «sound.oscillator.name»
+							getInputPort("«circuit.name».«sound.oscillator.name».Frequency")
+												.setup(«sound.oscillator.min», «
+							 			            sound.oscillator.^default», «
+							 			            sound.oscillator.maximum»);
+						«ELSEIF sound.lag !== null»
+							// setup «sound.lag.name»
+							getInputPort("«circuit.name».«sound.lag.name».Input")
+											.setup(0,
+						 			            «sound.lag.^default»,
+												1);
+							getInputPort("«circuit.name».«sound.lag.name».Time")
+												.set(«sound.lag.time»);
+						«ELSEIF sound.passFilter !== null»
+						«ELSEIF sound.bandPass !== null»
+						«ELSEIF sound.add !== null»
+						«ELSEIF sound.div !== null»
+						«ELSEIF sound.multiply !== null»
+						«ENDIF»
+
+					«ENDFOR»
+					
+				}
+				
+				//properties
+				
+				// connect
+				{
+					«FOR connection : circuit.connections»
+						connect("«circuit.name».«connection.sound1».«connection.property1»","«circuit.name».«connection.sound2».«connection.property2»");
+					«ENDFOR»
+				}
+			}
+			«ENDFOR»
+		}
+			'''
+		}
+		
+		def getUI(Control control) {   
+		    return '''
+			@Override
+			protected void setupUI() {
+				super.setupUI();
+
+				CustomGrid globalGrid = createGrid(new double[] { 
+					«FOR column : control.columns SEPARATOR ',' »
+						«column.size»
+					«ENDFOR»
+				}, new double[] { 
+					«FOR row : control.rows SEPARATOR ',' »
+						«row.size»
+					«ENDFOR»
+				 });
+
+				
+				
+				«FOR grid : control.grid»
+				// «grid.name»
+				{
+					CustomGrid «grid.name.replace(" ", "")»Grid = createBorderedGrid("«grid.name»", new double[] { 
+					«FOR column : grid.columns SEPARATOR ',' »
+						«column.size»
+					«ENDFOR»
+				}, new double[] { 
+					«FOR row : grid.rows SEPARATOR ',' »
+						«row.size»
+					«ENDFOR»
+				 });
+				 «getGrid(grid.grid, grid)»
+				 «FOR gridControl : grid.controls»
+				 	«IF gridControl.audioScope !== null»
+				 			«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) ,«gridControl.audioScope.column», «gridControl.audioScope.row»);
+				 	«ELSEIF gridControl.rotaryKnob !== null»
+				 		«IF gridControl.rotaryKnob.type == ConnectionType::EXPONENTIAL»
+				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createExponentialModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+				 		«ELSEIF gridControl.rotaryKnob.type == ConnectionType::LINEAR»
+				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createLinearModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+				 		«ENDIF»
+				 	«ELSEIF gridControl.slider !== null»
+				 		//«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) ,gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+				 	«ENDIF»
+				 «ENDFOR»
+				 globalGrid.add(«grid.name.replace(" ", "")»Grid, «grid.column», «grid.row»);
+				}
+				«ENDFOR»
+
+				// add global grid to root component
+				add(globalGrid.getPanel());
+			}
+			'''
+		}
+		
+		def getGrid(Iterable<Grid> grids, Grid parent) {
+			return '''
+			«FOR grid : grids»
+				// «grid.name»
+				{
+					CustomGrid «grid.name.replace(" ", "")»Grid = createBorderedGrid("«grid.name»", new double[] { 
+					«FOR column : grid.columns SEPARATOR ',' »
+						«column.size»
+					«ENDFOR»
+				}, new double[] { 
+					«FOR row : grid.rows SEPARATOR ',' »
+						«row.size»
+					«ENDFOR»
+				 });
+				«getGrid(grid.grid, grid)»
+				«FOR gridControl : grid.controls»
+				 	«IF gridControl.audioScope !== null»
+				 			«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")} ,gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+				 	«ELSEIF gridControl.rotaryKnob !== null»
+				 		«IF gridControl.rotaryKnob.type == ConnectionType::EXPONENTIAL»
+				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createExponentialModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+				 		«ELSEIF gridControl.rotaryKnob.type == ConnectionType::LINEAR»
+				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createLinearModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+				 		«ENDIF»
+				 	«ELSEIF gridControl.slider !== null»
+				 		//«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")} ,gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+				 	«ENDIF»
+				 «ENDFOR»
+				 	«parent.name.replace(" ", "")»Grid.add(«grid.name.replace(" ", "")»Grid, «grid.column», «grid.row»);
+				}
+				«ENDFOR»
+			'''
+		}
+		
+		def getCircuitConnection(Iterable<CircuitConnection> connections) {
+			return
+			'''
+			@Override
+			protected void setupCircuitConnections() {
+				«FOR connection : connections»
+					connectCircuit("«connection.circuitA»", "«connection.circuitB»");
+				«ENDFOR»
+			}
+		   	'''
+		   	}
+		   	
+		def getJsynAppletBottom() {
+			return '''
+			}
+			'''
+		}
 }

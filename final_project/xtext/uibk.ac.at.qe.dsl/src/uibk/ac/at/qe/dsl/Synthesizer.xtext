@@ -2,6 +2,8 @@ grammar uibk.ac.at.qe.dsl.synthesizer.Synthesizer with org.eclipse.xtext.common.
 
 generate synthesizer "http://www.ac.uibk/at/qe/dsl/synthesizer/Synthesizer"
 
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
 /*------------------- Toplevel ------------------- */
 
 Top:
@@ -17,7 +19,7 @@ Top:
 	'}'
 	
 	'Controls' '{'
-		controls+=Control*	
+		control=Control	
 	'}'
 ;
 
@@ -43,8 +45,9 @@ Top:
 	
 		Sound:
 			oscillator=Oscillator |
+			lag=LAG |
 			passFilter=PassFilter |
-			badPass=BandPass |
+			bandPass=BandPass |
 			add=Add |
 			multiply=Multiply |
 			div=Div
@@ -52,6 +55,7 @@ Top:
 		
 		Oscillator:
 			 'Oscillator' name=STRING '('
+			 	'output' output=(BOOLEAN)
 			 	'type' type=OscillatorType
 				'min' min=FLOAT
 				'maximum' maximum=FLOAT
@@ -59,8 +63,17 @@ Top:
 			')'
 		;
 		
+		LAG:
+			 'LAG' name=STRING '('
+			 	'output' output=(BOOLEAN)
+			 	'time' time=FLOAT
+			 	'default' default=FLOAT
+			')'
+		;
+		
 		PassFilter:
 			'PassFilter' name=STRING '('
+			 	'output' output=(BOOLEAN)
 			 	'type' type=PassFilterType
 				'frequency' frequency=FLOAT
 			')'
@@ -68,22 +81,29 @@ Top:
 		
 		BandPass:
 			'BandPass' name=STRING '('
+			 	'output' output=(BOOLEAN)
 				'lower_frequency' lower_frequency=FLOAT
 				'upper_frequency' upper_frequency=FLOAT
 			')'
 		;
 		
 		Add:
-			'Add' 'add'
+			'Add' name=STRING '('
+			 	'output' output=(BOOLEAN)
+			')'
 		;
 		
 		Multiply:
-			'Multiply' 'multiply'
+			'Multiply' name=STRING '('
+			 	'output' output=(BOOLEAN)
+			')'
 		;
 		
 		
 		Div:
-			'Divide''div'
+			'Divide' name=STRING '('
+			 	'output' output=(BOOLEAN)
+			')'
 		;
 
 		/*------------------- Properties ------------------- */	
@@ -112,7 +132,11 @@ Top:
 
 	Control:
 		window=Window
-		grid=Grid
+		'Grid' name=STRING '{'
+			columns+=Column*
+			rows+=Row*
+			grid+=Grid*
+		'}'
 	;
 
 		/*------------------- Window ------------------- */		
@@ -130,11 +154,12 @@ Top:
 		Grid:
 			'Grid' name=STRING '{'
 				(
-					grid=Grid  |
+					'column' column=INT
+					'row' row=INT
+					columns+=Column*
+					rows+=Row*
 					(
-						columns+=Column*
-						rows+=Row*
-						controls+=ControlElement*
+						grid+=Grid* controls+=ControlElement*
 					)
 				)
 			'}'
@@ -164,6 +189,8 @@ Top:
 			
 			RotaryKnob:
 				'rotaryKnob' name=STRING '('
+					'column' column=INT
+					'row' row=INT
 					'connection' '('
 						'type' type=ConnectionType
 						'value' value=FLOAT 
@@ -178,7 +205,8 @@ Top:
 			Slider:
 				
 				'slider' name=STRING '('
-					'columnIndex' columnIndex=INT
+					'column' column=INT
+					'row' row=INT
 				')'
 			;
 			
@@ -186,7 +214,8 @@ Top:
 			
 			AudioScope:
 				'audioScope' name=STRING '('
-					'columnIndex' columnIndex=INT
+					'column' column=INT
+					'row' row=INT
 					'connection' '('
 						'target' target=ID
 					')'
@@ -196,13 +225,16 @@ Top:
 
 /*------------------- Data Types ------------------- */	
 
-FLOAT returns EFloat:
-	{EFloat}
+FLOAT returns ecore::EFloat:
 	INT '.' INT
 ;
 
 
 /*------------------- Enums ------------------- */	
+
+enum BOOLEAN:
+	TRUE='true' | FALSE='false'
+;
 
 enum OscillatorType:
 	SAW_TOOTH='sawTooth' | SINE='sine' | 
@@ -213,5 +245,6 @@ enum PassFilterType:
 	HIGH='high' | LOW='low'
 ;
 enum ConnectionType:
-	LINEAR='linear'
+	LINEAR='linear' |
+	EXPONENTIAL='exponential'
 ;
