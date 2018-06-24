@@ -7,8 +7,8 @@
         eType="#//Circuit" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="circuitConnection" upperBound="-1"
         eType="#//CircuitConnection" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="controls" upperBound="-1"
-        eType="#//Control" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="control" eType="#//Control"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Circuit">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -22,36 +22,53 @@
   <eClassifiers xsi:type="ecore:EClass" name="Sound">
     <eStructuralFeatures xsi:type="ecore:EReference" name="oscillator" eType="#//Oscillator"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lag" eType="#//LAG" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="passFilter" eType="#//PassFilter"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="badPass" eType="#//BandPass"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="bandPass" eType="#//BandPass"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiply" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="div" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="add" eType="#//Add" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="multiply" eType="#//Multiply"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="div" eType="#//Div" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Oscillator">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="#//BOOLEAN"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//OscillatorType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="min" eType="#//EFloat"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="maximum" eType="#//EFloat"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="default" eType="#//EFloat"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="min" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="maximum" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LAG">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="#//BOOLEAN"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="time" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="default" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PassFilter">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="#//BOOLEAN"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//PassFilterType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="frequency" eType="#//EFloat"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BandPass">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="lower_frequency" eType="#//EFloat"
-        containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="upper_frequency" eType="#//EFloat"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="#//BOOLEAN"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="lower_frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="upper_frequency" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Add">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="#//BOOLEAN"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Multiply">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="#//BOOLEAN"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Div">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="#//BOOLEAN"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Properties">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -75,7 +92,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="Control">
     <eStructuralFeatures xsi:type="ecore:EReference" name="window" eType="#//Window"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="grid" eType="#//Grid" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
+        eType="#//Column" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="rows" upperBound="-1" eType="#//Row"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="grid" upperBound="-1" eType="#//Grid"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Window">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -84,21 +107,22 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Grid">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="grid" eType="#//Grid" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="column" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="row" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="columns" upperBound="-1"
         eType="#//Column" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="rows" upperBound="-1" eType="#//Row"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="grid" upperBound="-1" eType="#//Grid"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controls" upperBound="-1"
         eType="#//ControlElement" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Column">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="size" eType="#//EFloat"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Row">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="size" eType="#//EFloat"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="size" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ControlElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="rotaryKnob" eType="#//RotaryKnob"
@@ -110,22 +134,28 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RotaryKnob">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="column" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="row" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//ConnectionType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//EFloat"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EFloat"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="property" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Slider">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="column" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="row" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AudioScope">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="columnIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="column" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="row" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="target" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="EFloat"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="BOOLEAN">
+    <eLiterals name="TRUE" literal="true"/>
+    <eLiterals name="FALSE" value="1" literal="false"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="OscillatorType">
     <eLiterals name="SAW_TOOTH" literal="sawTooth"/>
     <eLiterals name="SINE" value="1" literal="sine"/>
@@ -138,5 +168,6 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ConnectionType">
     <eLiterals name="LINEAR" literal="linear"/>
+    <eLiterals name="EXPONENTIAL" value="1" literal="exponential"/>
   </eClassifiers>
 </ecore:EPackage>

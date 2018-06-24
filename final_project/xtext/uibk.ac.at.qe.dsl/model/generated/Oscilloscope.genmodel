@@ -6,6 +6,10 @@
     complianceLevel="6.0" copyrightFields="false" runtimeVersion="2.13">
   <genPackages prefix="Oscilloscope" basePackage="uibk.ac.at.qe.dsl.oscilloscope"
       disposableProviderFactory="true" fileExtensions="osci" ecorePackage="Oscilloscope.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Oscilloscope.ecore#//BOOLEAN">
+      <genEnumLiterals ecoreEnumLiteral="Oscilloscope.ecore#//BOOLEAN/TRUE"/>
+      <genEnumLiterals ecoreEnumLiteral="Oscilloscope.ecore#//BOOLEAN/FALSE"/>
+    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Oscilloscope.ecore#//OscillatorType">
       <genEnumLiterals ecoreEnumLiteral="Oscilloscope.ecore#//OscillatorType/SAW_TOOTH"/>
       <genEnumLiterals ecoreEnumLiteral="Oscilloscope.ecore#//OscillatorType/SINE"/>
@@ -18,11 +22,12 @@
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Oscilloscope.ecore#//ConnectionType">
       <genEnumLiterals ecoreEnumLiteral="Oscilloscope.ecore#//ConnectionType/LINEAR"/>
+      <genEnumLiterals ecoreEnumLiteral="Oscilloscope.ecore#//ConnectionType/EXPONENTIAL"/>
     </genEnums>
     <genClasses ecoreClass="Oscilloscope.ecore#//Top">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Top/circuits"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Top/circuitConnection"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Top/controls"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Top/control"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Circuit">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Circuit/name"/>
@@ -32,28 +37,50 @@
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Sound">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/oscillator"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/lag"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/passFilter"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/badPass"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Sound/add"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Sound/multiply"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Sound/div"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/bandPass"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/add"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/multiply"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Sound/div"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Oscillator">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Oscillator/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Oscillator/output"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Oscillator/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Oscillator/min"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Oscillator/maximum"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Oscillator/default"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Oscillator/min"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Oscillator/maximum"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Oscillator/default"/>
+    </genClasses>
+    <genClasses ecoreClass="Oscilloscope.ecore#//LAG">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//LAG/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//LAG/output"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//LAG/time"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//LAG/default"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//PassFilter">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//PassFilter/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//PassFilter/output"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//PassFilter/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//PassFilter/frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//PassFilter/frequency"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//BandPass">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//BandPass/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//BandPass/lower_frequency"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//BandPass/upper_frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//BandPass/output"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//BandPass/lower_frequency"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//BandPass/upper_frequency"/>
+    </genClasses>
+    <genClasses ecoreClass="Oscilloscope.ecore#//Add">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Add/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Add/output"/>
+    </genClasses>
+    <genClasses ecoreClass="Oscilloscope.ecore#//Multiply">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Multiply/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Multiply/output"/>
+    </genClasses>
+    <genClasses ecoreClass="Oscilloscope.ecore#//Div">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Div/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Div/output"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Properties">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Properties/name"/>
@@ -75,6 +102,9 @@
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Control">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Control/window"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Control/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Control/columns"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Control/rows"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Control/grid"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Window">
@@ -84,16 +114,18 @@
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Grid">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Grid/name"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Grid/grid"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Grid/column"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Grid/row"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Grid/columns"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Grid/rows"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Grid/grid"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Grid/controls"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Column">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Column/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Column/size"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Row">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//Row/size"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Row/size"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//ControlElement">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//ControlElement/rotaryKnob"/>
@@ -102,20 +134,23 @@
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//RotaryKnob">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//RotaryKnob/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//RotaryKnob/column"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//RotaryKnob/row"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//RotaryKnob/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Oscilloscope.ecore#//RotaryKnob/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//RotaryKnob/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//RotaryKnob/target"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//RotaryKnob/property"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//Slider">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Slider/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Slider/columnIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Slider/column"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//Slider/row"/>
     </genClasses>
     <genClasses ecoreClass="Oscilloscope.ecore#//AudioScope">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//AudioScope/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//AudioScope/columnIndex"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//AudioScope/column"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//AudioScope/row"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Oscilloscope.ecore#//AudioScope/target"/>
     </genClasses>
-    <genClasses ecoreClass="Oscilloscope.ecore#//EFloat"/>
   </genPackages>
 </genmodel:GenModel>
