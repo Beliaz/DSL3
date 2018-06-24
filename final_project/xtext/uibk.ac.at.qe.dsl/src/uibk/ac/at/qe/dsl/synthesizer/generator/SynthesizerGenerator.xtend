@@ -7,15 +7,15 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Circuit
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Control
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.CircuitConnection
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.OscillatorType
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.PassFilterType
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Top
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.BOOLEAN
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.Grid
-import uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.ConnectionType
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.Circuit
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.Control
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.CircuitConnection
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.OscillatorType
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.PassFilterType
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.Top
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.BOOLEAN
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.Grid
+import uibk.ac.at.qe.dsl.synthesizer.synthesizer.ConnectionType
 
 /**
  * Generates code from your model files on save.
