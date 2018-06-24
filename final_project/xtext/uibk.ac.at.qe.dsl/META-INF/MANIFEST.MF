@@ -15,15 +15,17 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.eclipse.xtend.lib;bundle-version="2.13.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: uibk.ac.at.qe.dsl.oscilloscope.parser.antlr,
- uibk.ac.at.qe.dsl.oscilloscope.scoping,
- uibk.ac.at.qe.dsl.oscilloscope.oscilloscope,
- uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.impl,
- uibk.ac.at.qe.dsl.oscilloscope,
- uibk.ac.at.qe.dsl.oscilloscope.services,
- uibk.ac.at.qe.dsl.oscilloscope.oscilloscope.util,
- uibk.ac.at.qe.dsl.oscilloscope.parser.antlr.internal,
- uibk.ac.at.qe.dsl.oscilloscope.generator,
- uibk.ac.at.qe.dsl.oscilloscope.validation,
- uibk.ac.at.qe.dsl.oscilloscope.serializer
+Export-Package: uibk.ac.at.qe.dsl.synthesizer.parser.antlr,
+ uibk.ac.at.qe.dsl.synthesizer.scoping,
+ uibk.ac.at.qe.dsl.synthesizer.synthesizer,
+ uibk.ac.at.qe.dsl.synthesizer.synthesizer.impl,
+ uibk.ac.at.qe.dsl.synthesizer,
+ uibk.ac.at.qe.dsl.synthesizer.services,
+ uibk.ac.at.qe.dsl.synthesizer.synthesizer.util,
+ uibk.ac.at.qe.dsl.synthesizer.parser.antlr.internal,
+ uibk.ac.at.qe.dsl.synthesizer.generator,
+ uibk.ac.at.qe.dsl.synthesizer.validation,
+ uibk.ac.at.qe.dsl.synthesizer.serializer,
+ uibk.ac.at.qe.dsl.synthesizer.synthesizer.impl,
+ uibk.ac.at.qe.dsl.synthesizer.synthesizer
 Import-Package: org.apache.log4j
