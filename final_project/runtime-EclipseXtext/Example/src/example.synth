@@ -1,7 +1,7 @@
-Circuits{
+Circuits {
 	"CircuitA" (
 
-		Sounds
+		Sounds 
 		{
 			Oscillator "OSC1" (
 				output true
@@ -24,14 +24,13 @@ Circuits{
 				maximum 10000.000
 				default 300.0
 			)
-
-			LAG "LAG1" (
+ 
+			LAG "LAG1" ( 
 				output false
 				time 0.2
 				default 0.5
 				
 			)
-
 		}
 		
 		Properties
@@ -41,7 +40,7 @@ Circuits{
 		Connections
 		{
 			HPASS "Input" OSC2 "Output"
-			OSC1 "Amplitude" LAG1 "Output" 
+			OSC1 "Amplitude" LAG1 "Output"  
 		}
 	)
 }
@@ -74,15 +73,14 @@ Controls
 			Row 1.0
 			
 			rotaryKnob "Master Volume" (
-				column 1
+				column 1  
 				row 0
 				connection (
 					type exponential
 					value 0.5
-					target "master.limiter"
-					property "Amplitude"
+					target "master"
+					property "amplitude"
 				)
-				
 			)
 		}
 		

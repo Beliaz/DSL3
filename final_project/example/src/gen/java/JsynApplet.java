@@ -28,7 +28,7 @@ public class JsynApplet extends AppletBase {
 			// build
 			{
 				CustomCircuit circuit = new CustomCircuit("CircuitA");
-				add(circuit);
+
 				circuit.add("OSC1", new SawtoothOscillator());
 				circuit.add("HPASS", new FilterHighPass());
 				
@@ -36,7 +36,8 @@ public class JsynApplet extends AppletBase {
 				
 				circuit.add("OSC2", new SquareOscillator());
 				circuit.add("LAG1", new LinearRamp());
-				
+
+				add(circuit);
 				
 					// setup OSC1
 					getInputPort("CircuitA.OSC1.Frequency")
@@ -51,12 +52,12 @@ public class JsynApplet extends AppletBase {
 	
 				
 					// setup LAG1
-					getInputPort("CircuitA.LAG1.Frequency")
+					getInputPort("CircuitA.LAG1.Input")
 									.setup(0,
 							 			            0.5,
 										1);
 					getInputPort("CircuitA.LAG1.Time")
-										.setup(0.2);
+										.set(0.2);
 	
 				
 			}
@@ -93,7 +94,7 @@ public class JsynApplet extends AppletBase {
 		}, new double[] { 
 			1.0
 		 });
-		 GlobalControlsGrid.add(createKnob("Master Volume", createExponentialModel("master.limiter.Amplitude")), 1, 0);
+		 GlobalControlsGrid.add(createKnob("Master Volume", createExponentialModel("master.Amplitude")), 1, 0);
 		 globalGrid.add(GlobalControlsGrid, 0, 0);
 		}
 		// Circuit A
@@ -118,7 +119,7 @@ public class JsynApplet extends AppletBase {
 		 ControlsGrid.add(createKnob("HPASS Frequency", createLinearModel("CircuitA.HPASS.Frequency")), 2, 0);
 		  	CircuitAGrid.add(ControlsGrid, 0, 0);
 		 }
-		 CircuitAGrid.add(createWaveView(new UnitOutputPort[]{getOutputPort("CircuitA.Output")}) ,0, 1);
+		 CircuitAGrid.add(createWaveView(new UnitOutputPort[]{getCircuit("CircuitA").output}) ,0, 1);
 		 globalGrid.add(CircuitAGrid, 0, 1);
 		}
 	

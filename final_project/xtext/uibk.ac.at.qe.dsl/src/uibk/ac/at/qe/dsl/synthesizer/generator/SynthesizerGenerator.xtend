@@ -44,7 +44,7 @@ class SynthesizerGenerator extends AbstractGenerator {
 	
 	def getJsynAppletTop(Control control) {
 		return '''
-		package gen.java;
+		package gen;
 		
 		import com.jsyn.ports.UnitInputPort;
 		import com.jsyn.ports.UnitOutputPort;
@@ -79,7 +79,7 @@ class SynthesizerGenerator extends AbstractGenerator {
 				// build
 				{
 					CustomCircuit circuit = new CustomCircuit("«circuit.name»");
-					add(circuit);
+
 					«FOR sound : circuit.sounds»
 						«IF sound.oscillator !== null && sound.oscillator.output == BOOLEAN::TRUE»
 							«IF sound.oscillator.type == OscillatorType::SAW_TOOTH»
@@ -142,22 +142,19 @@ class SynthesizerGenerator extends AbstractGenerator {
 						«ENDIF»
 					«ENDFOR»
 					
-					«FOR sound : circuit.sounds»
+					add(circuit);
 					
+					«FOR sound : circuit.sounds»
 						«IF sound.oscillator !== null»
 							// setup «sound.oscillator.name»
 							getInputPort("«circuit.name».«sound.oscillator.name».Frequency")
-												.setup(«sound.oscillator.min», «
-							 			            sound.oscillator.^default», «
-							 			            sound.oscillator.maximum»);
+								.setup(«sound.oscillator.min», «sound.oscillator.^default», «sound.oscillator.maximum»);
 						«ELSEIF sound.lag !== null»
 							// setup «sound.lag.name»
 							getInputPort("«circuit.name».«sound.lag.name».Input")
-											.setup(0,
-						 			            «sound.lag.^default»,
-												1);
+								.setup(0, «sound.lag.^default», 1);
 							getInputPort("«circuit.name».«sound.lag.name».Time")
-												.set(«sound.lag.time»);
+								.set(«sound.lag.time»);
 						«ELSEIF sound.passFilter !== null»
 						«ELSEIF sound.bandPass !== null»
 						«ELSEIF sound.add !== null»
@@ -166,17 +163,16 @@ class SynthesizerGenerator extends AbstractGenerator {
 						«ENDIF»
 
 					«ENDFOR»
-					
 				}
 				
-				//properties
-				
-				// connect
-				{
-					«FOR connection : circuit.connections»
-						connect("«circuit.name».«connection.sound1».«connection.property1»","«circuit.name».«connection.sound2».«connection.property2»");
-					«ENDFOR»
-				}
+				«IF !circuit.connections.empty»
+					// connect
+					{
+						«FOR connection : circuit.connections»
+							connect("«circuit.name».«connection.sound1».«connection.property1»","«circuit.name».«connection.sound2».«connection.property2»");
+						«ENDFOR»
+					}
+				«ENDIF»
 			}
 			«ENDFOR»
 		}
@@ -189,9 +185,10 @@ class SynthesizerGenerator extends AbstractGenerator {
 			protected void setupUI() {
 				super.setupUI();
 
-				CustomGrid globalGrid = createGrid(new double[] { 
-					«FOR column : control.columns SEPARATOR ',' »
-						«column.size»
+				CustomGrid globalGrid = createGrid(new double[] 
+				{ 
+					«FOR column : control.columns SEPARATOR ',\n' »
+					«column.size»
 					«ENDFOR»
 				}, new double[] { 
 					«FOR row : control.rows SEPARATOR ',' »
