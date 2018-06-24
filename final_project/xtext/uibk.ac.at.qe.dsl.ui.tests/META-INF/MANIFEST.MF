@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Automatic-Module-Name: uibk.ac.at.qe.dsl.ui.tests
 Bundle-ManifestVersion: 2
 Bundle-Name: uibk.ac.at.qe.dsl.ui.tests
 Bundle-Vendor: My Company
@@ -14,12 +15,5 @@ Require-Bundle: uibk.ac.at.qe.dsl.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.workbench;resolution:=optional
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Export-Package: uibk.ac.at.qe.dsl.synthesizer.ui.tests;x-internal=true,
- uibk.ac.at.qe.dsl.synthesizer.ui.tests;x-internal=true
-Import-Package: org.hamcrest.core,
- org.junit;version="4.5.0",
- org.junit.runners.model;version="4.5.0",
- org.junit.runner;version="4.5.0",
- org.junit.runners;version="4.5.0",
- org.junit.runner.manipulation;version="4.5.0",
- org.junit.runner.notification;version="4.5.0"
+Export-Package: uibk.ac.at.qe.dsl.synthesizer.ui.tests;x-internal=true
+

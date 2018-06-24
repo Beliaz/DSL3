@@ -1,4 +1,4 @@
-module uibk.ac.at.qe.dsl.GenerateSynthesizer
+module uibk.ac.at.qe.dsl.synthesizer.GenerateSynthesizer
 
 import org.eclipse.xtext.xtext.generator.*
 import org.eclipse.xtext.xtext.generator.model.project.*
@@ -30,7 +30,7 @@ Workflow {
 			}
 		}
 		language = StandardLanguage {
-			name = "uibk.ac.at.qe.dsl.Synthesizer"
+			name = "uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
 			fileExtensions = "synth"
 
 			serializer = {

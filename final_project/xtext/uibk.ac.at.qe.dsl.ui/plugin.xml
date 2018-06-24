@@ -4,48 +4,48 @@
 	<extension
 		point="org.eclipse.ui.editors">
 		<editor
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
 			contributorClass="org.eclipse.ui.editors.text.TextEditorActionContributor"
 			default="true"
-			extensions="osci"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			name="Oscilloscope Editor">
+			extensions="synth"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			name="Synthesizer Editor">
 		</editor>
 	</extension>
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclarationHandler"
 			commandId="org.eclipse.xtext.ui.editor.hyperlinking.OpenDeclaration">
 			<activeWhen>
 				<reference
-					definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+					definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
 		<handler
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
-			commandId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.validate">
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.handler.ValidateActionHandler"
+			commandId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.validate">
 		<activeWhen>
 			<reference
-					definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+					definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 			</reference>
 		</activeWhen>
 		</handler>
 		<!-- copy qualified name -->
 		<handler
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName">
 			<activeWhen>
-				<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened" />
+				<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened" />
 			</activeWhen>
 		</handler>
 		<handler
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedNameHandler"
 			commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.OutlineCopyQualifiedName">
 			<activeWhen>
 				<and>
-					<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.XtextEditor.opened" />
+					<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.XtextEditor.opened" />
 					<iterate>
 						<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 					</iterate>
@@ -54,22 +54,22 @@
 		</handler>
 	</extension>
 	<extension point="org.eclipse.core.expressions.definitions">
-		<definition id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+		<definition id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 			<and>
 				<reference definitionId="isActiveEditorAnInstanceOfXtextEditor"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
-						value="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
+						value="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
 						forcePluginActivation="true"/>
 				</with>
 			</and>
 		</definition>
-		<definition id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.XtextEditor.opened">
+		<definition id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.XtextEditor.opened">
 			<and>
 				<reference definitionId="isXtextEditorActive"/>
 				<with variable="activeEditor">
 					<test property="org.eclipse.xtext.ui.editor.XtextEditor.languageName"
-						value="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
+						value="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
 						forcePluginActivation="true"/>
 				</with>
 			</and>
@@ -78,33 +78,33 @@
 	<extension
 			point="org.eclipse.ui.preferencePages">
 		<page
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			name="Oscilloscope">
-			<keywordReference id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"/>
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			name="Synthesizer">
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
 		</page>
 		<page
-			category="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.coloring"
+			category="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.coloring"
 			name="Syntax Coloring">
-			<keywordReference id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"/>
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
 		</page>
 		<page
-			category="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.templates"
+			category="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.templates"
 			name="Templates">
-			<keywordReference id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"/>
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
 		</page>
 	</extension>
 	<extension
 			point="org.eclipse.ui.propertyPages">
 		<page
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			name="Oscilloscope">
-			<keywordReference id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"/>
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.preferences.LanguageRootPreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			name="Synthesizer">
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -114,14 +114,14 @@
 	<extension
 		point="org.eclipse.ui.keywords">
 		<keyword
-			id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"
-			label="Oscilloscope"/>
+			id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"
+			label="Synthesizer"/>
 	</extension>
 	<extension
 		point="org.eclipse.ui.commands">
 	<command
 			description="Trigger expensive validation"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.validate"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.validate"
 			name="Validate">
 	</command>
 	<!-- copy qualified name -->
@@ -142,12 +142,12 @@
 		<menuContribution
 			locationURI="popup:#TextEditorContext?after=group.edit">
 			 <command
-				 commandId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.validate"
+				 commandId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.validate"
 				 style="push"
 				 tooltip="Trigger expensive validation">
 			<visibleWhen checkEnabled="false">
 				<reference
-					definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+					definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 				</reference>
 			</visibleWhen>
 		</command>
@@ -157,7 +157,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened" />
+					<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -165,7 +165,7 @@
 			<command commandId="org.eclipse.xtext.ui.editor.copyqualifiedname.EditorCopyQualifiedName"
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened" />
+					<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
@@ -174,7 +174,7 @@
 				style="push" tooltip="Copy Qualified Name">
 				<visibleWhen checkEnabled="false">
 					<and>
-						<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.XtextEditor.opened" />
+						<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.XtextEditor.opened" />
 						<iterate>
 							<adapt type="org.eclipse.xtext.ui.editor.outline.IOutlineNode" />
 						</iterate>
@@ -187,7 +187,7 @@
 		<menuContribution locationURI="popup:#TextEditorContext?endof=group.find">
 			<command commandId="org.eclipse.xtext.ui.editor.FindReferences">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+					<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -195,11 +195,11 @@
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.findrefs.FindReferencesHandler"
 			commandId="org.eclipse.xtext.ui.editor.FindReferences">
 			<activeWhen>
 				<reference
-					definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+					definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -207,9 +207,9 @@
 	<extension point="org.eclipse.core.contenttype.contentTypes">
 		<content-type
 			base-type="org.eclipse.core.runtime.text"
-			file-extensions="osci"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.contenttype"
-			name="Oscilloscope File"
+			file-extensions="synth"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.contenttype"
+			name="Synthesizer File"
 			priority="normal">
 		</content-type>
 	</extension>
@@ -217,59 +217,68 @@
 	<extension
 		point="org.eclipse.emf.ecore.extension_parser">
 		<parser
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
-			type="osci">
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.resource.IResourceFactory"
+			type="synth">
 		</parser>
 	</extension>
 	<extension point="org.eclipse.xtext.extension_resourceServiceProvider">
 		<resourceServiceProvider
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
-			uriExtension="osci">
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.resource.IResourceUIServiceProvider"
+			uriExtension="synth">
 		</resourceServiceProvider>
 	</extension>
-	<!-- marker definitions for uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope -->
+	<!-- marker definitions for uibk.ac.at.qe.dsl.synthesizer.Synthesizer -->
 	<extension
-			id="oscilloscope.check.fast"
-			name="Oscilloscope Problem"
+			id="synthesizer.check.fast"
+			name="Synthesizer Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.fast"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="oscilloscope.check.normal"
-			name="Oscilloscope Problem"
+			id="synthesizer.check.normal"
+			name="Synthesizer Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.normal"/>
 		<persistent value="true"/>
 	</extension>
 	<extension
-			id="oscilloscope.check.expensive"
-			name="Oscilloscope Problem"
+			id="synthesizer.check.expensive"
+			name="Synthesizer Problem"
 			point="org.eclipse.core.resources.markers">
 		<super type="org.eclipse.xtext.ui.check.expensive"/>
 		<persistent value="true"/>
 	</extension>
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			category="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.validation.ValidatorPreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.validator.preferencePage"
+			name="Errors/Warnings">
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
+		</page>
+	</extension>
 	<extension point="org.eclipse.xtext.builder.participant">
 		<participant
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
-			fileExtensions="osci"/>
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+			fileExtensions="synth"/>
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.compiler.preferencePage"
+			category="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.compiler.preferencePage"
 			name="Compiler">
-			<keywordReference id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"/>
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.ui.propertyPages">
 		<page
-			category="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.compiler.propertyPage"
+			category="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.builder.preferences.BuilderPreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.compiler.propertyPage"
 			name="Compiler">
-			<keywordReference id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"/>
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
 			<enabledWhen>
 				<adapt type="org.eclipse.core.resources.IProject"/>
 			</enabledWhen>
@@ -280,20 +289,20 @@
 		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
 			<command
 				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
-				id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.OpenGeneratedCode"
+				id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.OpenGeneratedCode"
 				style="push">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened" />
+					<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened" />
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
 	<extension point="org.eclipse.ui.handlers">
 		<handler
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
 			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
 			<activeWhen>
-				<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened" />
+				<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened" />
 			</activeWhen>
 		</handler>
 	</extension>
@@ -301,11 +310,11 @@
 	<extension
 		point="org.eclipse.ui.handlers">
 		<handler 
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.outline.quickoutline.ShowQuickOutlineActionHandler"
 			commandId="org.eclipse.xtext.ui.editor.outline.QuickOutline">
 			<activeWhen>
 				<reference
-					definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+					definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -325,33 +334,33 @@
 				style="push"
 				tooltip="Open Quick Outline">
 				<visibleWhen checkEnabled="false">
-					<reference definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened"/>
+					<reference definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened"/>
 				</visibleWhen>
 			</command>
 		</menuContribution>
 	</extension>
-	<!-- quickfix marker resolution generator for uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope -->
+	<!-- quickfix marker resolution generator for uibk.ac.at.qe.dsl.synthesizer.Synthesizer -->
 	<extension
 			point="org.eclipse.ui.ide.markerResolution">
 		<markerResolutionGenerator
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="uibk.ac.at.qe.dsl.ui.oscilloscope.check.fast">
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="uibk.ac.at.qe.dsl.ui.synthesizer.check.fast">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="uibk.ac.at.qe.dsl.ui.oscilloscope.check.normal">
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="uibk.ac.at.qe.dsl.ui.synthesizer.check.normal">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
 			</attribute>
 		</markerResolutionGenerator>
 		<markerResolutionGenerator
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
-			markerType="uibk.ac.at.qe.dsl.ui.oscilloscope.check.expensive">
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.quickfix.MarkerResolutionGenerator"
+			markerType="uibk.ac.at.qe.dsl.ui.synthesizer.check.expensive">
 			<attribute
 				name="FIXABLE_KEY"
 				value="true">
@@ -361,11 +370,11 @@
 	<!-- Rename Refactoring -->
 	<extension point="org.eclipse.ui.handlers">
 		<handler 
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
 			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
 			<activeWhen>
 				<reference
-					definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+					definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 				</reference>
 			</activeWhen>
 		</handler>
@@ -377,7 +386,7 @@
 				style="push">
 				<visibleWhen checkEnabled="false">
 					<reference
-						definitionId="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.Editor.opened">
+						definitionId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.Editor.opened">
 					</reference>
 				</visibleWhen>
 			</command>
@@ -385,34 +394,40 @@
 	</extension>
 	<extension point="org.eclipse.ui.preferencePages">
 		<page
-			category="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
-			id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.refactoring"
+			category="uibk.ac.at.qe.dsl.synthesizer.Synthesizer"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+			id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.refactoring"
 			name="Refactoring">
-			<keywordReference id="uibk.ac.at.qe.dsl.oscilloscope.ui.keyword_Oscilloscope"/>
+			<keywordReference id="uibk.ac.at.qe.dsl.synthesizer.ui.keyword_Synthesizer"/>
 		</page>
 	</extension>
 	<extension point="org.eclipse.compare.contentViewers">
-		<viewer id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.compare.contentViewers"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="osci">
+		<viewer id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.compare.contentViewers"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="synth">
 		</viewer>
+		<contentTypeBinding
+			contentTypeId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.contenttype"
+			contentViewerId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.compare.contentViewers" />
 	</extension>
 	<extension point="org.eclipse.compare.contentMergeViewers">
-		<viewer id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.compare.contentMergeViewers"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
-			extensions="osci" label="Oscilloscope Compare">
+		<viewer id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.compare.contentMergeViewers"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+			extensions="synth" label="Synthesizer Compare">
 		</viewer>
+		<contentTypeBinding
+			contentTypeId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.contenttype"
+			contentMergeViewerId="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.compare.contentMergeViewers" />
 	</extension>
 	<extension point="org.eclipse.ui.editors.documentProviders">
-		<provider id="uibk.ac.at.qe.dsl.oscilloscope.Oscilloscope.editors.documentProviders"
-			class="uibk.ac.at.qe.dsl.oscilloscope.ui.OscilloscopeExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
-			extensions="osci">
+		<provider id="uibk.ac.at.qe.dsl.synthesizer.Synthesizer.editors.documentProviders"
+			class="uibk.ac.at.qe.dsl.synthesizer.ui.SynthesizerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+			extensions="synth">
 		</provider>
 	</extension>
 	<extension point="org.eclipse.team.core.fileTypes">
 		<fileTypes
-			extension="osci"
+			extension="synth"
 			type="text">
 		</fileTypes>
 	</extension>

@@ -237,7 +237,7 @@ class SynthesizerGenerator extends AbstractGenerator {
 			'''
 		}
 		
-		def getGrid(Iterable<Grid> grids, Grid parent) {
+		def String getGrid(Iterable<Grid> grids, Grid parent) {
 			return '''
 			«FOR grid : grids»
 				// «grid.name»
