@@ -46,15 +46,11 @@ class SynthesizerGenerator extends AbstractGenerator {
 		return '''
 		package gen;
 		
-		import com.jsyn.ports.UnitInputPort;
 		import com.jsyn.ports.UnitOutputPort;
 		import com.jsyn.swing.JAppletFrame;
 		import com.jsyn.unitgen.*;
 		import main.java.*;
-		
-		import javax.swing.*;
-		import java.awt.*;
-		
+				
 		public class JsynApplet extends AppletBase {
 		
 			public static void main(String args[]) {
@@ -149,19 +145,20 @@ class SynthesizerGenerator extends AbstractGenerator {
 							// setup «sound.oscillator.name»
 							getInputPort("«circuit.name».«sound.oscillator.name».Frequency")
 								.setup(«sound.oscillator.min», «sound.oscillator.^default», «sound.oscillator.maximum»);
+								
 						«ELSEIF sound.lag !== null»
 							// setup «sound.lag.name»
 							getInputPort("«circuit.name».«sound.lag.name».Input")
 								.setup(0, «sound.lag.^default», 1);
 							getInputPort("«circuit.name».«sound.lag.name».Time")
 								.set(«sound.lag.time»);
+								
 						«ELSEIF sound.passFilter !== null»
 						«ELSEIF sound.bandPass !== null»
 						«ELSEIF sound.add !== null»
 						«ELSEIF sound.div !== null»
 						«ELSEIF sound.multiply !== null»
 						«ENDIF»
-
 					«ENDFOR»
 				}
 				
@@ -178,53 +175,41 @@ class SynthesizerGenerator extends AbstractGenerator {
 		}
 			'''
 		}
-		
+				
 		def getUI(Control control) {   
 		    return '''
 			@Override
 			protected void setupUI() {
 				super.setupUI();
 
-				CustomGrid globalGrid = createGrid(new double[] 
-				{ 
-					«FOR column : control.columns SEPARATOR ',\n' »
-					«column.size»
-					«ENDFOR»
-				}, new double[] { 
-					«FOR row : control.rows SEPARATOR ',' »
-						«row.size»
-					«ENDFOR»
-				 });
+				CustomGrid globalGrid = createGrid(
+					new double[] { «FOR column : control.columns SEPARATOR ',' »«column.size»«ENDFOR» }, 
+					new double[] { «FOR row : control.rows SEPARATOR ',' »«row.size»«ENDFOR» });
 
-				
-				
 				«FOR grid : control.grid»
 				// «grid.name»
 				{
-					CustomGrid «grid.name.replace(" ", "")»Grid = createBorderedGrid("«grid.name»", new double[] { 
-					«FOR column : grid.columns SEPARATOR ',' »
-						«column.size»
+					CustomGrid «grid.name.replace(" ", "")»Grid = createBorderedGrid("«grid.name»", 
+						new double[] { «FOR column : grid.columns SEPARATOR ',' »«column.size»«ENDFOR» }, 
+						new double[] { «FOR row : grid.rows SEPARATOR ',' »«row.size»«ENDFOR» });
+				 	
+				 	«getGrid(grid.grid, grid)»
+				 	
+					«FOR gridControl : grid.controls»
+					 	«IF gridControl.audioScope !== null»
+					 			«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) , «gridControl.audioScope.column», «gridControl.audioScope.row»);
+					 	«ELSEIF gridControl.rotaryKnob !== null»
+					 		«IF gridControl.rotaryKnob.type == ConnectionType::EXPONENTIAL»
+					 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createExponentialModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+					 		«ELSEIF gridControl.rotaryKnob.type == ConnectionType::LINEAR»
+					 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createLinearModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+					 		«ENDIF»
+					 	«ELSEIF gridControl.slider !== null»
+					 			//«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) , «gridControl.audioScope.column», «gridControl.audioScope.row»);
+					 	«ENDIF»
 					«ENDFOR»
-				}, new double[] { 
-					«FOR row : grid.rows SEPARATOR ',' »
-						«row.size»
-					«ENDFOR»
-				 });
-				 «getGrid(grid.grid, grid)»
-				 «FOR gridControl : grid.controls»
-				 	«IF gridControl.audioScope !== null»
-				 			«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) ,«gridControl.audioScope.column», «gridControl.audioScope.row»);
-				 	«ELSEIF gridControl.rotaryKnob !== null»
-				 		«IF gridControl.rotaryKnob.type == ConnectionType::EXPONENTIAL»
-				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createExponentialModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
-				 		«ELSEIF gridControl.rotaryKnob.type == ConnectionType::LINEAR»
-				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createLinearModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
-				 		«ENDIF»
-				 	«ELSEIF gridControl.slider !== null»
-				 		//«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) ,gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
-				 	«ENDIF»
-				 «ENDFOR»
-				 globalGrid.add(«grid.name.replace(" ", "")»Grid, «grid.column», «grid.row»);
+					 
+				 	globalGrid.add(«grid.name.replace(" ", "")»Grid, «grid.column», «grid.row»);
 				}
 				«ENDFOR»
 
@@ -235,37 +220,32 @@ class SynthesizerGenerator extends AbstractGenerator {
 		}
 		
 		def String getGrid(Iterable<Grid> grids, Grid parent) {
-			return '''
-			«FOR grid : grids»
+			return '''«FOR grid : grids»
 				// «grid.name»
 				{
-					CustomGrid «grid.name.replace(" ", "")»Grid = createBorderedGrid("«grid.name»", new double[] { 
-					«FOR column : grid.columns SEPARATOR ',' »
-						«column.size»
+					CustomGrid «grid.name.replace(" ", "")»Grid = createBorderedGrid("«grid.name»", 
+						new double[] { «FOR column : grid.columns SEPARATOR ',' »«column.size»«ENDFOR» }, 
+						new double[] { «FOR row : grid.rows SEPARATOR ',' »«row.size»«ENDFOR» });
+				 	
+					«getGrid(grid.grid, grid)»
+					
+					«FOR gridControl : grid.controls»
+					 	«IF gridControl.audioScope !== null»
+					 			«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) , «gridControl.audioScope.column», «gridControl.audioScope.row»);
+					 	«ELSEIF gridControl.rotaryKnob !== null»
+					 		«IF gridControl.rotaryKnob.type == ConnectionType::EXPONENTIAL»
+					 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createExponentialModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+					 		«ELSEIF gridControl.rotaryKnob.type == ConnectionType::LINEAR»
+					 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createLinearModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
+					 		«ENDIF»
+					 	«ELSEIF gridControl.slider !== null»
+					 			//«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")}) , «gridControl.audioScope.column», «gridControl.audioScope.row»);
+					 	«ENDIF»
 					«ENDFOR»
-				}, new double[] { 
-					«FOR row : grid.rows SEPARATOR ',' »
-						«row.size»
-					«ENDFOR»
-				 });
-				«getGrid(grid.grid, grid)»
-				«FOR gridControl : grid.controls»
-				 	«IF gridControl.audioScope !== null»
-				 			«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")} ,gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
-				 	«ELSEIF gridControl.rotaryKnob !== null»
-				 		«IF gridControl.rotaryKnob.type == ConnectionType::EXPONENTIAL»
-				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createExponentialModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
-				 		«ELSEIF gridControl.rotaryKnob.type == ConnectionType::LINEAR»
-				 			«grid.name.replace(" ", "")»Grid.add(createKnob("«gridControl.rotaryKnob.name»", createLinearModel("«gridControl.rotaryKnob.target».«gridControl.rotaryKnob.property»")), «gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
-				 		«ENDIF»
-				 	«ELSEIF gridControl.slider !== null»
-				 		//«grid.name.replace(" ", "")»Grid.add(createWaveView(new UnitOutputPort[]{getOutputPort("«gridControl.audioScope.target».Output")} ,gridControl.rotaryKnob.column», «gridControl.rotaryKnob.row»);
-				 	«ENDIF»
-				 «ENDFOR»
-				 	«parent.name.replace(" ", "")»Grid.add(«grid.name.replace(" ", "")»Grid, «grid.column», «grid.row»);
+				
+					«parent.name.replace(" ", "")»Grid.add(«grid.name.replace(" ", "")»Grid, «grid.column», «grid.row»);
 				}
-				«ENDFOR»
-			'''
+				«ENDFOR»'''
 		}
 		
 		def getCircuitConnection(Iterable<CircuitConnection> connections) {
