@@ -1,0 +1,156 @@
+Circuits{
+	"CircuitA" (
+
+		Sounds
+		{
+			Oscillator "OSC1" (
+				output true
+				type sawTooth
+				min 50.0
+				maximum 10000.000
+				default 300.0
+			)
+
+			PassFilter "HPASS" (
+				output true
+				type high
+				frequency 5.000
+			)
+
+			Oscillator "OSC2" (
+				output false
+				type square
+				min 50.0
+				maximum 10000.000
+				default 300.0
+			)
+
+			LAG "LAG1" (
+				output false
+				time 0.2
+				default 0.5
+				
+			)
+
+		}
+		
+		Properties
+		{	
+		}
+		
+		Connections
+		{
+			HPASS "Input" OSC2 "Output"
+			OSC1 "Amplitude" LAG1 "Output" 
+		}
+	)
+}
+
+CircuitConnections 
+{
+	CircuitA master
+}
+
+Controls
+{
+	Window "My Synthesizer"
+	{
+		width 1280
+		height 960
+	}
+	
+	Grid "master" {
+		Column 1.0
+		Row 0.25
+		Row 0.50
+		Row 0.25
+		
+		Grid "Global Controls" {
+			column 0
+			row 0
+			
+			Column 0.9
+			Column 0.1
+			Row 1.0
+			
+			rotaryKnob "Master Volume" (
+				column 1
+				row 0
+				connection (
+					type exponential
+					value 0.5
+					target "master.limiter"
+					property "Amplitude"
+				)
+				
+			)
+		}
+		
+		Grid "Circuit A" {
+			column 0
+			row 1
+			
+			Column 1.0
+			Row 0.5
+			Row 0.5
+			
+			
+			Grid "Controls" {
+				column 0
+				row 0
+				
+				Column 1.0
+				Column 1.0
+				Column 1.0
+				Row 1.0
+
+				rotaryKnob "OSC1 Frequency" (
+					column 0
+					row 0
+					connection (
+						type linear
+						value 0.5
+						target "CircuitA.OSC1"
+						property "Frequency"
+					)
+				)
+
+				rotaryKnob "LAG1" (
+					column 1
+					row 0
+					connection (
+						type exponential
+						value 0.5
+						target "CircuitA.LAG1"
+						property "Input"
+					)
+				)
+
+				rotaryKnob "HPASS Frequency" (
+					column 2
+					row 0
+					connection (
+						type linear
+						value 0.5
+						target "CircuitA.HPASS"
+						property "Frequency"
+					)
+				)
+
+			}
+
+			
+			audioScope "" (
+				column 0
+				row 1
+				
+				connection (
+					target CircuitA
+				)	
+			)
+		
+
+		}
+	}
+
+}
