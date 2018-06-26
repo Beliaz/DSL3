@@ -27,7 +27,7 @@ Top:
 
 	Circuit:
 		name=STRING '('
-			'Sounds' '{'
+			'Generators' '{'
 				sounds+=Sound*
 			'}'
 			
@@ -64,7 +64,7 @@ Top:
 		;
 		
 		LAG:
-			 'LAG' name=STRING '('
+			 'LinearRamp' name=STRING '('
 			 	'output' output=(BOOLEAN)
 			 	'time' time=FLOAT
 			 	'default' default=FLOAT
@@ -168,13 +168,13 @@ Top:
 			/*------------------- Column ------------------- */	
 		
 			Column:
-				'Column' size=FLOAT
+				'ColumnDef' size=FLOAT
 			;
 			
 			/*------------------- Row ------------------- */	
 			
 			Row:
-				'Row' size=FLOAT
+				'RowDef' size=FLOAT
 			;
 			
 			/*------------------- Control Element ------------------- */	
@@ -188,7 +188,7 @@ Top:
 			/*------------------- Rotary Knob ------------------- */	
 			
 			RotaryKnob:
-				'rotaryKnob' name=STRING '('
+				'Knob' name=STRING '('
 					'column' column=INT
 					'row' row=INT
 					'connection' '('
